@@ -1,118 +1,35 @@
 .sprite {
-  --sprite-accent: var(--accent-cyan);
-  --sprite-glow: var(--glow-cyan);
   position: relative;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
 }
 
-.sm {
-  width: 34px;
-  height: 34px;
-}
-
-.md {
-  width: 54px;
-  height: 54px;
-}
-
-.sprite[data-accent="--accent-cyan"] {
-  --sprite-accent: var(--accent-cyan);
-  --sprite-glow: var(--glow-cyan);
-}
-
-.sprite[data-accent="--accent-coral"] {
-  --sprite-accent: var(--accent-coral);
-  --sprite-glow: var(--glow-coral);
-}
-
-.sprite[data-accent="--accent-green"] {
-  --sprite-accent: var(--accent-green);
-  --sprite-glow: var(--glow-green);
-}
-
-.sprite[data-accent="--accent-amber"] {
-  --sprite-accent: var(--accent-amber);
-  --sprite-glow: var(--glow-amber);
-}
-
-.sprite[data-accent="--accent-purple"] {
-  --sprite-accent: var(--accent-purple);
-  --sprite-glow: 0 0 12px rgba(221, 183, 255, 0.25);
-}
-
-.aura {
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--sprite-accent) 22%, transparent), transparent 70%);
-  filter: blur(6px);
-  opacity: 0.8;
-}
-
-.frame {
-  position: relative;
+.art {
   display: block;
-  width: 100%;
-  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(143, 245, 255, 0.18));
 }
 
-.head,
-.body,
-.core {
+.statusPip {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
 }
 
-.head {
-  top: 6px;
-  width: 38%;
-  height: 28%;
-  border: 1px solid color-mix(in srgb, var(--sprite-accent) 70%, var(--border-default));
-  background: color-mix(in srgb, var(--sprite-accent) 20%, var(--surface-lift));
-  box-shadow: var(--sprite-glow);
-}
+@media (prefers-reduced-motion: no-preference) {
+  .sprite {
+    animation: agentBounce 2s ease-in-out infinite;
+  }
 
-.body {
-  bottom: 6px;
-  width: 52%;
-  height: 44%;
-  border: 1px solid color-mix(in srgb, var(--sprite-accent) 70%, var(--border-default));
-  background: color-mix(in srgb, var(--sprite-accent) 18%, var(--surface-mid));
-}
+  @keyframes agentBounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
 
-.core {
-  top: 50%;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-tight);
-  color: var(--text-heading);
-}
-
-.sprite[data-style="pixel"] .head,
-.sprite[data-style="pixel"] .body {
-  border-radius: var(--radius-none);
-}
-
-.sprite[data-style="pixel"] .body {
-  clip-path: polygon(8% 0, 92% 0, 92% 100%, 8% 100%);
-}
-
-.sprite[data-style="geometric"] .head {
-  border-radius: 50%;
-}
-
-.sprite[data-style="geometric"] .body {
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-}
-
-.sprite[data-status="busy"] .aura {
-  opacity: 0.55;
-}
-
-.sprite[data-status="idle"] .aura {
-  opacity: 0.35;
+    50% {
+      transform: translateY(-2px);
+    }
+  }
 }

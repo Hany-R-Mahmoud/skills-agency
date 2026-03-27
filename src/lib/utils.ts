@@ -2,6 +2,7 @@ import clsx, { type ClassValue } from "clsx";
 import rawSkills from "@/data/skills.json";
 import type {
   Agent,
+  AccentToken,
   AgentDetailView,
   AgentListItem,
   AgentStatus,
@@ -34,6 +35,10 @@ export function getDepartments(): Department[] {
 
 export function getDepartmentBySlug(slug: string): Department | undefined {
   return getDepartments().find((department) => department.slug === slug);
+}
+
+export function getDepartmentById(id: string): Department | undefined {
+  return getDepartments().find((department) => department.id === id);
 }
 
 export function getAgents(): Agent[] {
@@ -108,10 +113,16 @@ export function getAgentListItems(slug?: string): AgentListItem[] {
       departmentSlug: department.slug,
       accentColor: department.accentColor,
       accentHex: department.accentHex,
-      skillsCount: agent.skills.length,
+      skillsCount: Array.isArray(agent.skills) ? agent.skills.length : 0,
       sprite: agent.sprite,
     };
   });
+}
+
+export function getAgentDetailViewsByDepartment(slug: string): AgentDetailView[] {
+  return getDepartmentAgents(slug)
+    .map((agent) => getAgentDetailView(agent.id))
+    .filter((agent): agent is AgentDetailView => Boolean(agent));
 }
 
 export function getAgentDetailView(id: string): AgentDetailView | undefined {
@@ -135,7 +146,7 @@ export function getAgentDetailView(id: string): AgentDetailView | undefined {
     codename: agent.codename,
     role: agent.role,
     description: agent.description,
-    skills: agent.skills,
+    skills: Array.isArray(agent.skills) ? agent.skills : [],
     invocation: agent.invocation,
     status: agent.status,
     departmentId: department.id,
@@ -197,6 +208,12 @@ export function getAgentRouteParams(): Array<{ id: string }> {
 
 export function getAgentVoiceClipPath(id: string): string {
   return `/audio/agents/${id}.mp3`;
+}
+
+export function getAccentTokenByDepartmentId(
+  departmentId: string,
+): AccentToken {
+  return getDepartmentById(departmentId)?.accentColor ?? "--accent-cyan";
 }
 
 export function summarizeStatuses(

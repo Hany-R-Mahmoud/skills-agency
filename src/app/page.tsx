@@ -1,7 +1,11 @@
-import DeptCard from "@/components/departments/DeptCard";
+"use client";
+
+import Link from "next/link";
 import DeptRoom from "@/components/departments/DeptRoom";
+import DeptCard from "@/components/departments/DeptCard";
 import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
+import { initAudio, playUI, startAmbient } from "@/lib/audio";
 import {
   getDepartmentSummaries,
   getRoomTiles,
@@ -14,31 +18,38 @@ export default function HomePage() {
   const stats = getSiteStats();
   const roomTiles = getRoomTiles();
 
+  function handleEnterHQ(): void {
+    void initAudio();
+    void playUI("click");
+    void startAmbient();
+  }
+
   return (
     <div className={styles.shell}>
       <Sidebar departments={departments} stats={stats} />
       <MainArea
-        eyebrow="MVP / Phase 3"
-        title="The Agency HQ"
-        description="An isometric control floor for browsing departments, checking live staffing, and dropping directly into any room."
-        summary={
-          <div className={styles.summaryPanel}>
-            <p className="label-sm">Live signal</p>
-            <div className={styles.summaryValue}>{stats.onlineAgents}</div>
-            <p className={styles.summaryCopy}>
-              Specialists online across {stats.totalDepartments} departments.
-            </p>
-          </div>
-        }
+        eyebrow="Command Floor"
+        title="The Agency"
+        description="A neon operations floor for routing missions, reading live rosters, and stepping directly into any specialist department."
+        hideHeader
       >
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
-            <p className="label-sm">Main navigation</p>
-            <h2>Walk the floor, then enter the room that matches the mission.</h2>
-            <p>
-              Each department tile exposes its active roster, visual accent, and
-              live staffing state directly from the shared skills dataset.
+            <p className={styles.kicker}>Command Floor</p>
+            <h1 className={styles.title}>THE AGENCY</h1>
+            <p className={styles.subtitle}>
+              31 specialists. 6 departments. One command floor.
             </p>
+            <p>
+              Route into Command, Engineering, Design, AI Labs, Ops, and Security
+              &amp; Research through a live isometric HQ map driven entirely from
+              the shared skills dataset.
+            </p>
+            <div className={styles.heroActions}>
+              <Link href="#hq-map" className={styles.primaryAction} onClick={handleEnterHQ}>
+                Enter HQ
+              </Link>
+            </div>
           </div>
           <dl className={styles.statsBar}>
             <div>
@@ -46,17 +57,26 @@ export default function HomePage() {
               <dd>{stats.totalAgents}</dd>
             </div>
             <div>
-              <dt className="label-sm">Busy now</dt>
-              <dd>{stats.busyAgents}</dd>
+              <dt className="label-sm">Departments</dt>
+              <dd>{stats.totalDepartments}</dd>
             </div>
             <div>
-              <dt className="label-sm">Idle reserve</dt>
-              <dd>{stats.idleAgents}</dd>
+              <dt className="label-sm">Online now</dt>
+              <dd>{stats.onlineAgents}</dd>
             </div>
           </dl>
         </section>
 
-        <DeptRoom mode="map" tiles={roomTiles} />
+        <section id="hq-map" className={styles.mapSection}>
+          <div className={styles.summaryPanel}>
+            <p className="label-sm">Live signal</p>
+            <div className={styles.summaryValue}>{stats.onlineAgents}</div>
+            <p className={styles.summaryCopy}>
+              Specialists online across {stats.totalDepartments} departments.
+            </p>
+          </div>
+          <DeptRoom mode="map" tiles={roomTiles} />
+        </section>
 
         <section className={styles.directory}>
           <div className={styles.directoryHeader}>

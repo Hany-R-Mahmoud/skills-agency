@@ -12,6 +12,7 @@ interface MainAreaProps {
   title: string;
   description: string;
   className?: string;
+  hideHeader?: boolean;
   summary?: ReactNode;
 }
 
@@ -21,6 +22,7 @@ export default function MainArea({
   title,
   description,
   className,
+  hideHeader = false,
   summary,
 }: MainAreaProps) {
   const pathname = usePathname();
@@ -34,14 +36,16 @@ export default function MainArea({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <header className={styles.header}>
-          <div className={styles.copy}>
-            <p className={styles.eyebrow}>{eyebrow}</p>
-            <h1>{title}</h1>
-            <p className={styles.description}>{description}</p>
-          </div>
-          {summary ? <div className={styles.summary}>{summary}</div> : null}
-        </header>
+        {!hideHeader ? (
+          <header className={styles.header}>
+            <div className={styles.copy}>
+              <p className={styles.eyebrow}>{eyebrow}</p>
+              <h1>{title}</h1>
+              <p className={styles.description}>{description}</p>
+            </div>
+            {summary ? <div className={styles.summary}>{summary}</div> : null}
+          </header>
+        ) : null}
         <div className={styles.content}>{children}</div>
       </motion.div>
     </main>

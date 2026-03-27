@@ -1,13 +1,26 @@
+.drawerRoot :global(.ant-drawer-content),
+.drawerRoot :global(.ant-drawer-header),
+.drawerRoot :global(.ant-drawer-body) {
+  background: var(--surface-inset);
+}
+
+.drawerRoot :global(.ant-drawer-header) {
+  border-bottom-color: var(--border-subtle);
+}
+
+.drawerRoot :global(.ant-drawer-body) {
+  padding: 0;
+}
+
 .panel {
   --panel-accent: var(--accent-cyan);
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-4);
+  min-height: 100%;
   padding: var(--space-6);
-  border: 1px solid var(--border-default);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--panel-accent) 14%, transparent), transparent 32%),
-    var(--surface-mid);
-  box-shadow: var(--shadow-void);
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-accent) 8%, transparent), transparent 28%),
+    var(--surface-inset);
 }
 
 .panel[data-accent="--accent-cyan"] {
@@ -32,62 +45,147 @@
 
 .header {
   display: flex;
-  gap: var(--space-4);
+  flex-direction: column;
   align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-accent) 5%, transparent), transparent 65%),
+    var(--surface-mid);
 }
 
-.identity {
+.headerCopy {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
 }
 
-.identity h2,
-.identity p,
-.description {
+.headerCopy h2,
+.description,
+.codename {
   margin: 0;
 }
 
-.role {
-  color: var(--text-secondary);
+.deptBadge {
+  background: var(--panel-accent);
+  color: var(--text-on-accent);
+  font-family: var(--font-mono);
 }
 
-.status {
-  display: inline-flex;
+.divider {
+  margin: 0;
+  border-color: var(--border-subtle);
+}
+
+.codename {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--panel-accent);
+}
+
+.codename::after {
+  content: "_";
+}
+
+.statusRow {
+  display: flex;
   gap: var(--space-2);
   align-items: center;
 }
 
-.block {
+.statusText {
+  color: var(--text-secondary);
+}
+
+.description {
+  color: var(--text-primary);
+}
+
+.section {
   display: grid;
   gap: var(--space-3);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border-ghost);
 }
 
-.codeGrid {
-  display: grid;
-  gap: var(--space-2);
-}
-
-.codeGrid code {
-  display: block;
-  padding: var(--space-3);
-  border: 1px solid var(--border-default);
-  background: var(--surface-void);
-  color: var(--panel-accent);
-}
-
-.skillList {
+.skillGrid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  padding: 0;
-  list-style: none;
 }
 
-.skillList li {
-  padding: var(--space-2) var(--space-3);
+.skillTag {
+  background: color-mix(in srgb, var(--panel-accent) 14%, var(--surface-high));
+  color: var(--panel-accent);
+  font-family: var(--font-mono);
+}
+
+.invokeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.codeCard {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
   border: 1px solid var(--border-default);
-  background: var(--surface-lift);
+  background: var(--surface-mid);
+}
+
+.codeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.codeCard pre,
+.replacesCopy {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--font-mono);
+  color: var(--panel-accent);
+}
+
+.replaces {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-3);
+}
+
+.replaces :global(.ant-collapse-item),
+.replaces :global(.ant-collapse-header),
+.replaces :global(.ant-collapse-content),
+.replaces :global(.ant-collapse-content-box) {
+  padding-inline: 0;
+  background: transparent;
   color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .codename::after {
+    animation: blink 1s step-end infinite;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawerRoot :global(.ant-drawer-content-wrapper) {
+    width: 100vw !important;
+  }
+
+  .invokeGrid {
+    grid-template-columns: 1fr;
+  }
 }

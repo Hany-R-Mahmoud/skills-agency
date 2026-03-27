@@ -3,7 +3,7 @@ import DeptRoom from "@/components/departments/DeptRoom";
 import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
 import {
-  getAgentListItems,
+  getAgentDetailViewsByDepartment,
   getDepartmentBySlug,
   getDepartmentRouteParams,
   getDepartmentSummaryBySlug,
@@ -61,7 +61,7 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
         <DeptRoom
           mode="department"
           department={departmentSummary}
-          agents={getAgentListItems(slug)}
+          agents={getAgentDetailViewsByDepartment(slug)}
         />
       </MainArea>
     </div>

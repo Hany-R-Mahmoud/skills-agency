@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { MutedOutlined, SoundOutlined } from "@ant-design/icons";
 import type { SidebarDepartmentSummary, SiteStats } from "@/lib/types";
+import { initAudio, isMuted, setMuted, startAmbient } from "@/lib/audio";
 import styles from "./Sidebar.module.scss";
-
-const MUTE_STORAGE_KEY = "agency:muted";
 
 interface SidebarProps {
   departments: SidebarDepartmentSummary[];
@@ -20,23 +20,34 @@ export default function Sidebar({
   activeDepartmentSlug,
 }: SidebarProps) {
   const pathname = usePathname();
-  const [muted, setMuted] = useState<boolean>(() => {
-    if (typeof window === "undefined") {
-      return true;
+  const [muted, setMutedState] = useState<boolean>(() => isMuted());
+
+  useEffect(() => {
+    function unlockAudio(): void {
+      void initAudio();
+      void startAmbient();
+      window.removeEventListener("pointerdown", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
     }
 
-    const storedPreference = window.localStorage.getItem(MUTE_STORAGE_KEY);
-    return storedPreference === null ? true : storedPreference === "true";
-  });
+    window.addEventListener("pointerdown", unlockAudio, { once: true });
+    window.addEventListener("keydown", unlockAudio, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+    };
+  }, []);
 
   function toggleMuted() {
     const nextMuted = !muted;
     setMuted(nextMuted);
-    window.localStorage.setItem(MUTE_STORAGE_KEY, String(nextMuted));
+    setMutedState(nextMuted);
   }
 
   return (
-    <aside className={styles.sidebar}>
+    <>
+      <aside className={styles.sidebar}>
       <div className={styles.brandBlock}>
         <p className="label-sm">Agency HQ</p>
         <Link href="/" className={styles.brandLink}>
@@ -95,8 +106,42 @@ export default function Sidebar({
         aria-pressed={muted}
       >
         <span className="label-sm">Audio</span>
-        <span>{muted ? "Muted" : "Live"}</span>
+        <span className={styles.muteState}>
+          {muted ? <MutedOutlined aria-hidden /> : <SoundOutlined aria-hidden />}
+          {muted ? "Muted" : "Live"}
+        </span>
       </button>
-    </aside>
+      </aside>
+
+      <nav className={styles.mobileNav} aria-label="Quick department navigation">
+        <Link href="/" className={styles.mobileHome} data-active={pathname === "/"}>
+          HQ
+        </Link>
+        {departments.map((department) => {
+          const isActive =
+            activeDepartmentSlug === department.slug ||
+            pathname === `/departments/${department.slug}`;
+
+          return (
+            <Link
+              key={department.slug}
+              href={`/departments/${department.slug}`}
+              className={styles.mobileLink}
+              data-active={isActive}
+            >
+              {department.name.slice(0, 1)}
+            </Link>
+          );
+        })}
+        <button
+          type="button"
+          className={styles.mobileMute}
+          onClick={toggleMuted}
+          aria-label={muted ? "Unmute site audio" : "Mute site audio"}
+        >
+          {muted ? <MutedOutlined aria-hidden /> : <SoundOutlined aria-hidden />}
+        </button>
+      </nav>
+    </>
   );
 }

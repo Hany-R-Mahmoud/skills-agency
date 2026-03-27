@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import AgentCard from "@/components/agents/AgentCard";
-import type { AgentListItem, RoomTile, SidebarDepartmentSummary } from "@/lib/types";
+import AgentPanel from "@/components/agents/AgentPanel";
+import AgentSprite from "@/components/shared/AgentSprite";
+import { initAudio, playUI, startAmbient, stopAmbient } from "@/lib/audio";
+import type { AgentDetailView, RoomTile, SidebarDepartmentSummary } from "@/lib/types";
 import styles from "./DeptRoom.module.scss";
 
 interface DeptRoomMapProps {
@@ -17,7 +20,7 @@ interface DeptRoomMapProps {
 interface DeptRoomDepartmentProps {
   mode: "department";
   department: SidebarDepartmentSummary;
-  agents: AgentListItem[];
+  agents: AgentDetailView[];
 }
 
 type DeptRoomProps = DeptRoomMapProps | DeptRoomDepartmentProps;
@@ -25,48 +28,97 @@ type DeptRoomProps = DeptRoomMapProps | DeptRoomDepartmentProps;
 export default function DeptRoom(props: DeptRoomProps) {
   const router = useRouter();
   const [pendingSlug, setPendingSlug] = useState<string | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<AgentDetailView | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const hoverAudioTimestamp = useRef(0);
 
-  function handleRoomNavigation(href: string, slug: string) {
+  useEffect(() => {
+    if (props.mode !== "department") {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      startAmbient();
+    }, 500);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [props.mode]);
+
+  async function handleRoomNavigation(href: string, slug: string): Promise<void> {
+    initAudio();
+    await playUI("transition");
+    stopAmbient(500);
     setPendingSlug(slug);
     window.setTimeout(() => {
       router.push(href);
     }, 180);
   }
 
+  function handleAgentActivate(agent: AgentDetailView) {
+    setSelectedAgent(agent);
+    setDrawerOpen(true);
+  }
+
+  function handleRoomHover() {
+    const now = Date.now();
+
+    if (now - hoverAudioTimestamp.current < 280) {
+      return;
+    }
+
+    hoverAudioTimestamp.current = now;
+    initAudio();
+    void playUI("keystroke");
+  }
+
   if (props.mode === "department") {
     return (
-      <section className={styles.departmentView} data-accent={props.department.accentColor}>
-        <header className={styles.departmentHeader}>
-          <div>
-            <p className="label-sm">Department room</p>
-            <h2>{props.department.name}</h2>
-            <p className={styles.departmentCopy}>{props.department.tagline}</p>
-          </div>
-          <dl className={styles.departmentStats}>
+      <>
+        <section className={styles.departmentView} data-accent={props.department.accentColor}>
+          <header className={styles.departmentHeader}>
             <div>
-              <dt className="label-sm">Agents</dt>
-              <dd>{props.department.agentCount}</dd>
+              <p className="label-sm">Department room</p>
+              <h2>{props.department.name}</h2>
+              <p className={styles.departmentCopy}>{props.department.tagline}</p>
             </div>
-            <div>
-              <dt className="label-sm">Online</dt>
-              <dd>{props.department.onlineCount}</dd>
-            </div>
-          </dl>
-        </header>
+            <dl className={styles.departmentStats}>
+              <div>
+                <dt className="label-sm">Agents</dt>
+                <dd>{props.department.agentCount}</dd>
+              </div>
+              <div>
+                <dt className="label-sm">Online</dt>
+                <dd>{props.department.onlineCount}</dd>
+              </div>
+            </dl>
+          </header>
 
-        {props.agents.length > 0 ? (
-          <div className={styles.agentGrid}>
-            {props.agents.map((agent) => (
-              <AgentCard key={agent.id} agent={agent} />
-            ))}
-          </div>
-        ) : (
-          <div className={styles.emptyState}>
-            <p className="label-sm">No active specialists</p>
-            <p>This room is quiet right now, but the route remains ready for future agents.</p>
-          </div>
-        )}
-      </section>
+          {props.agents.length > 0 ? (
+            <div className={styles.agentGrid}>
+              {props.agents.map((agent) => (
+                <AgentCard
+                  key={agent.id}
+                  agent={agent}
+                  onActivate={handleAgentActivate}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.emptyState}>
+              <p className="label-sm">No specialists assigned</p>
+              <p>This room is quiet right now, but the route remains ready for future agents.</p>
+            </div>
+          )}
+        </section>
+
+        <AgentPanel
+          agent={selectedAgent}
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        />
+      </>
     );
   }
 
@@ -114,11 +166,12 @@ export default function DeptRoom(props: DeptRoomProps) {
               tabIndex={0}
               role="link"
               aria-label={`${tile.label}, ${tile.agentCount} agents, ${tile.onlineCount} online`}
-              onClick={() => handleRoomNavigation(tile.href, tile.slug)}
+              onClick={() => void handleRoomNavigation(tile.href, tile.slug)}
+              onMouseEnter={handleRoomHover}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
-                  handleRoomNavigation(tile.href, tile.slug);
+                  void handleRoomNavigation(tile.href, tile.slug);
                 }
               }}
               whileHover={{ y: -4 }}
@@ -135,24 +188,29 @@ export default function DeptRoom(props: DeptRoomProps) {
               </text>
 
               {tile.previewAgents.map((agent, index) => {
-                const previewX = tile.spriteAnchorX + index * 28;
-                const previewY = tile.spriteAnchorY + ((index + 1) % 2) * 12;
+                const previewX = tile.spriteAnchorX + index * 26;
+                const previewY = tile.spriteAnchorY + ((index + 1) % 2) * 10;
 
                 return (
-                  <g
+                  <foreignObject
                     key={agent.id}
-                    className={styles.preview}
-                    data-style={agent.style}
-                    data-status={agent.status}
-                    transform={`translate(${previewX} ${previewY})`}
+                    x={previewX}
+                    y={previewY}
+                    width="26"
+                    height="26"
+                    className={styles.previewForeignObject}
                   >
-                    <circle className={styles.previewAura} cx="8" cy="8" r="8" />
-                    {agent.style === "pixel" ? (
-                      <rect className={styles.previewBody} x="2" y="2" width="12" height="12" rx="1" ry="1" />
-                    ) : (
-                      <polygon className={styles.previewBody} points="8,0 16,8 8,16 0,8" />
-                    )}
-                  </g>
+                    <div className={styles.previewSpriteWrap}>
+                      <AgentSprite
+                        color={tile.accentHex}
+                        variant={agent.variant as 1 | 2 | 3 | 4}
+                        style={agent.style}
+                        status={agent.status}
+                        size={24}
+                        label={`${agent.name} preview`}
+                      />
+                    </div>
+                  </foreignObject>
                 );
               })}
             </motion.g>

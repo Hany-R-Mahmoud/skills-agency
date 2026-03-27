@@ -14,6 +14,12 @@ export type DepartmentId =
 export type AgentStatus = "online" | "busy" | "idle";
 
 export type CharacterStyle = "pixel" | "geometric";
+export type AccentToken =
+  | "--accent-cyan"
+  | "--accent-coral"
+  | "--accent-green"
+  | "--accent-amber"
+  | "--accent-purple";
 
 export interface AgentInvocation {
   codex: string;
@@ -53,7 +59,7 @@ export interface Department {
   name: string;
   slug: string;
   tagline: string;
-  accentColor: string;
+  accentColor: AccentToken;
   accentHex: string;
   roomPosition: RoomPosition;
   agents: Agent[];
@@ -76,7 +82,7 @@ export interface SidebarDepartmentSummary {
   name: string;
   slug: string;
   tagline: string;
-  accentColor: string;
+  accentColor: AccentToken;
   accentHex: string;
   agentCount: number;
   onlineCount: number;
@@ -101,7 +107,7 @@ export interface AgentListItem {
   departmentId: DepartmentId;
   departmentName: string;
   departmentSlug: string;
-  accentColor: string;
+  accentColor: AccentToken;
   accentHex: string;
   skillsCount: number;
   sprite: AgentSprite;
@@ -119,7 +125,7 @@ export interface RoomTile {
   slug: string;
   label: string;
   tagline: string;
-  accentColor: string;
+  accentColor: AccentToken;
   accentHex: string;
   polygonPoints: string;
   frontFacePoints: string;
@@ -146,7 +152,7 @@ export interface AgentDetailView {
   departmentId: DepartmentId;
   departmentName: string;
   departmentSlug: string;
-  accentColor: string;
+  accentColor: AccentToken;
   accentHex: string;
   sprite: AgentSprite;
   voiceClipPath: string;

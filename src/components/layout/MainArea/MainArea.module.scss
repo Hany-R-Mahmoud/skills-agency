@@ -70,3 +70,9 @@
     padding: var(--space-5);
   }
 }
+
+@media (max-width: 768px) {
+  .main {
+    padding-bottom: calc(var(--space-6) + 4rem);
+  }
+}
