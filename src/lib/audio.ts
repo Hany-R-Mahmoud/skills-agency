@@ -64,7 +64,7 @@ export function startAmbient(): void {
       if (!ambientSource && !ambientElement) {
         void playWithElement(
           ["/audio/ui/ambient-hq.wav", "/audio/ui/ambient-hq.m4a", "/audio/ui/ambient-hq.mp3"],
-          0.15,
+          0.07,
           true,
         );
       }
@@ -76,7 +76,7 @@ export function startAmbient(): void {
 
     source.buffer = buffer;
     source.loop = true;
-    gainNode.gain.value = 0.15;
+    gainNode.gain.value = 0.07;
 
     source.connect(gainNode);
     gainNode.connect(context.destination);

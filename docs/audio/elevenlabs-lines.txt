@@ -1,31 +1,31 @@
-team-lead|Team Lead online. Aligning specialists and clearing the path.
-team-lead-lite|Lead Lite online. Quick fix route locked and moving.
-team-lead-full|Lead Full online. High-risk review active, gates are holding.
-agent-orchestrator|Orchestrator online. Splitting the task and assigning the right minds.
-agent-history|Historian online. Prior context indexed and ready for handoff.
-agent-implementer|Implementer online. Approved plan loaded, shipping code next.
-frontend-react-and-next|React and Next online. Server components stable, interface work underway.
-backend-and-language-engineering|Backend online. Services are wired, contracts are holding.
-fullstack-engineering|Full Stack online. Frontend to backend path is fully covered.
-mobile-engineering|Mobile online. Touch flow tuned and cross-platform checks are green.
-systems-architecture|Architect online. System boundaries are clean and future-safe.
-interface-and-design|Interface online. Clarity, hierarchy, and feel are in sync.
-design-to-code|Design to Code online. Converting polished frames into production markup.
-visual-artifacts|Visual online. Generating bold artifacts with clean composition.
-agent-impeccable|Impeccable online. Final polish pass engaged, rough edges removed.
-ai-systems-engineering|AI Systems online. Model pipeline tuned, context flow is live.
+team-lead|Team Lead online. I have the floor, and the route is clear.
+team-lead-lite|Lead Lite online. Quick path is open. I can move now.
+team-lead-full|Lead Full online. Full review is active. We move carefully.
+agent-orchestrator|Orchestrator online. I am assigning the right specialist to each step.
+agent-history|Historian online. Prior context is ready, and nothing important was lost.
+agent-implementer|Implementer online. Plan is approved. I am ready to build.
+frontend-react-and-next|React and Next online. The interface is ready for modern patterns.
+backend-and-language-engineering|Backend online. Services are stable, and the contracts are clean.
+fullstack-engineering|Full Stack online. Frontend and backend are covered end to end.
+mobile-engineering|Mobile online. Touch flow feels smooth, and the cross-platform path is ready.
+systems-architecture|Architect online. Boundaries are clear, and the structure will hold.
+interface-and-design|Interface online. Clarity, rhythm, and usability are aligned.
+design-to-code|Design to Code online. I am translating the concept into a real interface.
+visual-artifacts|Visual online. The composition is bold, clean, and ready to render.
+agent-impeccable|Impeccable online. I am smoothing the rough edges and lifting the finish.
+ai-systems-engineering|AI Systems online. The model flow is tuned, and the context is stable.
 mcp-development|MCP Builder online. Tools, schemas, and protocol edges are aligned.
-agent-orchestration|Agent Ops online. Parallel workflows are balanced and unblocked.
-prompt-optimizer|Prompt Optimizer online. Tightening intent, constraints, and output shape.
-agent-reviewer|Reviewer online. Checking correctness, regressions, and hidden risk.
-agent-tester|Tester online. Critical paths loaded and ready for validation.
-testing-and-verification|QA online. Expected behavior matches the spec on record.
-agent-debugging|Debugger online. Reproducing the issue and tracing the break.
-debugging-and-diagnostics|Diagnostics online. Signals are isolated and evidence is clean.
-review-and-pr-operations|PR Ops online. Reviews, updates, and merge flow are synchronized.
-platform-engineering|Platform online. Deployments are stable and runtime health is green.
-agent-security|Security online. Trust boundaries mapped and risk under watch.
-security-engineering|Security Engineering online. Hardening controls and closing weak paths.
-research-and-reasoning|Research online. Evidence gathered, assumptions challenged, conclusions sharpened.
-agent-docs|Docs Writer online. Turning complex systems into clear guidance.
-documentation-and-doc-ops|Doc Ops online. Documentation stays synced with the build.
+agent-orchestration|Agent Ops online. Parallel work is balanced, and the system is unblocked.
+prompt-optimizer|Prompt Optimizer online. I am tightening intent, tone, and output shape.
+agent-reviewer|Reviewer online. I am checking for regressions, risk, and weak assumptions.
+agent-tester|Tester online. Critical paths are loaded, and validation is ready.
+testing-and-verification|QA online. Expected behavior matches the spec we agreed on.
+agent-debugging|Debugger online. I am tracing the fault back to the real cause.
+debugging-and-diagnostics|Diagnostics online. Signals are isolated, and the evidence is clean.
+review-and-pr-operations|PR Ops online. Reviews, updates, and merge flow are in sync.
+platform-engineering|Platform online. Deployments are healthy, and the runtime is calm.
+agent-security|Security online. Trust boundaries are mapped, and the risk is under watch.
+security-engineering|Security Engineering online. I am hardening controls and closing weak paths.
+research-and-reasoning|Research online. Evidence is gathered, and the conclusions are sharper now.
+agent-docs|Docs Writer online. I am turning complex behavior into clear guidance.
+documentation-and-doc-ops|Doc Ops online. Documentation stays synced with the build as it moves.
