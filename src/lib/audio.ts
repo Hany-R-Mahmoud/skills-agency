@@ -28,11 +28,21 @@ export function initAudio(): void {
 export async function playUI(
   sound: "click" | "transition" | "activate" | "keystroke",
 ): Promise<void> {
-  await playBuffer(`/audio/ui/${sound}.mp3`, sound === "keystroke" ? 0.3 : 1);
+  await playBuffer(
+    [`/audio/ui/${sound}.wav`, `/audio/ui/${sound}.m4a`, `/audio/ui/${sound}.mp3`],
+    sound === "keystroke" ? 0.3 : 1,
+  );
 }
 
 export async function playAgentVoice(agentId: string): Promise<void> {
-  await playBuffer(`/audio/agents/${agentId}.mp3`, 1);
+  await playBuffer(
+    [
+      `/audio/agents/${agentId}.wav`,
+      `/audio/agents/${agentId}.m4a`,
+      `/audio/agents/${agentId}.mp3`,
+    ],
+    1,
+  );
 }
 
 export function startAmbient(): void {
@@ -47,7 +57,11 @@ export function startAmbient(): void {
       return;
     }
 
-    const buffer = await loadBuffer("/audio/ui/ambient-hq.mp3");
+    const buffer = await loadFirstAvailableBuffer([
+      "/audio/ui/ambient-hq.wav",
+      "/audio/ui/ambient-hq.m4a",
+      "/audio/ui/ambient-hq.mp3",
+    ]);
 
     if (!buffer || ambientSource) {
       return;
@@ -134,7 +148,7 @@ export function isMuted(): boolean {
   return window.localStorage.getItem(MUTE_STORAGE_KEY) === "true";
 }
 
-async function playBuffer(path: string, volume: number): Promise<void> {
+async function playBuffer(paths: string[], volume: number): Promise<void> {
   if (isMuted()) {
     return;
   }
@@ -149,21 +163,38 @@ async function playBuffer(path: string, volume: number): Promise<void> {
     await context.resume();
   }
 
-  const buffer = await loadBuffer(path);
+  for (const path of paths) {
+    const buffer = await loadBuffer(path);
 
-  if (!buffer) {
+    if (!buffer) {
+      continue;
+    }
+
+    const source = context.createBufferSource();
+    const gainNode = context.createGain();
+
+    source.buffer = buffer;
+    gainNode.gain.value = volume;
+
+    source.connect(gainNode);
+    gainNode.connect(context.destination);
+    source.start(0);
     return;
   }
+}
 
-  const source = context.createBufferSource();
-  const gainNode = context.createGain();
+async function loadFirstAvailableBuffer(
+  paths: string[],
+): Promise<AudioBuffer | null> {
+  for (const path of paths) {
+    const buffer = await loadBuffer(path);
 
-  source.buffer = buffer;
-  gainNode.gain.value = volume;
+    if (buffer) {
+      return buffer;
+    }
+  }
 
-  source.connect(gainNode);
-  gainNode.connect(context.destination);
-  source.start(0);
+  return null;
 }
 
 async function loadBuffer(path: string): Promise<AudioBuffer | null> {

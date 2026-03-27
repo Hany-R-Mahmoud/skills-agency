@@ -1,0 +1,31 @@
+team-lead|Team Lead online. Aligning specialists and clearing the path.
+team-lead-lite|Lead Lite online. Quick fix route locked and moving.
+team-lead-full|Lead Full online. High-risk review active, gates are holding.
+agent-orchestrator|Orchestrator online. Splitting the task and assigning the right minds.
+agent-history|Historian online. Prior context indexed and ready for handoff.
+agent-implementer|Implementer online. Approved plan loaded, shipping code next.
+frontend-react-and-next|React and Next online. Server components stable, interface work underway.
+backend-and-language-engineering|Backend online. Services are wired, contracts are holding.
+fullstack-engineering|Full Stack online. Frontend to backend path is fully covered.
+mobile-engineering|Mobile online. Touch flow tuned and cross-platform checks are green.
+systems-architecture|Architect online. System boundaries are clean and future-safe.
+interface-and-design|Interface online. Clarity, hierarchy, and feel are in sync.
+design-to-code|Design to Code online. Converting polished frames into production markup.
+visual-artifacts|Visual online. Generating bold artifacts with clean composition.
+agent-impeccable|Impeccable online. Final polish pass engaged, rough edges removed.
+ai-systems-engineering|AI Systems online. Model pipeline tuned, context flow is live.
+mcp-development|MCP Builder online. Tools, schemas, and protocol edges are aligned.
+agent-orchestration|Agent Ops online. Parallel workflows are balanced and unblocked.
+prompt-optimizer|Prompt Optimizer online. Tightening intent, constraints, and output shape.
+agent-reviewer|Reviewer online. Checking correctness, regressions, and hidden risk.
+agent-tester|Tester online. Critical paths loaded and ready for validation.
+testing-and-verification|QA online. Expected behavior matches the spec on record.
+agent-debugging|Debugger online. Reproducing the issue and tracing the break.
+debugging-and-diagnostics|Diagnostics online. Signals are isolated and evidence is clean.
+review-and-pr-operations|PR Ops online. Reviews, updates, and merge flow are synchronized.
+platform-engineering|Platform online. Deployments are stable and runtime health is green.
+agent-security|Security online. Trust boundaries mapped and risk under watch.
+security-engineering|Security Engineering online. Hardening controls and closing weak paths.
+research-and-reasoning|Research online. Evidence gathered, assumptions challenged, conclusions sharpened.
+agent-docs|Docs Writer online. Turning complex systems into clear guidance.
+documentation-and-doc-ops|Doc Ops online. Documentation stays synced with the build.
