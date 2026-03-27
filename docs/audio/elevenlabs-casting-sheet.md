@@ -1,12 +1,13 @@
 # Audio Casting Sheet
 
 ElevenLabs was configured successfully, but synthesis is blocked on the free
-tier by ElevenLabs abuse detection. The production fallback for this phase is
-macOS system speech so the agent pack can still be completed at zero cost.
+tier by ElevenLabs abuse detection. The current production workflow uses
+`AVSpeechSynthesizer` on macOS so we can control pacing and pitch more directly
+than `say`.
 
 ## Render Engine
 
-- `macos-say`
+- `swift-avspeech`
 - Output: `.wav`
 
 ## Assigned Voices
@@ -16,46 +17,46 @@ macOS system speech so the agent pack can still be completed at zero cost.
 - `team-lead`: `Gordon`
 - `team-lead-lite`: `Nicky`
 - `team-lead-full`: `Daniel`
-- `agent-orchestrator`: `Reed (English (UK))`
+- `agent-orchestrator`: `Arthur`
 - `agent-history`: `Moira`
 
 ### Engineering
 
-- `agent-implementer`: `Reed (English (US))`
+- `agent-implementer`: `Aaron`
 - `frontend-react-and-next`: `Martha`
 - `backend-and-language-engineering`: `Rishi`
 - `fullstack-engineering`: `Arthur`
 - `mobile-engineering`: `Karen`
-- `systems-architecture`: `Grandpa (English (UK))`
+- `systems-architecture`: `Arthur`
 
 ### Product & Design
 
 - `interface-and-design`: `Samantha`
-- `design-to-code`: `Flo (English (US))`
-- `visual-artifacts`: `Superstar`
+- `design-to-code`: `Catherine`
+- `visual-artifacts`: `Tessa`
 - `agent-impeccable`: `Catherine`
 
 ### AI Labs
 
-- `ai-systems-engineering`: `Zarvox`
-- `mcp-development`: `Rocko (English (UK))`
-- `agent-orchestration`: `Sandy (English (UK))`
-- `prompt-optimizer`: `Flo (English (UK))`
+- `ai-systems-engineering`: `Aaron`
+- `mcp-development`: `Arthur`
+- `agent-orchestration`: `Gordon`
+- `prompt-optimizer`: `Catherine`
 
 ### Ops & Quality
 
-- `agent-reviewer`: `Shelley (English (UK))`
-- `agent-tester`: `Kathy`
-- `testing-and-verification`: `Good News`
-- `agent-debugging`: `Eddy (English (US))`
-- `debugging-and-diagnostics`: `Whisper`
-- `review-and-pr-operations`: `Eddy (English (UK))`
-- `platform-engineering`: `Albert`
+- `agent-reviewer`: `Daniel`
+- `agent-tester`: `Samantha`
+- `testing-and-verification`: `Moira`
+- `agent-debugging`: `Rishi`
+- `debugging-and-diagnostics`: `Arthur`
+- `review-and-pr-operations`: `Nicky`
+- `platform-engineering`: `Gordon`
 
 ### Security & Research
 
-- `agent-security`: `Rocko (English (US))`
-- `security-engineering`: `Grandpa (English (US))`
+- `agent-security`: `Daniel`
+- `security-engineering`: `Aaron`
 - `research-and-reasoning`: `Tessa`
-- `agent-docs`: `Shelley (English (US))`
-- `documentation-and-doc-ops`: `Grandma (English (UK))`
+- `agent-docs`: `Samantha`
+- `documentation-and-doc-ops`: `Moira`
