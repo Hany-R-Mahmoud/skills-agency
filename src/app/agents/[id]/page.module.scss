@@ -1,0 +1,10 @@
+.shell {
+  display: grid;
+  grid-template-columns: minmax(var(--sidebar-width), var(--sidebar-width)) 1fr;
+}
+
+@media (max-width: 960px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+}

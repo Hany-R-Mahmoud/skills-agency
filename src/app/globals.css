@@ -1,0 +1,8 @@
+/* Minimal reset only — all tokens live in theme-global.css */
+@import "../styles/theme-global.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

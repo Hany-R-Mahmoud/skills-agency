@@ -1,0 +1,271 @@
+.mapWrap,
+.departmentView {
+  --room-accent: var(--accent-cyan);
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--border-default);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--room-accent) 12%, transparent), transparent 34%),
+    var(--surface-mid);
+  box-shadow: var(--shadow-void);
+}
+
+.departmentView[data-accent="--accent-cyan"] {
+  --room-accent: var(--accent-cyan);
+}
+
+.departmentView[data-accent="--accent-coral"] {
+  --room-accent: var(--accent-coral);
+}
+
+.departmentView[data-accent="--accent-green"] {
+  --room-accent: var(--accent-green);
+}
+
+.departmentView[data-accent="--accent-amber"] {
+  --room-accent: var(--accent-amber);
+}
+
+.departmentView[data-accent="--accent-purple"] {
+  --room-accent: var(--accent-purple);
+}
+
+.mapWrap::after,
+.departmentView::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--scanline-gradient);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.mapHeader,
+.departmentHeader {
+  position: relative;
+  z-index: var(--z-base);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.mapHeader h2,
+.departmentHeader h2 {
+  margin: var(--space-2) 0 0;
+}
+
+.mapCopy,
+.departmentCopy {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.mapFrame {
+  position: relative;
+  z-index: var(--z-base);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--accent-cyan) 10%, transparent), transparent 30%),
+    var(--surface-void);
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tile {
+  --tile-accent: var(--accent-cyan);
+  cursor: pointer;
+  outline: none;
+}
+
+.tile[data-accent="--accent-cyan"] {
+  --tile-accent: var(--accent-cyan);
+}
+
+.tile[data-accent="--accent-coral"] {
+  --tile-accent: var(--accent-coral);
+}
+
+.tile[data-accent="--accent-green"] {
+  --tile-accent: var(--accent-green);
+}
+
+.tile[data-accent="--accent-amber"] {
+  --tile-accent: var(--accent-amber);
+}
+
+.tile[data-accent="--accent-purple"] {
+  --tile-accent: var(--accent-purple);
+}
+
+.tileTop,
+.tileFront,
+.tileEdge {
+  transition:
+    fill var(--duration-mid) var(--ease-smooth),
+    stroke var(--duration-mid) var(--ease-smooth),
+    opacity var(--duration-mid) var(--ease-smooth);
+}
+
+.tileTop {
+  fill: color-mix(in srgb, var(--tile-accent) 16%, var(--surface-lift));
+  stroke: color-mix(in srgb, var(--tile-accent) 65%, var(--border-default));
+  stroke-width: 2;
+}
+
+.tileFront {
+  fill: color-mix(in srgb, var(--tile-accent) 10%, var(--surface-mid));
+  stroke: color-mix(in srgb, var(--tile-accent) 40%, var(--border-default));
+}
+
+.tileEdge {
+  fill: color-mix(in srgb, var(--tile-accent) 22%, var(--surface-inset));
+  stroke: color-mix(in srgb, var(--tile-accent) 48%, var(--border-default));
+}
+
+.tile:hover .tileTop,
+.tile:focus-visible .tileTop,
+.tile[data-active="true"] .tileTop {
+  fill: color-mix(in srgb, var(--tile-accent) 24%, var(--surface-lift));
+  stroke: var(--tile-accent);
+}
+
+.tile[data-pending="true"] {
+  opacity: 0.75;
+}
+
+.tileLabel,
+.tileMeta {
+  fill: var(--text-heading);
+  font-family: var(--font-mono);
+  text-anchor: middle;
+}
+
+.tileLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tileMeta {
+  fill: var(--text-secondary);
+  font-size: 10px;
+}
+
+.previewAura {
+  fill: color-mix(in srgb, var(--text-primary) 14%, transparent);
+}
+
+.previewBody {
+  fill: var(--text-heading);
+  stroke: var(--surface-void);
+  stroke-width: 1.4;
+}
+
+.preview[data-status="busy"] .previewAura {
+  fill: color-mix(in srgb, var(--accent-amber) 30%, transparent);
+}
+
+.preview[data-status="idle"] .previewAura {
+  fill: color-mix(in srgb, var(--text-secondary) 20%, transparent);
+}
+
+.mapLinks {
+  position: relative;
+  z-index: var(--z-base);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.mapLink {
+  --link-accent: var(--accent-cyan);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--border-default);
+  background: var(--surface-lift);
+  color: inherit;
+  text-decoration: none;
+}
+
+.mapLink[data-accent="--accent-cyan"] {
+  --link-accent: var(--accent-cyan);
+}
+
+.mapLink[data-accent="--accent-coral"] {
+  --link-accent: var(--accent-coral);
+}
+
+.mapLink[data-accent="--accent-green"] {
+  --link-accent: var(--accent-green);
+}
+
+.mapLink[data-accent="--accent-amber"] {
+  --link-accent: var(--accent-amber);
+}
+
+.mapLink[data-accent="--accent-purple"] {
+  --link-accent: var(--accent-purple);
+}
+
+.mapLink:hover {
+  border-color: var(--link-accent);
+}
+
+.departmentStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.departmentStats div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.departmentStats dt,
+.departmentStats dd {
+  margin: 0;
+}
+
+.agentGrid {
+  position: relative;
+  z-index: var(--z-base);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.emptyState {
+  position: relative;
+  z-index: var(--z-base);
+  padding: var(--space-5);
+  border: 1px dashed var(--border-default);
+  color: var(--text-secondary);
+}
+
+.emptyState p {
+  margin: 0;
+}
+
+.emptyState p + p {
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 900px) {
+  .mapLinks {
+    grid-template-columns: 1fr;
+  }
+}

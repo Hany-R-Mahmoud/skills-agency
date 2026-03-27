@@ -1,0 +1,1055 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-03-25",
+    "totalAgents": 31,
+    "totalDepartments": 6
+  },
+  "departments": [
+    {
+      "id": "command",
+      "name": "Command Center",
+      "slug": "command",
+      "tagline": "Mission orchestration and strategic coordination",
+      "accentColor": "--accent-cyan",
+      "accentHex": "#8ff5ff",
+      "roomPosition": {
+        "x": 2,
+        "y": 0,
+        "width": 2,
+        "height": 1
+      },
+      "agents": [
+        {
+          "id": "team-lead",
+          "name": "Team Lead",
+          "codename": "team-lead_",
+          "department": "command",
+          "role": "Standard mission coordinator for feature-level work",
+          "description": "The standard entry point for most tasks. Coordinates implementation, review, and verification across the team. Handles multi-file changes with moderate risk and routes to appropriate specialists automatically.",
+          "skills": [
+            "task routing",
+            "team coordination",
+            "milestone tracking",
+            "specialist delegation"
+          ],
+          "invocation": {
+            "codex": "@team-lead",
+            "opencode": "$team-lead"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 1
+          },
+          "replaces": [
+            "team-lead"
+          ],
+          "path": "skills/team-lead/SKILL.md"
+        },
+        {
+          "id": "team-lead-lite",
+          "name": "Lead Lite",
+          "codename": "team-lead-lite_",
+          "department": "command",
+          "role": "Lightweight coordinator for small, low-risk tasks",
+          "description": "The fast-path entry point for quick edits, small fixes, and isolated changes. Minimal orchestration overhead \u2014 gets straight to execution without ceremony.",
+          "skills": [
+            "quick edits",
+            "isolated fixes",
+            "low-risk changes"
+          ],
+          "invocation": {
+            "codex": "@team-lead-lite",
+            "opencode": "$team-lead-lite"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 2
+          },
+          "replaces": [
+            "team-lead-lite"
+          ],
+          "path": "skills/team-lead-lite/SKILL.md"
+        },
+        {
+          "id": "team-lead-full",
+          "name": "Lead Full",
+          "codename": "team-lead-full_",
+          "department": "command",
+          "role": "Full coordinator for risky cross-cutting work",
+          "description": "The heavyweight entry point for architecture changes, security work, migrations, and cross-cutting initiatives. Produces explicit artifacts and enforces quality gates at every stage.",
+          "skills": [
+            "architecture changes",
+            "migrations",
+            "security work",
+            "quality gates",
+            "artifact generation"
+          ],
+          "invocation": {
+            "codex": "@team-lead-full",
+            "opencode": "$team-lead-full"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 3
+          },
+          "replaces": [
+            "team-lead-full"
+          ],
+          "path": "skills/team-lead-full/SKILL.md"
+        },
+        {
+          "id": "agent-orchestrator",
+          "name": "Orchestrator",
+          "codename": "agent-orchestrator_",
+          "department": "command",
+          "role": "Task coordination, workflow management, specialist routing",
+          "description": "The routing brain of the system. Decomposes complex tasks, selects the right specialist for each sub-task, and manages the flow of work across agents without getting involved in implementation details.",
+          "skills": [
+            "workflow management",
+            "task decomposition",
+            "specialist routing",
+            "context handoff"
+          ],
+          "invocation": {
+            "codex": "@agent-orchestrator",
+            "opencode": "$agent-orchestrator"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 4
+          },
+          "replaces": [
+            "agent-orchestrator",
+            "claude-skills-hub",
+            "task-decomposition-expert"
+          ],
+          "path": "skills/agent-orchestrator/SKILL.md"
+        },
+        {
+          "id": "agent-history",
+          "name": "Historian",
+          "codename": "agent-history_",
+          "department": "command",
+          "role": "Conversation continuity and project context preservation",
+          "description": "Exports conversation and project continuity briefings when switching to a new chat or AI tool. Ensures no context is lost across session boundaries \u2014 the institutional memory of the team.",
+          "skills": [
+            "context export",
+            "project briefings",
+            "session continuity",
+            "memory management"
+          ],
+          "invocation": {
+            "codex": "@agent-history",
+            "opencode": "$agent-history"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 1
+          },
+          "replaces": [
+            "agent-history"
+          ],
+          "path": "skills/agent-history/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "slug": "engineering",
+      "tagline": "Frontend, backend, and full-stack implementation",
+      "accentColor": "--accent-cyan",
+      "accentHex": "#8ff5ff",
+      "roomPosition": {
+        "x": 0,
+        "y": 1,
+        "width": 2,
+        "height": 2
+      },
+      "agents": [
+        {
+          "id": "agent-implementer",
+          "name": "Implementer",
+          "codename": "agent-implementer_",
+          "department": "engineering",
+          "role": "Implements approved changes with frontend-first bias",
+          "description": "The primary code-writing agent. Takes approved plans and turns them into working code, with a bias toward frontend and UI concerns. Handles the full implementation cycle from scaffold to functional feature.",
+          "skills": [
+            "feature implementation",
+            "UI-first development",
+            "code scaffolding",
+            "refactoring"
+          ],
+          "invocation": {
+            "codex": "@agent-implementer",
+            "opencode": "$agent-implementer"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "pixel",
+            "color": "#8ff5ff",
+            "variant": 1
+          },
+          "replaces": [
+            "agent-implementer"
+          ],
+          "path": "skills/agent-implementer/SKILL.md"
+        },
+        {
+          "id": "frontend-react-and-next",
+          "name": "React & Next",
+          "codename": "frontend-react_",
+          "department": "engineering",
+          "role": "React and Next.js expert with modern framework patterns",
+          "description": "Specializes in React component architecture and Next.js App Router patterns. Handles performant composition, server components, caching strategies, and modern framework idioms.",
+          "skills": [
+            "React",
+            "Next.js",
+            "App Router",
+            "server components",
+            "composition patterns",
+            "Ant Design"
+          ],
+          "invocation": {
+            "codex": "@frontend-react-and-next",
+            "opencode": "$frontend-react-and-next"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#8ff5ff",
+            "variant": 2
+          },
+          "replaces": [
+            "frontend-developer",
+            "react-expert",
+            "nextjs-developer",
+            "cache-components"
+          ],
+          "path": "skills/frontend-react-and-next/SKILL.md"
+        },
+        {
+          "id": "backend-and-language-engineering",
+          "name": "Backend",
+          "codename": "backend-lang_",
+          "department": "engineering",
+          "role": "TypeScript, Python, NestJS, and CLI backend work",
+          "description": "Implements backend and general application code across TypeScript, JavaScript, Python, NestJS, and CLI environments. Handles API design, service logic, and data pipeline implementation.",
+          "skills": [
+            "TypeScript",
+            "Python",
+            "NestJS",
+            "REST APIs",
+            "CLI tools",
+            "JavaScript"
+          ],
+          "invocation": {
+            "codex": "@backend-and-language-engineering",
+            "opencode": "$backend-and-language-engineering"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#8ff5ff",
+            "variant": 3
+          },
+          "replaces": [
+            "javascript-pro",
+            "typescript-pro",
+            "python-pro",
+            "nestjs-expert",
+            "cli-developer"
+          ],
+          "path": "skills/backend-and-language-engineering/SKILL.md"
+        },
+        {
+          "id": "fullstack-engineering",
+          "name": "Full Stack",
+          "codename": "fullstack_",
+          "department": "engineering",
+          "role": "End-to-end feature delivery spanning UI, API, and data",
+          "description": "Builds features that span frontend, API, and persistence layers as a single cohesive delivery unit. The go-to agent when a feature touches every layer of the stack simultaneously.",
+          "skills": [
+            "full-stack features",
+            "UI + API + DB",
+            "end-to-end delivery",
+            "cross-layer integration"
+          ],
+          "invocation": {
+            "codex": "@fullstack-engineering",
+            "opencode": "$fullstack-engineering"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#8ff5ff",
+            "variant": 4
+          },
+          "replaces": [
+            "fullstack-developer",
+            "fullstack-guardian"
+          ],
+          "path": "skills/fullstack-engineering/SKILL.md"
+        },
+        {
+          "id": "mobile-engineering",
+          "name": "Mobile",
+          "codename": "mobile_",
+          "department": "engineering",
+          "role": "React Native, Kotlin, and Swift mobile development",
+          "description": "Builds and optimizes mobile apps across React Native, Kotlin, and Swift-based platforms. Handles cross-platform concerns, native bridge integration, and mobile-specific performance patterns.",
+          "skills": [
+            "React Native",
+            "Kotlin",
+            "Swift",
+            "iOS",
+            "Android",
+            "cross-platform"
+          ],
+          "invocation": {
+            "codex": "@mobile-engineering",
+            "opencode": "$mobile-engineering"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "pixel",
+            "color": "#8ff5ff",
+            "variant": 1
+          },
+          "replaces": [
+            "mobile-developer",
+            "react-native-expert",
+            "kotlin-specialist",
+            "swift-expert"
+          ],
+          "path": "skills/mobile-engineering/SKILL.md"
+        },
+        {
+          "id": "systems-architecture",
+          "name": "Architect",
+          "codename": "systems-arch_",
+          "department": "engineering",
+          "role": "API, database, and service architecture design",
+          "description": "Designs and modernizes application, API, database, and service architectures. Provides the structural blueprint before implementation begins, including trade-off analysis and ADRs.",
+          "skills": [
+            "system design",
+            "API architecture",
+            "database design",
+            "microservices",
+            "ADRs",
+            "trade-off analysis"
+          ],
+          "invocation": {
+            "codex": "@systems-architecture",
+            "opencode": "$systems-architecture"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#8ff5ff",
+            "variant": 2
+          },
+          "replaces": [
+            "api-designer",
+            "architecture-designer",
+            "database-architect",
+            "microservices-architect"
+          ],
+          "path": "skills/systems-architecture/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Product & Design",
+      "slug": "design",
+      "tagline": "UI/UX, visual systems, and design-to-code translation",
+      "accentColor": "--accent-coral",
+      "accentHex": "#ff4d6d",
+      "roomPosition": {
+        "x": 2,
+        "y": 1,
+        "width": 2,
+        "height": 1
+      },
+      "agents": [
+        {
+          "id": "interface-and-design",
+          "name": "Interface",
+          "codename": "interface_",
+          "department": "design",
+          "role": "UI/UX design, design systems, and visual theming",
+          "description": "Designs and critiques user interfaces, design systems, and visual theming for web products. The authority on component hierarchy, spacing systems, and design token decisions.",
+          "skills": [
+            "UI/UX",
+            "design systems",
+            "theming",
+            "component critique",
+            "accessibility"
+          ],
+          "invocation": {
+            "codex": "@interface-and-design",
+            "opencode": "$interface-and-design"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ff4d6d",
+            "variant": 1
+          },
+          "replaces": [
+            "frontend-design",
+            "ui-ux-designer",
+            "web-design-guidelines",
+            "theme-factory"
+          ],
+          "path": "skills/interface-and-design/SKILL.md"
+        },
+        {
+          "id": "design-to-code",
+          "name": "Design \u2192 Code",
+          "codename": "design-to-code_",
+          "department": "design",
+          "role": "Translates Figma and Stitch designs into working code",
+          "description": "Bridges the gap between design tools and implementation. Takes Figma or Stitch designs and produces accurate, production-ready frontend code with proper asset extraction and implementation guidance.",
+          "skills": [
+            "Figma",
+            "Stitch",
+            "design handoff",
+            "asset extraction",
+            "pixel-perfect implementation"
+          ],
+          "invocation": {
+            "codex": "@design-to-code",
+            "opencode": "$design-to-code"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ff4d6d",
+            "variant": 2
+          },
+          "replaces": [
+            "figma",
+            "figma-implement-design",
+            "reactcomponents"
+          ],
+          "path": "skills/design-to-code/SKILL.md"
+        },
+        {
+          "id": "visual-artifacts",
+          "name": "Visual",
+          "codename": "visual-artifacts_",
+          "department": "design",
+          "role": "Posters, branded visuals, HTML artifacts, and generative art",
+          "description": "Creates visually distinctive generated artifacts \u2014 branded posters, HTML visual experiences, algorithmic art, and Slack-ready motion assets. Where design meets creative code.",
+          "skills": [
+            "generative art",
+            "HTML artifacts",
+            "posters",
+            "SVG animation",
+            "canvas art"
+          ],
+          "invocation": {
+            "codex": "@visual-artifacts",
+            "opencode": "$visual-artifacts"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ff4d6d",
+            "variant": 3
+          },
+          "replaces": [
+            "canvas-design",
+            "algorithmic-art",
+            "web-artifacts-builder"
+          ],
+          "path": "skills/visual-artifacts/SKILL.md"
+        },
+        {
+          "id": "agent-impeccable",
+          "name": "Impeccable",
+          "codename": "agent-impeccable_",
+          "department": "design",
+          "role": "Design transformation \u2014 polish, extract, critique, colorize",
+          "description": "A multi-modal design transformation agent with modes for polishing rough designs, extracting design tokens, critiquing existing UI, colorizing monochrome outputs, and more. The finishing touch.",
+          "skills": [
+            "design polish",
+            "token extraction",
+            "UI critique",
+            "colorization",
+            "visual refinement"
+          ],
+          "invocation": {
+            "codex": "@agent-impeccable",
+            "opencode": "$agent-impeccable"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff4d6d",
+            "variant": 4
+          },
+          "replaces": [
+            "agent-impeccable"
+          ],
+          "path": "skills/agent-impeccable/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "ai-labs",
+      "name": "AI Labs",
+      "slug": "ai-labs",
+      "tagline": "LLM systems, MCP servers, and intelligent pipelines",
+      "accentColor": "--accent-green",
+      "accentHex": "#39ff14",
+      "roomPosition": {
+        "x": 4,
+        "y": 1,
+        "width": 2,
+        "height": 2
+      },
+      "agents": [
+        {
+          "id": "ai-systems-engineering",
+          "name": "AI Systems",
+          "codename": "ai-systems_",
+          "department": "ai-labs",
+          "role": "LLM systems, RAG, fine-tuning, and ML pipelines",
+          "description": "Builds LLM-powered systems including prompt engineering, RAG architectures, fine-tuning workflows, model API integrations, and end-to-end ML pipelines. The AI engineering specialist.",
+          "skills": [
+            "LLM integration",
+            "RAG",
+            "fine-tuning",
+            "prompt engineering",
+            "ML pipelines",
+            "model APIs"
+          ],
+          "invocation": {
+            "codex": "@ai-systems-engineering",
+            "opencode": "$ai-systems-engineering"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "geometric",
+            "color": "#39ff14",
+            "variant": 1
+          },
+          "replaces": [
+            "ai-engineer",
+            "prompt-engineer",
+            "fine-tuning-expert",
+            "rag-architect",
+            "ml-pipeline"
+          ],
+          "path": "skills/ai-systems-engineering/SKILL.md"
+        },
+        {
+          "id": "mcp-development",
+          "name": "MCP Builder",
+          "codename": "mcp-dev_",
+          "department": "ai-labs",
+          "role": "Model Context Protocol servers and client integrations",
+          "description": "Builds and integrates Model Context Protocol servers and clients with production-grade tool, resource, and schema design. The specialist for extending AI assistants with custom capabilities.",
+          "skills": [
+            "MCP servers",
+            "tool design",
+            "resource schemas",
+            "client integration",
+            "protocol design"
+          ],
+          "invocation": {
+            "codex": "@mcp-development",
+            "opencode": "$mcp-development"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#39ff14",
+            "variant": 2
+          },
+          "replaces": [
+            "mcp-builder",
+            "mcp-developer",
+            "mcp-expert"
+          ],
+          "path": "skills/mcp-development/SKILL.md"
+        },
+        {
+          "id": "agent-orchestration",
+          "name": "Agent Ops",
+          "codename": "agent-ops_",
+          "department": "ai-labs",
+          "role": "Multi-agent workflow coordination and skill authoring",
+          "description": "Coordinates multi-step agent workflows, manages skill selection strategy, and handles skill-authoring for new capabilities. The meta-layer that makes the whole system smarter over time.",
+          "skills": [
+            "workflow coordination",
+            "skill authoring",
+            "agent strategy",
+            "context management"
+          ],
+          "invocation": {
+            "codex": "@agent-orchestration",
+            "opencode": "$agent-orchestration"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#39ff14",
+            "variant": 3
+          },
+          "replaces": [
+            "context-manager",
+            "skill-creator"
+          ],
+          "path": "skills/agent-orchestration/SKILL.md"
+        },
+        {
+          "id": "prompt-optimizer",
+          "name": "Prompt Optimizer",
+          "codename": "prompt-opt_",
+          "department": "ai-labs",
+          "role": "Optimizes and refines prompts for better LLM outputs",
+          "description": "Analyzes, rewrites, and benchmarks prompts for maximum effectiveness across different models. Uses structured evaluation to iterate toward prompts that consistently produce the desired outputs.",
+          "skills": [
+            "prompt analysis",
+            "prompt rewriting",
+            "eval design",
+            "model-specific tuning"
+          ],
+          "invocation": {
+            "codex": "@prompt-optimizer",
+            "opencode": "$prompt-optimizer"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "pixel",
+            "color": "#39ff14",
+            "variant": 4
+          },
+          "replaces": [
+            "prompt-optimizer"
+          ],
+          "path": "skills/prompt-optimizer/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "ops",
+      "name": "Ops & Quality",
+      "slug": "ops",
+      "tagline": "Testing, debugging, platform, and code review",
+      "accentColor": "--accent-amber",
+      "accentHex": "#f5a623",
+      "roomPosition": {
+        "x": 0,
+        "y": 3,
+        "width": 2,
+        "height": 2
+      },
+      "agents": [
+        {
+          "id": "agent-reviewer",
+          "name": "Reviewer",
+          "codename": "agent-reviewer_",
+          "department": "ops",
+          "role": "Code review, correctness checks, regression prevention",
+          "description": "Performs systematic code review with a focus on correctness, maintainability, and regression prevention. Provides structured feedback and verifies that changes meet the original requirements.",
+          "skills": [
+            "code review",
+            "correctness checks",
+            "regression prevention",
+            "PR feedback"
+          ],
+          "invocation": {
+            "codex": "@agent-reviewer",
+            "opencode": "$agent-reviewer"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#f5a623",
+            "variant": 1
+          },
+          "replaces": [
+            "agent-reviewer",
+            "code-reviewer",
+            "pr-review"
+          ],
+          "path": "skills/agent-reviewer/SKILL.md"
+        },
+        {
+          "id": "agent-tester",
+          "name": "Tester",
+          "codename": "agent-tester_",
+          "department": "ops",
+          "role": "Test planning, execution, and validation evidence",
+          "description": "Plans, writes, and validates tests across unit, integration, and E2E levels. Produces validation evidence that verifies features work as specified before deployment.",
+          "skills": [
+            "unit tests",
+            "integration tests",
+            "E2E testing",
+            "test planning",
+            "validation evidence"
+          ],
+          "invocation": {
+            "codex": "@agent-tester",
+            "opencode": "$agent-tester"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "pixel",
+            "color": "#f5a623",
+            "variant": 2
+          },
+          "replaces": [
+            "agent-tester",
+            "test-engineer",
+            "playwright-expert"
+          ],
+          "path": "skills/agent-tester/SKILL.md"
+        },
+        {
+          "id": "testing-and-verification",
+          "name": "QA",
+          "codename": "testing-verify_",
+          "department": "ops",
+          "role": "Full testing lifecycle from unit to release readiness",
+          "description": "Plans, writes, runs, and validates tests across unit, integration, E2E, and release-readiness workflows. The comprehensive QA function that ensures nothing ships broken.",
+          "skills": [
+            "test strategy",
+            "TDD",
+            "E2E automation",
+            "release readiness",
+            "Playwright"
+          ],
+          "invocation": {
+            "codex": "@testing-and-verification",
+            "opencode": "$testing-and-verification"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#f5a623",
+            "variant": 3
+          },
+          "replaces": [
+            "test",
+            "verify",
+            "test-driven-development",
+            "e2e-studio-tests"
+          ],
+          "path": "skills/testing-and-verification/SKILL.md"
+        },
+        {
+          "id": "agent-debugging",
+          "name": "Debugger",
+          "codename": "agent-debug_",
+          "department": "ops",
+          "role": "Reproduce-first bug investigation and root cause analysis",
+          "description": "Investigates failing behavior with a reproduce-first workflow. Forms hypotheses, isolates variables, and traces bugs to their root cause before proposing a fix. Never guesses.",
+          "skills": [
+            "bug reproduction",
+            "hypothesis testing",
+            "root cause analysis",
+            "regression investigation"
+          ],
+          "invocation": {
+            "codex": "@agent-debugging",
+            "opencode": "$agent-debugging"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#f5a623",
+            "variant": 4
+          },
+          "replaces": [
+            "agent-debugging",
+            "debugger",
+            "error-detective"
+          ],
+          "path": "skills/agent-debugging/SKILL.md"
+        },
+        {
+          "id": "debugging-and-diagnostics",
+          "name": "Diagnostics",
+          "codename": "diagnostics_",
+          "department": "ops",
+          "role": "Runtime issues, telemetry failures, and memory leaks",
+          "description": "Investigates bugs, regressions, telemetry failures, and runtime issues using hypothesis-driven debugging methodology. Specializes in hard-to-reproduce and environment-specific failures.",
+          "skills": [
+            "runtime debugging",
+            "telemetry",
+            "memory leaks",
+            "performance profiling",
+            "hypothesis-driven"
+          ],
+          "invocation": {
+            "codex": "@debugging-and-diagnostics",
+            "opencode": "$debugging-and-diagnostics"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 1
+          },
+          "replaces": [
+            "debugging-wizard",
+            "memory-leak-audit",
+            "fix-errors"
+          ],
+          "path": "skills/debugging-and-diagnostics/SKILL.md"
+        },
+        {
+          "id": "review-and-pr-operations",
+          "name": "PR Ops",
+          "codename": "pr-ops_",
+          "department": "ops",
+          "role": "End-to-end PR workflow from review to merge",
+          "description": "Runs code review and PR workflows end-to-end \u2014 from checklist-based review through comment handling, addressing feedback, and generating PR summaries. The CI gatekeeper.",
+          "skills": [
+            "PR review",
+            "PR summaries",
+            "comment handling",
+            "merge readiness",
+            "review checklists"
+          ],
+          "invocation": {
+            "codex": "@review-and-pr-operations",
+            "opencode": "$review-and-pr-operations"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 2
+          },
+          "replaces": [
+            "pr-review",
+            "pr-draft-summary",
+            "gh-address-comments",
+            "pr-status-triage"
+          ],
+          "path": "skills/review-and-pr-operations/SKILL.md"
+        },
+        {
+          "id": "platform-engineering",
+          "name": "Platform",
+          "codename": "platform_",
+          "department": "ops",
+          "role": "Deployment, infrastructure, observability, and resilience",
+          "description": "Designs and operates deployment pipelines, infrastructure, observability stacks, and resilience systems. Handles Terraform, cloud architecture, monitoring, and chaos engineering.",
+          "skills": [
+            "deployment",
+            "Terraform",
+            "observability",
+            "cloud architecture",
+            "resilience",
+            "monitoring"
+          ],
+          "invocation": {
+            "codex": "@platform-engineering",
+            "opencode": "$platform-engineering"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 3
+          },
+          "replaces": [
+            "cloud-architect",
+            "devops-engineer",
+            "terraform-engineer",
+            "monitoring-expert"
+          ],
+          "path": "skills/platform-engineering/SKILL.md"
+        }
+      ]
+    },
+    {
+      "id": "security-research",
+      "name": "Security & Research",
+      "slug": "security-research",
+      "tagline": "Threat analysis, deep research, and documentation",
+      "accentColor": "--accent-purple",
+      "accentHex": "#ddb7ff",
+      "roomPosition": {
+        "x": 2,
+        "y": 3,
+        "width": 2,
+        "height": 2
+      },
+      "agents": [
+        {
+          "id": "agent-security",
+          "name": "Security",
+          "codename": "agent-security_",
+          "department": "security-research",
+          "role": "Security reviews, trust-boundary analysis, vulnerability assessment",
+          "description": "Performs security reviews with a focus on trust boundaries, attack surfaces, and vulnerability patterns. Added to any workflow that handles authentication, authorization, or sensitive data.",
+          "skills": [
+            "security review",
+            "trust boundaries",
+            "vulnerability assessment",
+            "OWASP",
+            "threat modeling"
+          ],
+          "invocation": {
+            "codex": "@agent-security",
+            "opencode": "$agent-security"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ddb7ff",
+            "variant": 1
+          },
+          "replaces": [
+            "agent-security",
+            "security-reviewer",
+            "secure-code-guardian"
+          ],
+          "path": "skills/agent-security/SKILL.md"
+        },
+        {
+          "id": "security-engineering",
+          "name": "Security Eng",
+          "codename": "security-eng_",
+          "department": "security-research",
+          "role": "Application and infrastructure security controls",
+          "description": "Reviews and implements application and infrastructure security controls. Goes beyond review to actually harden systems \u2014 implementing security patterns, hardening configs, and building secure-by-default components.",
+          "skills": [
+            "security implementation",
+            "infrastructure hardening",
+            "secure coding",
+            "pen testing",
+            "secrets management"
+          ],
+          "invocation": {
+            "codex": "@security-engineering",
+            "opencode": "$security-engineering"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ddb7ff",
+            "variant": 2
+          },
+          "replaces": [
+            "security-auditor"
+          ],
+          "path": "skills/security-engineering/SKILL.md"
+        },
+        {
+          "id": "research-and-reasoning",
+          "name": "Research",
+          "codename": "research_",
+          "department": "security-research",
+          "role": "Deep research, synthesis, and adversarial reasoning",
+          "description": "Performs deep research, synthesis, and adversarial reasoning to validate plans and claims. Acts as the devil's advocate \u2014 stress-testing assumptions before they become expensive architectural decisions.",
+          "skills": [
+            "deep research",
+            "synthesis",
+            "adversarial reasoning",
+            "trade-off analysis",
+            "literature review"
+          ],
+          "invocation": {
+            "codex": "@research-and-reasoning",
+            "opencode": "$research-and-reasoning"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ddb7ff",
+            "variant": 3
+          },
+          "replaces": [
+            "search-specialist",
+            "the-fool"
+          ],
+          "path": "skills/research-and-reasoning/SKILL.md"
+        },
+        {
+          "id": "agent-docs",
+          "name": "Docs Writer",
+          "codename": "agent-docs_",
+          "department": "security-research",
+          "role": "Developer documentation around code changes",
+          "description": "Writes and updates developer-facing documentation around code changes. Produces READMEs, inline docstrings, API documentation, and architecture decision records that stay in sync with the codebase.",
+          "skills": [
+            "README",
+            "docstrings",
+            "API docs",
+            "ADRs",
+            "changelogs",
+            "inline comments"
+          ],
+          "invocation": {
+            "codex": "@agent-docs",
+            "opencode": "$agent-docs"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ddb7ff",
+            "variant": 4
+          },
+          "replaces": [
+            "agent-docs",
+            "docs-writer",
+            "api-documenter"
+          ],
+          "path": "skills/agent-docs/SKILL.md"
+        },
+        {
+          "id": "documentation-and-doc-ops",
+          "name": "Doc Ops",
+          "codename": "doc-ops_",
+          "department": "security-research",
+          "role": "Developer docs, API specs, and structured internal updates",
+          "description": "Creates or revises developer-facing docs, API specs, docstrings, and structured internal updates at scale. The document operations function \u2014 keeping the entire knowledge base accurate and current.",
+          "skills": [
+            "API specs",
+            "OpenAPI",
+            "docstring generation",
+            "internal comms",
+            "doc auditing"
+          ],
+          "invocation": {
+            "codex": "@documentation-and-doc-ops",
+            "opencode": "$documentation-and-doc-ops"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "pixel",
+            "color": "#ddb7ff",
+            "variant": 1
+          },
+          "replaces": [
+            "documentation-expert",
+            "code-documenter",
+            "internal-comms"
+          ],
+          "path": "skills/documentation-and-doc-ops/SKILL.md"
+        }
+      ]
+    }
+  ]
+}
