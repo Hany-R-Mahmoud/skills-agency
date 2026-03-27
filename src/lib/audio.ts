@@ -4,6 +4,7 @@ const bufferCache = new Map<string, AudioBuffer>();
 let audioContext: AudioContext | null = null;
 let ambientSource: AudioBufferSourceNode | null = null;
 let ambientGainNode: GainNode | null = null;
+let ambientElement: HTMLAudioElement | null = null;
 
 function getContext(): AudioContext | null {
   if (typeof window === "undefined") {
@@ -46,16 +47,12 @@ export async function playAgentVoice(agentId: string): Promise<void> {
 }
 
 export function startAmbient(): void {
-  if (isMuted() || ambientSource) {
+  if (isMuted() || ambientSource || ambientElement) {
     return;
   }
 
   void (async () => {
     const context = getContext();
-
-    if (!context) {
-      return;
-    }
 
     const buffer = await loadFirstAvailableBuffer([
       "/audio/ui/ambient-hq.wav",
@@ -63,7 +60,14 @@ export function startAmbient(): void {
       "/audio/ui/ambient-hq.mp3",
     ]);
 
-    if (!buffer || ambientSource) {
+    if (!context || !buffer || ambientSource || ambientElement) {
+      if (!ambientSource && !ambientElement) {
+        void playWithElement(
+          ["/audio/ui/ambient-hq.wav", "/audio/ui/ambient-hq.m4a", "/audio/ui/ambient-hq.mp3"],
+          0.15,
+          true,
+        );
+      }
       return;
     }
 
@@ -92,6 +96,35 @@ export function startAmbient(): void {
 
 export function stopAmbient(fadeDuration = 1000): void {
   const context = audioContext;
+
+  if (ambientElement) {
+    const element = ambientElement;
+    ambientElement = null;
+
+    if (fadeDuration <= 0) {
+      element.pause();
+      element.currentTime = 0;
+      return;
+    }
+
+    const startVolume = element.volume;
+    const steps = 10;
+    const interval = Math.max(16, Math.floor(fadeDuration / steps));
+    let currentStep = 0;
+
+    const timer = window.setInterval(() => {
+      currentStep += 1;
+      const nextVolume = startVolume * (1 - currentStep / steps);
+      element.volume = Math.max(0, nextVolume);
+
+      if (currentStep >= steps) {
+        window.clearInterval(timer);
+        element.pause();
+        element.currentTime = 0;
+        element.volume = startVolume;
+      }
+    }, interval);
+  }
 
   if (!context || !ambientSource || !ambientGainNode) {
     return;
@@ -156,6 +189,7 @@ async function playBuffer(paths: string[], volume: number): Promise<void> {
   const context = getContext();
 
   if (!context) {
+    await playWithElement(paths, volume, false);
     return;
   }
 
@@ -181,6 +215,8 @@ async function playBuffer(paths: string[], volume: number): Promise<void> {
     source.start(0);
     return;
   }
+
+  await playWithElement(paths, volume, false);
 }
 
 async function loadFirstAvailableBuffer(
@@ -222,5 +258,34 @@ async function loadBuffer(path: string): Promise<AudioBuffer | null> {
     return audioBuffer;
   } catch {
     return null;
+  }
+}
+
+async function playWithElement(
+  paths: string[],
+  volume: number,
+  loop: boolean,
+): Promise<void> {
+  if (typeof window === "undefined" || isMuted()) {
+    return;
+  }
+
+  for (const path of paths) {
+    const audio = new window.Audio(path);
+    audio.loop = loop;
+    audio.volume = volume;
+    audio.preload = "auto";
+
+    try {
+      await audio.play();
+
+      if (loop) {
+        ambientElement = audio;
+      }
+
+      return;
+    } catch {
+      audio.pause();
+    }
   }
 }
