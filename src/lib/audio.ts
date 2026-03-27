@@ -47,51 +47,7 @@ export async function playAgentVoice(agentId: string): Promise<void> {
 }
 
 export function startAmbient(): void {
-  if (isMuted() || ambientSource || ambientElement) {
-    return;
-  }
-
-  void (async () => {
-    const context = getContext();
-
-    const buffer = await loadFirstAvailableBuffer([
-      "/audio/ui/ambient-hq.wav",
-      "/audio/ui/ambient-hq.m4a",
-      "/audio/ui/ambient-hq.mp3",
-    ]);
-
-    if (!context || !buffer || ambientSource || ambientElement) {
-      if (!ambientSource && !ambientElement) {
-        void playWithElement(
-          ["/audio/ui/ambient-hq.wav", "/audio/ui/ambient-hq.m4a", "/audio/ui/ambient-hq.mp3"],
-          0.07,
-          true,
-        );
-      }
-      return;
-    }
-
-    const source = context.createBufferSource();
-    const gainNode = context.createGain();
-
-    source.buffer = buffer;
-    source.loop = true;
-    gainNode.gain.value = 0.07;
-
-    source.connect(gainNode);
-    gainNode.connect(context.destination);
-    source.start(0);
-
-    ambientSource = source;
-    ambientGainNode = gainNode;
-
-    source.onended = () => {
-      if (ambientSource === source) {
-        ambientSource = null;
-        ambientGainNode = null;
-      }
-    };
-  })();
+  return;
 }
 
 export function stopAmbient(fadeDuration = 1000): void {
