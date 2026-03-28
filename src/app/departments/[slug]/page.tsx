@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -286,6 +287,24 @@ interface DepartmentPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({
+  params,
+}: DepartmentPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const department = getDepartmentBySlug(slug);
+
+  if (!department) {
+    return {
+      title: "Department not found",
+    };
+  }
+
+  return {
+    title: department.name,
+    description: `${department.tagline}. Explore the ${department.name} roster, systems context, and active specialist pages.`,
+  };
+}
+
 export default async function DepartmentPage({ params }: DepartmentPageProps) {
   const { slug } = await params;
   const department = getDepartmentBySlug(slug);
@@ -437,10 +456,6 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
               <p className="label-sm">Personnel</p>
               <h2>{department.name} operators on active rotation.</h2>
             </div>
-            <p>
-              Each personnel card opens a full agent page with voice line,
-              invocation guidance, active playbooks, achievements, and downloadable skill pack.
-            </p>
           </div>
 
           <div className={styles.agentGrid}>
@@ -482,9 +497,6 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
               <p className="label-sm">Systems</p>
               <h2>Infrastructure supporting this department.</h2>
             </div>
-            <p>
-              Internal surfaces, memory systems, and protocol channels that shape how this room behaves before you enter any individual agent page.
-            </p>
           </div>
 
           <div className={styles.systemGrid}>

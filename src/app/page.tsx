@@ -40,9 +40,10 @@ export default function HomePage() {
               12 public agents. 6 departments. One command floor.
             </p>
             <p>
-              Navigate Command, Engineering, Design, Quality, Security, and
-              Knowledge through a single-floor office map, then drop into any
-              specialist&apos;s full field page.
+              Review the agency&apos;s leadership, delivery, design, quality,
+              security, and knowledge capabilities through one consolidated
+              operating view, then open each specialist profile for scope,
+              expertise, and engagement fit.
             </p>
             <div className={styles.heroActions}>
               <Link href="#hq-map" className={styles.primaryAction} onClick={handleEnterHQ}>
@@ -50,49 +51,71 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <dl className={styles.statsBar}>
-            <div>
-              <dt className="label-sm">Total agents</dt>
-              <dd>{stats.totalAgents}</dd>
+          <aside className={styles.heroRail}>
+            <dl className={styles.statsBar}>
+              <div>
+                <dt className="label-sm">Total agents</dt>
+                <dd>{stats.totalAgents}</dd>
+              </div>
+              <div>
+                <dt className="label-sm">Departments</dt>
+                <dd>{stats.totalDepartments}</dd>
+              </div>
+              <div>
+                <dt className="label-sm">Playbooks</dt>
+                <dd>{stats.totalPlaybooks}</dd>
+              </div>
+              <div>
+                <dt className="label-sm">Online now</dt>
+                <dd>{stats.onlineAgents}</dd>
+              </div>
+            </dl>
+
+            <div className={styles.dutyPanel}>
+              <div className={styles.dutyHeader}>
+                <p className="label-sm">Agents on duty</p>
+                <span className={styles.dutySignal}>Live roster</span>
+              </div>
+              <div className={styles.dutyCount}>{stats.onlineAgents}</div>
+              <p className={styles.dutyCopy}>
+                Public specialists currently online across {stats.totalDepartments} departments.
+              </p>
+              <p className={styles.dutyMeta}>
+                {stats.totalPlaybooks} structured capability frameworks support
+                this public roster, giving you a clearer view of the depth,
+                range, and operating maturity behind each team.
+              </p>
             </div>
-            <div>
-              <dt className="label-sm">Departments</dt>
-              <dd>{stats.totalDepartments}</dd>
-            </div>
-            <div>
-              <dt className="label-sm">Playbooks</dt>
-              <dd>{stats.totalPlaybooks}</dd>
-            </div>
-            <div>
-              <dt className="label-sm">Online now</dt>
-              <dd>{stats.onlineAgents}</dd>
-            </div>
-          </dl>
+          </aside>
         </section>
 
         <section id="hq-map" className={styles.mapSection}>
-          <div className={styles.summaryPanel}>
-            <p className="label-sm">Agents on duty</p>
-            <div className={styles.summaryValue}>{stats.onlineAgents}</div>
-            <p className={styles.summaryCopy}>
-              Public specialists currently online across {stats.totalDepartments} departments.
-            </p>
-            <p className={styles.summaryMeta}>
-              {stats.totalPlaybooks} internal playbooks currently loaded across the public roster.
+          <div className={styles.sectionIntro}>
+            <div>
+              <p className="label-sm">Floor map</p>
+              <h2>See the agency&apos;s operating structure in one business view.</h2>
+            </div>
+            <p>
+              Each team view, headcount, and route is tied to the same shared
+              roster, giving you a consistent picture of functional coverage,
+              team composition, and specialist access across desktop and mobile.
             </p>
           </div>
-          <OfficeFloor tiles={roomTiles} />
+          <div className={styles.mapPanel}>
+            <OfficeFloor tiles={roomTiles} />
+          </div>
         </section>
 
         <section className={styles.directory}>
-          <div className={styles.directoryHeader}>
+          <div className={styles.sectionIntro}>
             <div>
-              <p className="label-sm">Department directory</p>
-              <h2>Alternate route: browse by mandate.</h2>
+              <p className="label-sm">Department index</p>
+              <h2>Review the agency by function, remit, and team coverage.</h2>
             </div>
             <p>
-              The mobile-friendly directory mirrors the same floor data, keeping
-              room counts, accent signals, and routing aligned across the app.
+              The department index presents the same structure in a faster
+              business-facing format for comparing mandates, capability depth,
+              and specialist coverage.
             </p>
           </div>
           <div className={styles.departmentGrid}>

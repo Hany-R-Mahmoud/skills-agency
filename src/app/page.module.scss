@@ -8,40 +8,46 @@
   gap: var(--space-4);
 }
 
-.summaryPanel {
-  display: grid;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border: 1px solid var(--border-default);
+.sectionIntro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.sectionIntro h2,
+.sectionIntro p {
+  margin: 0;
+}
+
+.sectionIntro h2 {
+  margin-top: var(--space-2);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+}
+
+.sectionIntro > p:last-child {
+  max-width: 34rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: var(--leading-loose);
+}
+
+.mapPanel {
+  padding: clamp(var(--space-3), 2vw, var(--space-4));
+  border: 1px solid color-mix(in srgb, var(--dept-command) 12%, var(--border-default));
   background:
-    linear-gradient(180deg, var(--tint-command), transparent 36%),
-    var(--surface-lift);
-  box-shadow: var(--shadow-lift);
-}
-
-.summaryValue {
-  font-family: var(--font-mono);
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  color: var(--dept-command);
-}
-
-.summaryCopy {
-  margin: 0;
-  color: var(--text-secondary);
-}
-
-.summaryMeta {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--text-sm);
-  line-height: 1.5;
+    linear-gradient(180deg, color-mix(in srgb, var(--dept-command) 4%, transparent), transparent 28%),
+    var(--surface-mid);
 }
 
 .hero {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.78fr);
   gap: var(--space-5);
   padding: clamp(var(--space-5), 6vw, var(--space-7));
   border: 1px solid var(--border-default);
@@ -50,6 +56,42 @@
     radial-gradient(circle at bottom right, color-mix(in srgb, var(--dept-knowledge) 18%, transparent), transparent 30%),
     var(--surface-lift);
   box-shadow: var(--shadow-void);
+}
+
+.hero > * {
+  animation: page-fade-up 520ms var(--ease-smooth) both;
+}
+
+.heroCopy > * {
+  animation: page-fade-up 520ms var(--ease-smooth) both;
+}
+
+.heroCopy > *:nth-child(1) {
+  animation-delay: 40ms;
+}
+
+.heroCopy > *:nth-child(2) {
+  animation-delay: 110ms;
+}
+
+.heroCopy > *:nth-child(3) {
+  animation-delay: 170ms;
+}
+
+.heroCopy > *:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+.heroCopy > *:nth-child(5) {
+  animation-delay: 300ms;
+}
+
+.heroRail > *:nth-child(1) {
+  animation-delay: 180ms;
+}
+
+.heroRail > *:nth-child(2) {
+  animation-delay: 260ms;
 }
 
 .hero::after {
@@ -75,6 +117,8 @@
   max-width: 60rem;
   display: grid;
   align-content: start;
+  padding: clamp(var(--space-4), 3vw, var(--space-6)) 0 clamp(var(--space-5), 4vw, var(--space-7))
+    clamp(var(--space-2), 1.5vw, var(--space-5));
 }
 
 .heroCopy p {
@@ -102,8 +146,8 @@
 .title {
   margin: var(--space-2) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(4rem, 14vw, 8.5rem);
-  line-height: 0.95;
+  font-size: clamp(3.6rem, 11vw, 7.4rem);
+  line-height: 0.9;
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
   text-shadow:
@@ -114,19 +158,30 @@
 .subtitle {
   margin-top: var(--space-3);
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  letter-spacing: var(--tracking-wide);
   color: var(--dept-command);
 }
 
 .heroCopy > p:last-of-type {
   margin-top: var(--space-3);
-  max-width: 43rem;
+  max-width: 39rem;
   color: var(--text-secondary);
-  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  font-size: clamp(1rem, 1.55vw, 1.08rem);
+  line-height: var(--leading-loose);
 }
 
 .heroActions {
   margin-top: var(--space-4);
+}
+
+.heroRail {
+  position: relative;
+  z-index: var(--z-base);
+  display: grid;
+  align-content: stretch;
+  gap: var(--space-3);
+  min-height: 100%;
 }
 
 .primaryAction {
@@ -141,14 +196,24 @@
   font-family: var(--font-mono);
   text-decoration: none;
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--dept-command) 36%, transparent);
+  transition:
+    transform 180ms var(--ease-smooth),
+    border-color 180ms var(--ease-smooth),
+    box-shadow 180ms var(--ease-smooth),
+    background-color 180ms var(--ease-smooth);
+}
+
+.primaryAction:hover,
+.primaryAction:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--dept-command) 46%, transparent),
+    0 12px 28px color-mix(in srgb, var(--dept-command) 14%, transparent);
 }
 
 .statsBar {
-  position: relative;
-  z-index: var(--z-base);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: end;
   gap: var(--space-3);
 }
 
@@ -159,8 +224,18 @@
   border: 1px solid color-mix(in srgb, var(--dept-command) 12%, var(--border-default));
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--dept-command) 8%, transparent), transparent 38%),
-    color-mix(in srgb, var(--surface-lift) 92%, black);
+    color-mix(in srgb, var(--surface-lift) 92%, var(--surface-contrast-base));
   backdrop-filter: blur(12px);
+  transition:
+    transform 180ms var(--ease-smooth),
+    border-color 180ms var(--ease-smooth),
+    box-shadow 180ms var(--ease-smooth);
+}
+
+.statsBar div:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--dept-command) 20%, var(--border-default));
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--dept-command) 8%, transparent);
 }
 
 .statsBar dt,
@@ -169,35 +244,89 @@
 }
 
 .statsBar dd {
-  font-family: var(--font-mono);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.9rem);
   color: var(--text-heading);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+.dutyPanel {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  border: 1px solid color-mix(in srgb, var(--dept-command) 16%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--dept-command) 10%, transparent), transparent 32%),
+    linear-gradient(90deg, color-mix(in srgb, var(--dept-knowledge) 8%, transparent), transparent 55%),
+    var(--surface-mid);
+  box-shadow: var(--shadow-lift);
+}
+
+.dutyHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dutySignal {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.9rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--dept-command) 20%, var(--border-default));
+  background: color-mix(in srgb, var(--dept-command) 10%, transparent);
+  color: var(--dept-command);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.dutySignal::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: var(--space-2);
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--dept-command) 26%, transparent);
+  animation: signal-pulse 2.6s ease-out infinite;
+}
+
+.dutyCount {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  line-height: 0.86;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-heading);
+}
+
+.dutyCopy,
+.dutyMeta {
+  margin: 0;
+}
+
+.dutyCopy {
+  max-width: 28ch;
+  color: var(--text-primary);
+  font-size: 1.02rem;
+  line-height: var(--leading-body);
+}
+
+.dutyMeta {
+  max-width: 34ch;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: var(--leading-loose);
 }
 
 .directory {
   display: grid;
   gap: var(--space-4);
-}
-
-.directoryHeader {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.directoryHeader h2,
-.directoryHeader p {
-  margin: 0;
-}
-
-.directoryHeader h2 {
-  margin-top: var(--space-2);
-}
-
-.directoryHeader p:last-child {
-  max-width: 34rem;
-  color: var(--text-secondary);
 }
 
 .departmentGrid {
@@ -206,7 +335,76 @@
   gap: var(--space-4);
 }
 
+.sectionIntro > * {
+  animation: page-fade-up 520ms var(--ease-smooth) both;
+}
+
+.sectionIntro > *:nth-child(1) {
+  animation-delay: 60ms;
+}
+
+.sectionIntro > *:nth-child(2) {
+  animation-delay: 130ms;
+}
+
+.mapPanel {
+  animation: page-fade-up 560ms var(--ease-smooth) 160ms both;
+}
+
+.departmentGrid > * {
+  animation: page-fade-up 520ms var(--ease-smooth) both;
+}
+
+.departmentGrid > *:nth-child(1) {
+  animation-delay: 70ms;
+}
+
+.departmentGrid > *:nth-child(2) {
+  animation-delay: 110ms;
+}
+
+.departmentGrid > *:nth-child(3) {
+  animation-delay: 150ms;
+}
+
+.departmentGrid > *:nth-child(4) {
+  animation-delay: 190ms;
+}
+
+.departmentGrid > *:nth-child(5) {
+  animation-delay: 230ms;
+}
+
+.departmentGrid > *:nth-child(6) {
+  animation-delay: 270ms;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  @keyframes page-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes signal-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--dept-command) 24%, transparent);
+      opacity: 1;
+    }
+
+    60% {
+      box-shadow: 0 0 0 0.55rem color-mix(in srgb, var(--dept-command) 0%, transparent);
+      opacity: 0.82;
+    }
+  }
+
   @keyframes titleGlow {
     0%,
     100% {
@@ -227,6 +425,18 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero > *,
+  .heroCopy > *,
+  .heroRail > *,
+  .sectionIntro > *,
+  .mapPanel,
+  .departmentGrid > *,
+  .dutySignal::before {
+    animation: none;
+  }
+}
+
 @media (max-width: 960px) {
   .shell {
     grid-template-columns: 1fr;
@@ -236,7 +446,63 @@
     grid-template-columns: 1fr;
   }
 
+  .heroCopy {
+    padding-left: 0;
+    padding-bottom: var(--space-3);
+  }
+
   .statsBar {
     grid-template-columns: 1fr;
+  }
+
+  .sectionIntro {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .hero {
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .hero::before {
+    inset: 0.7rem;
+  }
+
+  .heroCopy {
+    padding: 0;
+  }
+
+  .heroCopy > p:last-of-type,
+  .sectionIntro > p:last-child {
+    max-width: none;
+  }
+
+  .sectionIntro h2 {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .statsBar div,
+  .dutyPanel {
+    padding: var(--space-3);
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    padding: var(--space-3);
+  }
+
+  .hero::before {
+    inset: 0.5rem;
+  }
+
+  .mapPanel {
+    padding: var(--space-3);
   }
 }

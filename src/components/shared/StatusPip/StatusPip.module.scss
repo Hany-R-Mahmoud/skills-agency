@@ -5,3 +5,28 @@
   border: 1px solid var(--surface-void);
   box-shadow: 0 0 0 2px rgba(14, 14, 14, 0.92);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes live-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+
+    55% {
+      transform: scale(1.22);
+      filter: brightness(1.1);
+    }
+  }
+
+  .pip:global(.pip--online) {
+    animation: live-pulse 2.2s ease-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pip:global(.pip--online) {
+    animation: none;
+  }
+}

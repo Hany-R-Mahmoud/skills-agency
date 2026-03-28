@@ -46,6 +46,7 @@
   box-shadow:
     var(--shadow-void),
     0 0 42px color-mix(in srgb, var(--page-accent) 12%, transparent);
+  animation: agent-fade-up 520ms var(--ease-smooth) both;
 }
 
 .hero::before {
@@ -58,12 +59,51 @@
 
 .heroMedia {
   min-width: 0;
+  max-width: 28rem;
+  animation: agent-fade-up 560ms var(--ease-smooth) 70ms both;
 }
 
 .heroCopy {
+  min-width: 0;
   display: grid;
   align-content: start;
   gap: var(--space-3);
+}
+
+.heroCopy > * {
+  animation: agent-fade-up 520ms var(--ease-smooth) both;
+}
+
+.heroCopy > *:nth-child(1) {
+  animation-delay: 120ms;
+}
+
+.heroCopy > *:nth-child(2) {
+  animation-delay: 170ms;
+}
+
+.heroCopy > *:nth-child(3) {
+  animation-delay: 210ms;
+}
+
+.heroCopy > *:nth-child(4) {
+  animation-delay: 250ms;
+}
+
+.heroCopy > *:nth-child(5) {
+  animation-delay: 290ms;
+}
+
+.heroCopy > *:nth-child(6) {
+  animation-delay: 330ms;
+}
+
+.heroCopy > *:nth-child(7) {
+  animation-delay: 380ms;
+}
+
+.heroCopy > *:nth-child(8) {
+  animation-delay: 430ms;
 }
 
 .heroMeta {
@@ -84,8 +124,10 @@
 .heroCopy h1 {
   margin: 0;
   font-size: clamp(2.8rem, 6vw, 5.2rem);
-  line-height: 0.94;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   text-wrap: balance;
+  max-width: 9ch;
 }
 
 .codename,
@@ -99,13 +141,15 @@
   color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
 }
 
 .role {
   color: var(--page-accent);
   font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
 }
 
 .statusRow {
@@ -117,6 +161,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .departmentBadge {
@@ -130,8 +175,10 @@
 }
 
 .voiceLine {
-  max-width: 34rem;
-  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  max-width: 30ch;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
   color: var(--text-heading);
 }
 
@@ -144,8 +191,10 @@
 }
 
 .description {
-  max-width: 44rem;
+  max-width: 42rem;
   color: var(--text-secondary);
+  line-height: var(--leading-loose);
+  font-size: 1rem;
 }
 
 .commandPanel {
@@ -177,11 +226,13 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
 }
 
 .commandLine code {
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 1.7vw, 1.16rem);
+  font-size: clamp(1rem, 1.45vw, 1.08rem);
+  line-height: 1.6;
   color: var(--text-heading);
   word-break: break-all;
 }
@@ -210,6 +261,19 @@
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+  transition:
+    transform 180ms var(--ease-smooth),
+    border-color 180ms var(--ease-smooth),
+    box-shadow 180ms var(--ease-smooth),
+    background-color 180ms var(--ease-smooth);
+}
+
+.primaryAction:hover,
+.primaryAction:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--page-accent) 46%, transparent),
+    0 12px 28px color-mix(in srgb, var(--page-accent) 14%, transparent);
 }
 
 .skillsSection,
@@ -221,6 +285,15 @@
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--page-accent) 5%, transparent), transparent 44%),
     var(--surface-mid);
+  animation: agent-fade-up 540ms var(--ease-smooth) both;
+}
+
+.skillsSection {
+  animation-delay: 220ms;
+}
+
+.teamSection {
+  animation-delay: 320ms;
 }
 
 .sectionHeader {
@@ -231,6 +304,9 @@
 .sectionHeader h2 {
   margin: 0;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
 }
 
 .skillList {
@@ -247,6 +323,20 @@
   border: 1px solid color-mix(in srgb, var(--page-accent) 28%, var(--border-default));
   background: var(--surface-inset);
   color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition:
+    transform 160ms var(--ease-smooth),
+    border-color 160ms var(--ease-smooth),
+    background-color 160ms var(--ease-smooth);
+}
+
+.skillChip:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--page-accent) 40%, var(--border-default));
+  background: color-mix(in srgb, var(--page-accent) 8%, var(--surface-inset));
 }
 
 .teamGrid {
@@ -271,7 +361,8 @@
     box-shadow var(--duration-mid) var(--ease-smooth);
 }
 
-.teamCard:hover {
+.teamCard:hover,
+.teamCard:focus-visible {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--page-accent) 40%, var(--border-default));
   box-shadow: 0 0 28px color-mix(in srgb, var(--page-accent) 12%, transparent);
@@ -279,6 +370,12 @@
 
 .teamPortrait {
   min-height: 220px;
+  transition: transform 220ms var(--ease-smooth);
+}
+
+.teamCard:hover .teamPortrait,
+.teamCard:focus-visible .teamPortrait {
+  transform: scale(1.02);
 }
 
 .teamCopy {
@@ -293,6 +390,7 @@
 
 .teamCopy span:last-child {
   color: var(--text-secondary);
+  line-height: var(--leading-body);
 }
 
 .backLink {
@@ -300,15 +398,49 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-decoration: none;
+  letter-spacing: 0.03em;
+  transition:
+    color 160ms var(--ease-smooth),
+    transform 160ms var(--ease-smooth);
 }
 
-.backLink:hover {
+.backLink:hover,
+.backLink:focus-visible {
   color: var(--page-accent);
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes agent-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .heroMedia,
+  .heroCopy > *,
+  .skillsSection,
+  .teamSection {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .heroMedia {
+    max-width: 100%;
   }
 
   .heroMeta {
@@ -318,8 +450,54 @@
   .heroNav {
     justify-content: start;
   }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .hero::before {
+    inset: 0.7rem;
+  }
+
+  .heroCopy h1 {
+    max-width: 100%;
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+  }
+
+  .voiceLine {
+    max-width: none;
+    font-size: 1.02rem;
+  }
+
+  .commandPanel {
+    padding: var(--space-3);
+  }
 
   .teamGrid {
     grid-template-columns: 1fr;
+  }
+
+  .teamPortrait {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero,
+  .skillsSection,
+  .teamSection {
+    padding: var(--space-3);
+  }
+
+  .hero::before {
+    inset: 0.5rem;
+  }
+
+  .primaryAction {
+    width: 100%;
+    padding: 0 var(--space-4);
   }
 }

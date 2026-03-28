@@ -1,11 +1,16 @@
 const MUTE_STORAGE_KEY = "agency-muted";
 const INTERACTION_STORAGE_KEY = "agency-interacted";
 const bufferCache = new Map<string, AudioBuffer>();
+const muteListeners = new Set<() => void>();
 
 let audioContext: AudioContext | null = null;
 let ambientSource: AudioBufferSourceNode | null = null;
 let ambientGainNode: GainNode | null = null;
 let ambientElement: HTMLAudioElement | null = null;
+
+function emitMuteChange(): void {
+  muteListeners.forEach((listener) => listener());
+}
 
 function getContext(): AudioContext | null {
   if (typeof window === "undefined") {
@@ -128,6 +133,7 @@ export function setMuted(muted: boolean): void {
   }
 
   window.localStorage.setItem(MUTE_STORAGE_KEY, String(muted));
+  emitMuteChange();
 
   if (!audioContext) {
     return;
@@ -148,6 +154,28 @@ export function isMuted(): boolean {
   }
 
   return window.localStorage.getItem(MUTE_STORAGE_KEY) === "true";
+}
+
+export function subscribeToMute(listener: () => void): () => void {
+  muteListeners.add(listener);
+
+  function handleStorage(event: StorageEvent): void {
+    if (event.key === MUTE_STORAGE_KEY) {
+      listener();
+    }
+  }
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", handleStorage);
+  }
+
+  return () => {
+    muteListeners.delete(listener);
+
+    if (typeof window !== "undefined") {
+      window.removeEventListener("storage", handleStorage);
+    }
+  };
 }
 
 async function playBuffer(paths: string[], volume: number): Promise<void> {

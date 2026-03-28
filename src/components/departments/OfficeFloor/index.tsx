@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { initAudio, playUI } from "@/lib/audio";
 import type { RoomTile } from "@/lib/types";
 import styles from "./OfficeFloor.module.scss";
@@ -29,17 +28,6 @@ export default function OfficeFloor({ tiles, activeSlug }: OfficeFloorProps) {
 
   return (
     <section className={styles.floor}>
-      <div className={styles.header}>
-        <div>
-          <p className="label-sm">Single-floor office</p>
-          <h2>Glass-wall navigation with live department signals.</h2>
-        </div>
-        <p className={styles.copy}>
-          Each room inherits its label, counts, and accent system from the shared
-          skills dataset, with mobile collapsing into a vertical deck below.
-        </p>
-      </div>
-
       <div className={styles.mapWrap}>
         <div className={styles.mapFrame}>
           <Image
@@ -55,23 +43,24 @@ export default function OfficeFloor({ tiles, activeSlug }: OfficeFloorProps) {
             const position = roomPositions[tile.slug];
 
             return (
-              <motion.div
+              <div
                 key={tile.slug}
                 className={styles.room}
                 data-department={tile.id}
                 data-active={activeSlug === tile.slug}
                 style={position}
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ duration: 0.16, ease: "easeOut" }}
-                onMouseEnter={() => void handleHover()}
               >
-                <Link href={tile.href} className={styles.roomLink}>
+                <Link
+                  href={tile.href}
+                  className={styles.roomLink}
+                  onMouseEnter={() => void handleHover()}
+                >
                   <span className={styles.roomLabel}>{tile.label}</span>
                   <span className={styles.roomMeta}>
                     {tile.onlineCount} online · {tile.agentCount} total
                   </span>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </div>

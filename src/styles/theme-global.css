@@ -19,6 +19,7 @@
   --surface-high:           #28282e;   /* terminal window / highest */
   --surface-mid:            #1a1b1f;   /* container */
   --surface-overlay:        rgba(14, 14, 14, 0.92);
+  --surface-contrast-base:  #000000;   /* theme-aware mix anchor for layered modules */
 
   /* ─── Accent: Department colors ───────────────────────────── */
   --accent-cyan:            #8ff5ff;   /* Engineering — primary */
@@ -97,23 +98,29 @@
   --font-body:              'Manrope', system-ui, sans-serif;
   --font-mono:              'JetBrains Mono', 'Fira Code', monospace;
 
-  --text-xs:                11px;
-  --text-sm:                12px;
-  --text-base:              16px;
-  --text-md:                16px;
-  --text-lg:                20px;
-  --text-xl:                24px;
-  --text-2xl:               36px;
-  --text-3xl:               56px;
+  --text-xs:                0.75rem;
+  --text-sm:                0.8125rem;
+  --text-base:              1rem;
+  --text-md:                1rem;
+  --text-lg:                1.1875rem;
+  --text-xl:                1.5rem;
+  --text-2xl:               2.25rem;
+  --text-3xl:               3.5rem;
 
   --weight-regular:         400;
   --weight-medium:          500;
   --weight-bold:            600;
   --weight-black:           700;
 
-  --tracking-wide:          0.05em;    /* for label-sm ALL CAPS */
-  --tracking-wider:         0.1em;
-  --tracking-tight:         -0.03em;   /* for large display text */
+  --tracking-body:          -0.008em;
+  --tracking-wide:          0.08em;    /* for label-sm ALL CAPS */
+  --tracking-wider:         0.14em;
+  --tracking-tight:         -0.035em;  /* for large display text */
+
+  --leading-tight:          1.08;
+  --leading-heading:        1.14;
+  --leading-body:           1.68;
+  --leading-loose:          1.78;
 
   /* ─── Shape ─────────────────────────────────────────────────── */
   --radius-sharp:           2px;       /* default — terminal feel */
@@ -135,7 +142,7 @@
   --space-24:               96px;      /* hero section breathing room */
 
   /* ─── Layout ─────────────────────────────────────────────────── */
-  --sidebar-width:          200px;
+  --sidebar-width:          236px;
   --sidebar-collapsed:      48px;
   --header-height:          48px;
   --agent-panel-width:      420px;     /* slide-in detail drawer */
@@ -180,54 +187,78 @@
 }
 
 :root[data-theme="light"] {
-  --surface-void:           #f4f1eb;
-  --surface-inset:          #fbf7f0;
-  --surface-lift:           #fffdfa;
-  --surface-high:           #f2ece2;
-  --surface-mid:            #f7f2ea;
-  --surface-overlay:        rgba(251, 247, 240, 0.92);
+  --surface-void:           #ede3d4;
+  --surface-inset:          #f7efe3;
+  --surface-lift:           #fffaf2;
+  --surface-high:           #e1d4bf;
+  --surface-mid:            #f1e7d7;
+  --surface-overlay:        rgba(247, 239, 227, 0.9);
+  --surface-contrast-base:  #ccbba3;
 
-  --accent-cyan-bg:         #dff7f8;
-  --accent-coral-bg:        #fde5e2;
-  --accent-green-bg:        #e8f7e1;
-  --accent-amber-bg:        #fff1d8;
-  --accent-purple-bg:       #f2e8ff;
-  --accent-gold-bg:         #fff3c9;
+  --accent-cyan:            #117b87;
+  --accent-cyan-dim:        #0d646d;
+  --accent-cyan-glow:       rgba(17, 123, 135, 0.16);
+  --accent-cyan-bg:         #d5edf0;
 
-  --tint-command:           rgba(143, 245, 255, 0.12);
-  --tint-engineering:       rgba(245, 166, 35, 0.12);
-  --tint-design:            rgba(255, 107, 107, 0.12);
-  --tint-quality:           rgba(57, 255, 20, 0.1);
-  --tint-security:          rgba(192, 132, 252, 0.1);
-  --tint-knowledge:         rgba(255, 214, 10, 0.14);
+  --accent-coral:           #c15d58;
+  --accent-coral-dim:       #9e4a46;
+  --accent-coral-glow:      rgba(193, 93, 88, 0.16);
+  --accent-coral-bg:        #f2d8d3;
 
-  --text-primary:           #241d17;
-  --text-secondary:         #6c635d;
-  --text-tertiary:          #8e847e;
-  --text-disabled:          #b5aba3;
-  --text-heading:           #16110d;
-  --text-accent:            #0f7984;
+  --accent-green:           #2f8b3b;
+  --accent-green-dim:       #246d2e;
+  --accent-green-glow:      rgba(47, 139, 59, 0.14);
+  --accent-green-bg:        #ddebd7;
+
+  --accent-amber:           #9e6814;
+  --accent-amber-dim:       #7e5208;
+  --accent-amber-glow:      rgba(158, 104, 20, 0.16);
+  --accent-amber-bg:        #f0e0c2;
+
+  --accent-purple:          #7859a9;
+  --accent-purple-dim:      #604388;
+  --accent-purple-glow:     rgba(120, 89, 169, 0.16);
+  --accent-purple-bg:       #e6dcf3;
+
+  --accent-gold:            #90710f;
+  --accent-gold-dim:        #735908;
+  --accent-gold-glow:       rgba(144, 113, 15, 0.16);
+  --accent-gold-bg:         #efe3b7;
+
+  --tint-command:           rgba(17, 123, 135, 0.12);
+  --tint-engineering:       rgba(158, 104, 20, 0.12);
+  --tint-design:            rgba(193, 93, 88, 0.12);
+  --tint-quality:           rgba(47, 139, 59, 0.1);
+  --tint-security:          rgba(120, 89, 169, 0.1);
+  --tint-knowledge:         rgba(144, 113, 15, 0.12);
+
+  --text-primary:           #251b12;
+  --text-secondary:         #5f5145;
+  --text-tertiary:          #7f7064;
+  --text-disabled:          #b3a493;
+  --text-heading:           #140d08;
+  --text-accent:            #0d646d;
   --text-on-accent:         #fffdfa;
 
-  --border-default:         rgba(67, 54, 45, 0.16);
-  --border-subtle:          rgba(67, 54, 45, 0.1);
-  --border-ghost:           rgba(67, 54, 45, 0.08);
-  --border-accent:          #0f7984;
+  --border-default:         rgba(58, 42, 28, 0.24);
+  --border-subtle:          rgba(58, 42, 28, 0.14);
+  --border-ghost:           rgba(58, 42, 28, 0.1);
+  --border-accent:          #0d646d;
 
-  --glow-command:           0 0 20px rgba(143, 245, 255, 0.2);
-  --glow-engineering:       0 0 20px rgba(245, 166, 35, 0.18);
-  --glow-design:            0 0 20px rgba(255, 107, 107, 0.16);
-  --glow-quality:           0 0 20px rgba(57, 255, 20, 0.14);
-  --glow-security:          0 0 20px rgba(192, 132, 252, 0.18);
-  --glow-knowledge:         0 0 20px rgba(255, 214, 10, 0.18);
+  --glow-command:           0 0 20px rgba(17, 123, 135, 0.14);
+  --glow-engineering:       0 0 20px rgba(158, 104, 20, 0.14);
+  --glow-design:            0 0 20px rgba(193, 93, 88, 0.14);
+  --glow-quality:           0 0 20px rgba(47, 139, 59, 0.12);
+  --glow-security:          0 0 20px rgba(120, 89, 169, 0.14);
+  --glow-knowledge:         0 0 20px rgba(144, 113, 15, 0.14);
 
-  --glow-cyan:              0 0 10px rgba(143, 245, 255, 0.18);
-  --glow-cyan-strong:       0 0 22px rgba(143, 245, 255, 0.24);
-  --glow-coral:             0 0 10px rgba(255, 107, 107, 0.16);
-  --glow-green:             0 0 10px rgba(57, 255, 20, 0.12);
-  --glow-amber:             0 0 10px rgba(245, 166, 35, 0.16);
-  --shadow-void:            0 18px 42px rgba(87, 66, 40, 0.12);
-  --shadow-lift:            0 10px 28px rgba(87, 66, 40, 0.1);
+  --glow-cyan:              0 0 10px rgba(17, 123, 135, 0.12);
+  --glow-cyan-strong:       0 0 22px rgba(17, 123, 135, 0.18);
+  --glow-coral:             0 0 10px rgba(193, 93, 88, 0.12);
+  --glow-green:             0 0 10px rgba(47, 139, 59, 0.1);
+  --glow-amber:             0 0 10px rgba(158, 104, 20, 0.12);
+  --shadow-void:            0 18px 42px rgba(76, 51, 26, 0.16);
+  --shadow-lift:            0 10px 28px rgba(76, 51, 26, 0.12);
 
   --scanline-gradient:      repeating-linear-gradient(
                               0deg,

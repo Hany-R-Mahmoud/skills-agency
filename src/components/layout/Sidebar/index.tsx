@@ -1,13 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { BulbOutlined, MoonOutlined, MutedOutlined, SoundOutlined } from "@ant-design/icons";
 import type { SidebarDepartmentSummary, SiteStats } from "@/lib/types";
 import { getAgencyData } from "@/lib/utils";
-import { initAudio, isMuted, setMuted } from "@/lib/audio";
-import { getDocumentTheme, resolveTheme, setTheme, type ThemeMode } from "@/lib/theme";
+import { initAudio, isMuted, setMuted, subscribeToMute } from "@/lib/audio";
+import {
+  getDocumentTheme,
+  resolveTheme,
+  setTheme,
+  subscribeToTheme,
+  type ThemeMode,
+} from "@/lib/theme";
 import styles from "./Sidebar.module.scss";
 
 interface SidebarProps {
@@ -22,10 +28,16 @@ export default function Sidebar({
   activeDepartmentSlug,
 }: SidebarProps) {
   const pathname = usePathname();
-  const [muted, setMutedState] = useState<boolean>(() => isMuted());
-  const [theme, setThemeState] = useState<ThemeMode>(() => {
-    return getDocumentTheme() ?? resolveTheme();
-  });
+  const muted = useSyncExternalStore(
+    subscribeToMute,
+    () => isMuted(),
+    () => false,
+  );
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    () => getDocumentTheme() ?? resolveTheme(),
+    () => "dark",
+  );
 
   useEffect(() => {
     function unlockAudio(): void {
@@ -43,17 +55,31 @@ export default function Sidebar({
     };
   }, []);
 
-  function toggleMuted() {
-    initAudio();
-    const nextMuted = !muted;
-    setMuted(nextMuted);
-    setMutedState(nextMuted);
+  function toggleMuted(): void {
+    void initAudio();
+    setMuted(!muted);
   }
 
-  function toggleTheme() {
+  function toggleTheme(): void {
     const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
-    setThemeState(nextTheme);
+  }
+
+  function getMobileLabel(name: string): string {
+    const words = name
+      .replaceAll("&", "")
+      .split(" ")
+      .filter(Boolean);
+
+    if (words.length === 1) {
+      return words[0].slice(0, 4);
+    }
+
+    return words
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join("")
+      .slice(0, 3);
   }
 
   const version = getAgencyData().meta.version;
@@ -67,12 +93,17 @@ export default function Sidebar({
             className={styles.controlToggle}
             onClick={toggleMuted}
             aria-pressed={muted}
+            aria-label={muted ? "Unmute audio system" : "Mute audio system"}
+            title={muted ? "Audio muted" : "Audio live"}
           >
-            <span className="label-sm">Audio system</span>
-            <span className={styles.controlState}>
+            <span className={styles.controlIcon}>
               {muted ? <MutedOutlined aria-hidden /> : <SoundOutlined aria-hidden />}
-              {muted ? "Muted" : "Live"}
             </span>
+            <span className={styles.controlMeta}>
+              <span className={styles.controlLabel}>Audio</span>
+              <span className={styles.controlValue}>{muted ? "Muted" : "Live"}</span>
+            </span>
+            <span className={styles.controlIndicator} data-state={muted ? "muted" : "live"} aria-hidden />
           </button>
 
           <button
@@ -80,23 +111,34 @@ export default function Sidebar({
             className={styles.controlToggle}
             onClick={toggleTheme}
             aria-pressed={theme === "light"}
+            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+            title={theme === "light" ? "Light mode active" : "Dark mode active"}
           >
-            <span className="label-sm">Display mode</span>
-            <span className={styles.controlState} suppressHydrationWarning>
+            <span className={styles.controlIcon} suppressHydrationWarning>
               {theme === "light" ? <MoonOutlined aria-hidden /> : <BulbOutlined aria-hidden />}
-              {theme === "light" ? "Light" : "Dark"}
             </span>
+            <span className={styles.controlMeta} suppressHydrationWarning>
+              <span className={styles.controlLabel}>Display</span>
+              <span className={styles.controlValue}>{theme === "light" ? "Light" : "Dark"}</span>
+            </span>
+            <span
+              className={styles.controlIndicator}
+              data-state={theme === "light" ? "light" : "dark"}
+              aria-hidden
+            />
           </button>
         </div>
 
         <div className={styles.brandBlock}>
           <p className="label-sm">Agency HQ</p>
           <Link href="/" className={styles.brandLink}>
-            <span className={styles.brand}>The Agency</span>
+            <span className={styles.brand}>
+              <span className={styles.brandLead}>The</span>
+              <span className={styles.brandWord}>Agency</span>
+            </span>
           </Link>
           <p className={styles.copy}>
-            Single-floor command map for routing missions, reviewing rosters,
-            and opening any public agent profile.
+            One live roster for every public operator.
           </p>
         </div>
 
@@ -142,7 +184,9 @@ export default function Sidebar({
                 <span className={styles.linkAccent} aria-hidden />
                 <span className={styles.linkBody}>
                   <span className={styles.linkTitle}>{department.name}</span>
-                  <span className={styles.linkMeta}>{department.tagline}</span>
+                  <span className={styles.linkMeta}>
+                    {department.onlineCount} live
+                  </span>
                 </span>
                 <span className={styles.linkCount}>{department.agentCount}</span>
               </Link>
@@ -171,8 +215,11 @@ export default function Sidebar({
               href={`/departments/${department.slug}`}
               className={styles.mobileLink}
               data-active={isActive}
+              data-department={department.id}
+              aria-label={`Open ${department.name}`}
+              title={department.name}
             >
-              {department.name.slice(0, 1)}
+              {getMobileLabel(department.name)}
             </Link>
           );
         })}

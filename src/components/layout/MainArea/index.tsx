@@ -1,8 +1,4 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import styles from "./MainArea.module.scss";
 
@@ -25,17 +21,9 @@ export default function MainArea({
   hideHeader = false,
   summary,
 }: MainAreaProps) {
-  const pathname = usePathname();
-
   return (
     <main className={cn(styles.main, className)}>
-      <motion.div
-        key={pathname}
-        className={styles.inner}
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      >
+      <div className={styles.inner}>
         {!hideHeader ? (
           <header className={styles.header}>
             <div className={styles.copy}>
@@ -47,7 +35,7 @@ export default function MainArea({
           </header>
         ) : null}
         <div className={styles.content}>{children}</div>
-      </motion.div>
+      </div>
     </main>
   );
 }

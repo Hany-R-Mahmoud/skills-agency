@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AgentProfilePage from "@/components/agents/AgentPage";
 import MainArea from "@/components/layout/MainArea";
@@ -17,6 +18,24 @@ export function generateStaticParams() {
 
 interface AgentPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: AgentPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const agent = getAgentDetailView(id);
+
+  if (!agent) {
+    return {
+      title: "Agent not found",
+    };
+  }
+
+  return {
+    title: agent.name,
+    description: `${agent.role}. ${agent.description}`,
+  };
 }
 
 export default async function AgentRoutePage({ params }: AgentPageProps) {
