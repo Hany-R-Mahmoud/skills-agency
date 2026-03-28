@@ -185,7 +185,7 @@
 
 .heroTop {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(0, 1.16fr) minmax(18rem, 0.84fr);
   align-items: start;
   gap: clamp(var(--space-4), 3vw, var(--space-6));
 }
@@ -244,17 +244,21 @@
 }
 
 .heroCopy h1 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 0.35ch;
+  display: grid;
+  justify-items: start;
+  gap: 0.08em;
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.88;
+  font-size: clamp(2.85rem, 6vw, 5.65rem);
+  line-height: 0.9;
   letter-spacing: -0.045em;
   text-transform: uppercase;
-  text-wrap: balance;
-  max-width: 10ch;
+  max-width: 100%;
+}
+
+.heroCopy h1 span {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .heroAccent {
@@ -274,9 +278,9 @@
 .heroVisual {
   position: relative;
   overflow: hidden;
-  width: min(100%, 52rem);
+  width: min(100%, 44rem);
   aspect-ratio: 1 / 1;
-  justify-self: center;
+  justify-self: end;
   border: 1px solid color-mix(in srgb, var(--page-accent) 18%, var(--border-default));
   background:
     radial-gradient(circle at center, color-mix(in srgb, var(--page-accent) 10%, transparent), transparent 62%),
@@ -750,6 +754,20 @@
   }
 }
 
+@media (max-width: 1280px) {
+  .heroTop {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.76fr);
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  }
+
+  .heroVisual {
+    width: min(100%, 36rem);
+  }
+}
+
 @media (max-width: 1100px) {
   .heroTop,
   .intelGrid {
@@ -808,7 +826,6 @@
   }
 
   .heroCopy h1 {
-    display: block;
     max-width: 100%;
     font-size: clamp(2.2rem, 11vw, 3.4rem);
     line-height: 0.94;
