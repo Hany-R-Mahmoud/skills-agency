@@ -1,42 +1,56 @@
 .card {
-  --card-accent: var(--accent-cyan);
+  --card-accent: var(--dept-command);
+  --card-tint: var(--tint-command);
   display: grid;
   gap: var(--space-3);
   padding: var(--space-4);
   border: 1px solid var(--border-default);
+  border-left: 3px solid var(--card-accent);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--card-accent) 12%, transparent), transparent 38%),
-    var(--surface-mid);
+    linear-gradient(180deg, var(--card-tint), transparent 42%),
+    var(--surface-lift);
   color: inherit;
   text-decoration: none;
   transition:
     transform var(--duration-mid) var(--ease-smooth),
-    border-color var(--duration-mid) var(--ease-smooth);
+    border-color var(--duration-mid) var(--ease-smooth),
+    box-shadow var(--duration-mid) var(--ease-smooth);
 }
 
-.card[data-accent="--accent-cyan"] {
-  --card-accent: var(--accent-cyan);
+.card[data-department="command"] {
+  --card-accent: var(--dept-command);
+  --card-tint: var(--tint-command);
 }
 
-.card[data-accent="--accent-coral"] {
-  --card-accent: var(--accent-coral);
+.card[data-department="engineering"] {
+  --card-accent: var(--dept-engineering);
+  --card-tint: var(--tint-engineering);
 }
 
-.card[data-accent="--accent-green"] {
-  --card-accent: var(--accent-green);
+.card[data-department="design"] {
+  --card-accent: var(--dept-design);
+  --card-tint: var(--tint-design);
 }
 
-.card[data-accent="--accent-amber"] {
-  --card-accent: var(--accent-amber);
+.card[data-department="quality"] {
+  --card-accent: var(--dept-quality);
+  --card-tint: var(--tint-quality);
 }
 
-.card[data-accent="--accent-purple"] {
-  --card-accent: var(--accent-purple);
+.card[data-department="security"] {
+  --card-accent: var(--dept-security);
+  --card-tint: var(--tint-security);
+}
+
+.card[data-department="knowledge"] {
+  --card-accent: var(--dept-knowledge);
+  --card-tint: var(--tint-knowledge);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: var(--card-accent);
+  border-color: color-mix(in srgb, var(--card-accent) 40%, var(--border-default));
+  box-shadow: 0 0 28px color-mix(in srgb, var(--card-accent) 12%, transparent);
 }
 
 .header {

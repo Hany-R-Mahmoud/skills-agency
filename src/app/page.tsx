@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import DeptRoom from "@/components/departments/DeptRoom";
 import DeptCard from "@/components/departments/DeptCard";
+import OfficeFloor from "@/components/departments/OfficeFloor";
 import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
-import { initAudio, playUI, startAmbient } from "@/lib/audio";
+import { initAudio, playUI } from "@/lib/audio";
 import {
   getDepartmentSummaries,
   getRoomTiles,
@@ -21,7 +21,6 @@ export default function HomePage() {
   function handleEnterHQ(): void {
     void initAudio();
     void playUI("click");
-    void startAmbient();
   }
 
   return (
@@ -30,7 +29,7 @@ export default function HomePage() {
       <MainArea
         eyebrow="Command Floor"
         title="The Agency"
-        description="A neon operations floor for routing missions, reading live rosters, and stepping directly into any specialist department."
+        description="Version 2 command floor with a portrait-first roster, glass-wall office navigation, and direct access to the 12 public agents."
         hideHeader
       >
         <section className={styles.hero}>
@@ -38,16 +37,16 @@ export default function HomePage() {
             <p className={styles.kicker}>Command Floor</p>
             <h1 className={styles.title}>THE AGENCY</h1>
             <p className={styles.subtitle}>
-              31 specialists. 6 departments. One command floor.
+              12 public agents. 6 departments. One command floor.
             </p>
             <p>
-              Route into Command, Engineering, Design, AI Labs, Ops, and Security
-              &amp; Research through a live isometric HQ map driven entirely from
-              the shared skills dataset.
+              Navigate Command, Engineering, Design, Quality, Security, and
+              Knowledge through a single-floor office map, then drop into any
+              specialist&apos;s full field page.
             </p>
             <div className={styles.heroActions}>
               <Link href="#hq-map" className={styles.primaryAction} onClick={handleEnterHQ}>
-                Enter HQ
+                Enter floor
               </Link>
             </div>
           </div>
@@ -61,6 +60,10 @@ export default function HomePage() {
               <dd>{stats.totalDepartments}</dd>
             </div>
             <div>
+              <dt className="label-sm">Playbooks</dt>
+              <dd>{stats.totalPlaybooks}</dd>
+            </div>
+            <div>
               <dt className="label-sm">Online now</dt>
               <dd>{stats.onlineAgents}</dd>
             </div>
@@ -69,13 +72,16 @@ export default function HomePage() {
 
         <section id="hq-map" className={styles.mapSection}>
           <div className={styles.summaryPanel}>
-            <p className="label-sm">Live signal</p>
+            <p className="label-sm">Agents on duty</p>
             <div className={styles.summaryValue}>{stats.onlineAgents}</div>
             <p className={styles.summaryCopy}>
-              Specialists online across {stats.totalDepartments} departments.
+              Public specialists currently online across {stats.totalDepartments} departments.
+            </p>
+            <p className={styles.summaryMeta}>
+              {stats.totalPlaybooks} internal playbooks currently loaded across the public roster.
             </p>
           </div>
-          <DeptRoom mode="map" tiles={roomTiles} />
+          <OfficeFloor tiles={roomTiles} />
         </section>
 
         <section className={styles.directory}>
@@ -85,8 +91,8 @@ export default function HomePage() {
               <h2>Alternate route: browse by mandate.</h2>
             </div>
             <p>
-              The card grid mirrors the same live counts as the floor map, which
-              keeps desktop and mobile navigation in sync with the dataset.
+              The mobile-friendly directory mirrors the same floor data, keeping
+              room counts, accent signals, and routing aligned across the app.
             </p>
           </div>
           <div className={styles.departmentGrid}>

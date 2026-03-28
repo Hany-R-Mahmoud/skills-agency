@@ -7,19 +7,20 @@ export type DepartmentId =
   | "command"
   | "engineering"
   | "design"
-  | "ai-labs"
-  | "ops"
-  | "security-research";
+  | "quality"
+  | "security"
+  | "knowledge";
 
 export type AgentStatus = "online" | "busy" | "idle";
 
 export type CharacterStyle = "pixel" | "geometric";
 export type AccentToken =
-  | "--accent-cyan"
-  | "--accent-coral"
-  | "--accent-green"
-  | "--accent-amber"
-  | "--accent-purple";
+  | "--dept-command"
+  | "--dept-engineering"
+  | "--dept-design"
+  | "--dept-quality"
+  | "--dept-security"
+  | "--dept-knowledge";
 
 export interface AgentInvocation {
   codex: string;
@@ -30,6 +31,11 @@ export interface AgentSprite {
   style: CharacterStyle;
   color: string;
   variant: number;
+}
+
+export interface AgentAchievement {
+  label: string;
+  value: string;
 }
 
 export interface RoomPosition {
@@ -50,6 +56,11 @@ export interface Agent {
   invocation: AgentInvocation;
   status: AgentStatus;
   sprite: AgentSprite;
+  portrait: string;
+  voiceLine: string;
+  playbooks: string[];
+  achievements: AgentAchievement[];
+  downloadUrl: string;
   replaces?: string[];
   path: string;
 }
@@ -60,6 +71,7 @@ export interface Department {
   slug: string;
   tagline: string;
   accentColor: AccentToken;
+  accentCss: AccentToken;
   accentHex: string;
   roomPosition: RoomPosition;
   agents: Agent[];
@@ -70,6 +82,8 @@ export interface SkillsMeta {
   lastUpdated: string;
   totalAgents: number;
   totalDepartments: number;
+  mode?: string;
+  notes?: string;
 }
 
 export interface SkillsData {
@@ -83,6 +97,7 @@ export interface SidebarDepartmentSummary {
   slug: string;
   tagline: string;
   accentColor: AccentToken;
+  accentCss: AccentToken;
   accentHex: string;
   agentCount: number;
   onlineCount: number;
@@ -93,6 +108,7 @@ export interface SidebarDepartmentSummary {
 export interface SiteStats {
   totalAgents: number;
   totalDepartments: number;
+  totalPlaybooks: number;
   onlineAgents: number;
   busyAgents: number;
   idleAgents: number;
@@ -108,9 +124,11 @@ export interface AgentListItem {
   departmentName: string;
   departmentSlug: string;
   accentColor: AccentToken;
+  accentCss: AccentToken;
   accentHex: string;
   skillsCount: number;
   sprite: AgentSprite;
+  portrait: string;
 }
 
 export interface RoomTilePreview {
@@ -122,22 +140,19 @@ export interface RoomTilePreview {
 }
 
 export interface RoomTile {
+  id: DepartmentId;
   slug: string;
   label: string;
   tagline: string;
   accentColor: AccentToken;
+  accentCss: AccentToken;
   accentHex: string;
-  polygonPoints: string;
-  frontFacePoints: string;
-  edgePoints: string;
-  labelX: number;
-  labelY: number;
-  spriteAnchorX: number;
-  spriteAnchorY: number;
+  imagePath: string;
   previewAgents: RoomTilePreview[];
   href: string;
   agentCount: number;
   onlineCount: number;
+  busyCount: number;
 }
 
 export interface AgentDetailView {
@@ -153,8 +168,14 @@ export interface AgentDetailView {
   departmentName: string;
   departmentSlug: string;
   accentColor: AccentToken;
+  accentCss: AccentToken;
   accentHex: string;
   sprite: AgentSprite;
+  portrait: string;
+  voiceLine: string;
+  playbooks: string[];
+  achievements: AgentAchievement[];
+  downloadUrl: string;
   voiceClipPath: string;
   path: string;
   replaces: string[];

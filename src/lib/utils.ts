@@ -1,13 +1,12 @@
 import clsx, { type ClassValue } from "clsx";
 import rawSkills from "@/data/skills.json";
 import type {
-  Agent,
   AccentToken,
+  Agent,
   AgentDetailView,
   AgentListItem,
   AgentStatus,
   Department,
-  RoomPosition,
   RoomTile,
   SidebarDepartmentSummary,
   SiteStats,
@@ -15,11 +14,15 @@ import type {
 } from "@/lib/types";
 
 const agencyData = rawSkills as SkillsData;
-const ROOM_TILE_WIDTH = 136;
-const ROOM_TILE_HEIGHT = 72;
-const ROOM_DEPTH = 34;
-const MAP_OFFSET_X = 180;
-const MAP_OFFSET_Y = 72;
+
+const departmentImageMap = {
+  command: "/images/office/command-department.png",
+  engineering: "/images/office/engineering-department.png",
+  design: "/images/office/design-department.png",
+  quality: "/images/office/ops-quality-department.png",
+  security: "/images/office/security-department.png",
+  knowledge: "/images/office/knowledge-department.png",
+} as const;
 
 export function cn(...inputs: ClassValue[]): string {
   return clsx(inputs);
@@ -49,6 +52,16 @@ export function getAgentById(id: string): Agent | undefined {
   return getAgents().find((agent) => agent.id === id);
 }
 
+export function getDepartmentByAgentId(agentId: string): Department | undefined {
+  const agent = getAgentById(agentId);
+
+  if (!agent) {
+    return undefined;
+  }
+
+  return getDepartmentById(agent.department);
+}
+
 export function getDepartmentAgents(slug: string): Agent[] {
   return getDepartmentBySlug(slug)?.agents ?? [];
 }
@@ -63,6 +76,7 @@ export function getDepartmentSummaries(): SidebarDepartmentSummary[] {
       slug: department.slug,
       tagline: department.tagline,
       accentColor: department.accentColor,
+      accentCss: department.accentCss,
       accentHex: department.accentHex,
       agentCount: department.agents.length,
       onlineCount: statuses.online,
@@ -85,14 +99,40 @@ export function getSiteStats(): SiteStats {
   return {
     totalAgents: agencyData.meta.totalAgents,
     totalDepartments: agencyData.meta.totalDepartments,
+    totalPlaybooks: getPlaybookLoadCount(),
     onlineAgents: statuses.online,
     busyAgents: statuses.busy,
     idleAgents: statuses.idle,
   };
 }
 
+export function getPlaybookLoadCount(slug?: string): number {
+  const source = slug ? getDepartmentAgents(slug) : getAgents();
+
+  return source.reduce<number>(
+    (total, agent) => total + (Array.isArray(agent.playbooks) ? agent.playbooks.length : 0),
+    0,
+  );
+}
+
+export function getUniquePlaybookCount(slug?: string): number {
+  const source = slug ? getDepartmentAgents(slug) : getAgents();
+
+  return new Set(
+    source.flatMap((agent) => (Array.isArray(agent.playbooks) ? agent.playbooks : [])),
+  ).size;
+}
+
+export function getDepartmentImagePath(departmentId: string): string {
+  const key = departmentId as keyof typeof departmentImageMap;
+
+  return departmentImageMap[key] ?? departmentImageMap.command;
+}
+
 export function getAgentListItems(slug?: string): AgentListItem[] {
-  const departmentsById = new Map(getDepartments().map((department) => [department.id, department]));
+  const departmentsById = new Map(
+    getDepartments().map((department) => [department.id, department]),
+  );
   const source = slug ? getDepartmentAgents(slug) : getAgents();
 
   return source.map((agent) => {
@@ -112,9 +152,11 @@ export function getAgentListItems(slug?: string): AgentListItem[] {
       departmentName: department.name,
       departmentSlug: department.slug,
       accentColor: department.accentColor,
+      accentCss: department.accentCss,
       accentHex: department.accentHex,
       skillsCount: Array.isArray(agent.skills) ? agent.skills.length : 0,
       sprite: agent.sprite,
+      portrait: agent.portrait,
     };
   });
 }
@@ -132,9 +174,7 @@ export function getAgentDetailView(id: string): AgentDetailView | undefined {
     return undefined;
   }
 
-  const department = getDepartments().find(
-    (entry) => entry.id === agent.department,
-  );
+  const department = getDepartmentById(agent.department);
 
   if (!department) {
     return undefined;
@@ -153,12 +193,53 @@ export function getAgentDetailView(id: string): AgentDetailView | undefined {
     departmentName: department.name,
     departmentSlug: department.slug,
     accentColor: department.accentColor,
+    accentCss: department.accentCss,
     accentHex: department.accentHex,
     sprite: agent.sprite,
+    portrait: agent.portrait,
+    voiceLine: agent.voiceLine,
+    playbooks: agent.playbooks,
+    achievements: agent.achievements,
+    downloadUrl: agent.downloadUrl,
     voiceClipPath: getAgentVoiceClipPath(agent.id),
     path: agent.path,
     replaces: agent.replaces ?? [],
   };
+}
+
+export function getRelatedAgentDetailViews(
+  agentId: string,
+  limit = 3,
+): AgentDetailView[] {
+  const agent = getAgentById(agentId);
+
+  if (!agent) {
+    return [];
+  }
+
+  const sameDepartment = getAgents()
+    .filter(
+      (candidate) =>
+        candidate.id !== agentId && candidate.department === agent.department,
+    )
+    .map((candidate) => getAgentDetailView(candidate.id))
+    .filter((candidate): candidate is AgentDetailView => Boolean(candidate));
+
+  if (sameDepartment.length >= limit) {
+    return sameDepartment.slice(0, limit);
+  }
+
+  const filler = getAgents()
+    .filter(
+      (candidate) =>
+        candidate.id !== agentId &&
+        candidate.department !== agent.department &&
+        !sameDepartment.some((entry) => entry.id === candidate.id),
+    )
+    .map((candidate) => getAgentDetailView(candidate.id))
+    .filter((candidate): candidate is AgentDetailView => Boolean(candidate));
+
+  return [...sameDepartment, ...filler].slice(0, limit);
 }
 
 export function getRoomTiles(): RoomTile[] {
@@ -169,21 +250,15 @@ export function getRoomTiles(): RoomTile[] {
       throw new Error(`Missing department for slug ${departmentSummary.slug}`);
     }
 
-    const baseGeometry = getRoomGeometry(department.roomPosition);
-
     return {
+      id: department.id,
       slug: department.slug,
       label: department.name,
       tagline: department.tagline,
       accentColor: department.accentColor,
+      accentCss: department.accentCss,
       accentHex: department.accentHex,
-      polygonPoints: pointsToString(baseGeometry.top),
-      frontFacePoints: pointsToString(baseGeometry.front),
-      edgePoints: pointsToString(baseGeometry.edge),
-      labelX: baseGeometry.labelX,
-      labelY: baseGeometry.labelY,
-      spriteAnchorX: baseGeometry.spriteAnchorX,
-      spriteAnchorY: baseGeometry.spriteAnchorY,
+      imagePath: departmentImageMap[department.id],
       previewAgents: department.agents.slice(0, 3).map((agent) => ({
         id: agent.id,
         name: agent.name,
@@ -194,6 +269,7 @@ export function getRoomTiles(): RoomTile[] {
       href: `/departments/${department.slug}`,
       agentCount: department.agents.length,
       onlineCount: departmentSummary.onlineCount,
+      busyCount: departmentSummary.busyCount,
     };
   });
 }
@@ -213,7 +289,7 @@ export function getAgentVoiceClipPath(id: string): string {
 export function getAccentTokenByDepartmentId(
   departmentId: string,
 ): AccentToken {
-  return getDepartmentById(departmentId)?.accentColor ?? "--accent-cyan";
+  return getDepartmentById(departmentId)?.accentCss ?? "--dept-command";
 }
 
 export function summarizeStatuses(
@@ -230,61 +306,4 @@ export function summarizeStatuses(
       idle: 0,
     },
   );
-}
-
-interface Point {
-  x: number;
-  y: number;
-}
-
-interface RoomGeometry {
-  top: Point[];
-  front: Point[];
-  edge: Point[];
-  labelX: number;
-  labelY: number;
-  spriteAnchorX: number;
-  spriteAnchorY: number;
-}
-
-function getRoomGeometry(position: RoomPosition): RoomGeometry {
-  const tileWidth = ROOM_TILE_WIDTH * position.width;
-  const tileHeight = ROOM_TILE_HEIGHT * position.height;
-  const isoX = MAP_OFFSET_X + (position.x - position.y) * (ROOM_TILE_WIDTH / 2);
-  const isoY = MAP_OFFSET_Y + (position.x + position.y) * (ROOM_TILE_HEIGHT / 2);
-
-  const top = [
-    { x: isoX, y: isoY },
-    { x: isoX + tileWidth, y: isoY },
-    { x: isoX + tileWidth - ROOM_TILE_HEIGHT / 2, y: isoY + tileHeight / 2 },
-    { x: isoX - ROOM_TILE_HEIGHT / 2, y: isoY + tileHeight / 2 },
-  ];
-
-  const front = [
-    top[3],
-    top[2],
-    { x: top[2].x, y: top[2].y + ROOM_DEPTH },
-    { x: top[3].x, y: top[3].y + ROOM_DEPTH },
-  ];
-
-  const edge = [
-    top[1],
-    top[2],
-    { x: top[2].x, y: top[2].y + ROOM_DEPTH },
-    { x: top[1].x, y: top[1].y + ROOM_DEPTH },
-  ];
-
-  return {
-    top,
-    front,
-    edge,
-    labelX: isoX + tileWidth / 2 - ROOM_TILE_HEIGHT / 4,
-    labelY: isoY + tileHeight / 4 + 8,
-    spriteAnchorX: isoX + ROOM_TILE_WIDTH / 3,
-    spriteAnchorY: isoY + tileHeight / 4 + 18,
-  };
-}
-
-function pointsToString(points: Point[]): string {
-  return points.map((point) => `${point.x},${point.y}`).join(" ");
 }

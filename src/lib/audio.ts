@@ -1,4 +1,5 @@
 const MUTE_STORAGE_KEY = "agency-muted";
+const INTERACTION_STORAGE_KEY = "agency-interacted";
 const bufferCache = new Map<string, AudioBuffer>();
 
 let audioContext: AudioContext | null = null;
@@ -21,9 +22,21 @@ function getContext(): AudioContext | null {
 export function initAudio(): void {
   const context = getContext();
 
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(INTERACTION_STORAGE_KEY, "true");
+  }
+
   if (context && context.state === "suspended" && !isMuted()) {
     void context.resume();
   }
+}
+
+export function hasUserInteractedWithAudio(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.localStorage.getItem(INTERACTION_STORAGE_KEY) === "true";
 }
 
 export async function playUI(
@@ -173,20 +186,6 @@ async function playBuffer(paths: string[], volume: number): Promise<void> {
   }
 
   await playWithElement(paths, volume, false);
-}
-
-async function loadFirstAvailableBuffer(
-  paths: string[],
-): Promise<AudioBuffer | null> {
-  for (const path of paths) {
-    const buffer = await loadBuffer(path);
-
-    if (buffer) {
-      return buffer;
-    }
-  }
-
-  return null;
 }
 
 async function loadBuffer(path: string): Promise<AudioBuffer | null> {

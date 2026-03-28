@@ -14,15 +14,15 @@
   padding: var(--space-4);
   border: 1px solid var(--border-default);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--accent-green) 14%, transparent), transparent 36%),
-    var(--surface-mid);
+    linear-gradient(180deg, var(--tint-command), transparent 36%),
+    var(--surface-lift);
   box-shadow: var(--shadow-lift);
 }
 
 .summaryValue {
   font-family: var(--font-mono);
   font-size: clamp(2.5rem, 7vw, 4rem);
-  color: var(--accent-green);
+  color: var(--dept-command);
 }
 
 .summaryCopy {
@@ -30,17 +30,25 @@
   color: var(--text-secondary);
 }
 
+.summaryMeta {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
 .hero {
   position: relative;
   overflow: hidden;
   display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
   gap: var(--space-5);
   padding: clamp(var(--space-5), 6vw, var(--space-7));
   border: 1px solid var(--border-default);
   background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--accent-cyan) 22%, transparent), transparent 32%),
-    radial-gradient(circle at bottom right, color-mix(in srgb, var(--accent-purple) 18%, transparent), transparent 30%),
-    var(--surface-mid);
+    radial-gradient(circle at top left, color-mix(in srgb, var(--dept-command) 24%, transparent), transparent 32%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--dept-knowledge) 18%, transparent), transparent 30%),
+    var(--surface-lift);
   box-shadow: var(--shadow-void);
 }
 
@@ -53,10 +61,20 @@
   pointer-events: none;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid color-mix(in srgb, var(--dept-command) 16%, transparent);
+  pointer-events: none;
+}
+
 .heroCopy {
   position: relative;
   z-index: var(--z-base);
   max-width: 60rem;
+  display: grid;
+  align-content: start;
 }
 
 .heroCopy p {
@@ -64,11 +82,21 @@
 }
 
 .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--text-accent);
+  color: var(--dept-command);
+}
+
+.kicker::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--dept-command) 56%, transparent);
 }
 
 .title {
@@ -77,22 +105,24 @@
   font-size: clamp(4rem, 14vw, 8.5rem);
   line-height: 0.95;
   letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
   text-shadow:
-    0 0 24px color-mix(in srgb, var(--accent-cyan) 40%, transparent),
-    0 0 64px color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+    0 0 24px color-mix(in srgb, var(--dept-command) 40%, transparent),
+    0 0 64px color-mix(in srgb, var(--dept-command) 18%, transparent);
 }
 
 .subtitle {
   margin-top: var(--space-3);
   font-family: var(--font-mono);
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--text-accent);
+  color: var(--dept-command);
 }
 
 .heroCopy > p:last-of-type {
   margin-top: var(--space-3);
-  max-width: 54rem;
+  max-width: 43rem;
   color: var(--text-secondary);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
 }
 
 .heroActions {
@@ -105,28 +135,32 @@
   justify-content: center;
   min-height: 3rem;
   padding: 0 var(--space-5);
-  border: 1px solid var(--accent-cyan);
-  background: color-mix(in srgb, var(--accent-cyan) 18%, var(--surface-high));
+  border: 1px solid var(--dept-command);
+  background: color-mix(in srgb, var(--dept-command) 18%, var(--surface-high));
   color: var(--text-heading);
   font-family: var(--font-mono);
   text-decoration: none;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-cyan) 36%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dept-command) 36%, transparent);
 }
 
 .statsBar {
   position: relative;
   z-index: var(--z-base);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: end;
   gap: var(--space-3);
 }
 
 .statsBar div {
   display: grid;
   gap: var(--space-1);
-  padding: var(--space-4);
-  border: 1px solid var(--border-default);
-  background: var(--surface-lift);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--dept-command) 12%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--dept-command) 8%, transparent), transparent 38%),
+    color-mix(in srgb, var(--surface-lift) 92%, black);
+  backdrop-filter: blur(12px);
 }
 
 .statsBar dt,
@@ -177,14 +211,14 @@
     0%,
     100% {
       text-shadow:
-        0 0 24px color-mix(in srgb, var(--accent-cyan) 40%, transparent),
-        0 0 64px color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+        0 0 24px color-mix(in srgb, var(--dept-command) 40%, transparent),
+        0 0 64px color-mix(in srgb, var(--dept-command) 18%, transparent);
     }
 
     50% {
       text-shadow:
-        0 0 18px color-mix(in srgb, var(--accent-cyan) 32%, transparent),
-        0 0 42px color-mix(in srgb, var(--accent-purple) 16%, transparent);
+        0 0 18px color-mix(in srgb, var(--dept-command) 32%, transparent),
+        0 0 42px color-mix(in srgb, var(--dept-knowledge) 16%, transparent);
     }
   }
 
@@ -195,6 +229,10 @@
 
 @media (max-width: 960px) {
   .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
     grid-template-columns: 1fr;
   }
 

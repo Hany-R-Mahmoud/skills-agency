@@ -1,0 +1,70 @@
+.wall {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.wall[data-department="command"] {
+  --wall-accent: var(--dept-command);
+}
+
+.wall[data-department="engineering"] {
+  --wall-accent: var(--dept-engineering);
+}
+
+.wall[data-department="design"] {
+  --wall-accent: var(--dept-design);
+}
+
+.wall[data-department="quality"] {
+  --wall-accent: var(--dept-quality);
+}
+
+.wall[data-department="security"] {
+  --wall-accent: var(--dept-security);
+}
+
+.wall[data-department="knowledge"] {
+  --wall-accent: var(--dept-knowledge);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.header h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--wall-accent) 34%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wall-accent) 8%, transparent), transparent 60%),
+    var(--surface-inset);
+  box-shadow: var(--shadow-lift);
+}
+
+.value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--wall-accent);
+  letter-spacing: var(--tracking-tight);
+}
+
+.label {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}

@@ -11,7 +11,7 @@ export default function DeptCard({ department }: DeptCardProps) {
     <Link
       className={styles.card}
       href={`/departments/${department.slug}`}
-      data-accent={department.accentColor}
+      data-department={department.id}
     >
       <div className={styles.header}>
         <p className="label-sm">Department</p>

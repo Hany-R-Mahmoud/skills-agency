@@ -1,0 +1,214 @@
+.floor {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.header h2,
+.header p {
+  margin: 0;
+}
+
+.copy {
+  max-width: 38rem;
+  color: var(--text-secondary);
+}
+
+.mapWrap {
+  display: block;
+}
+
+.mapFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2752 / 1536;
+  border: 1px solid var(--border-default);
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--dept-command) 10%, transparent), transparent 38%),
+    linear-gradient(180deg, color-mix(in srgb, var(--dept-knowledge) 6%, transparent), transparent 42%),
+    var(--surface-mid);
+  box-shadow: var(--shadow-void);
+}
+
+.mapFrame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--scanline-gradient);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.mapFrame::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid color-mix(in srgb, white 6%, transparent);
+  pointer-events: none;
+}
+
+.mapImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+.room {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.room[data-department="command"] {
+  --room-accent: var(--dept-command);
+  --room-glow: var(--glow-command);
+}
+
+.room[data-department="engineering"] {
+  --room-accent: var(--dept-engineering);
+  --room-glow: var(--glow-engineering);
+}
+
+.room[data-department="design"] {
+  --room-accent: var(--dept-design);
+  --room-glow: var(--glow-design);
+}
+
+.room[data-department="quality"] {
+  --room-accent: var(--dept-quality);
+  --room-glow: var(--glow-quality);
+}
+
+.room[data-department="security"] {
+  --room-accent: var(--dept-security);
+  --room-glow: var(--glow-security);
+}
+
+.room[data-department="knowledge"] {
+  --room-accent: var(--dept-knowledge);
+  --room-glow: var(--glow-knowledge);
+}
+
+.roomLink {
+  display: grid;
+  gap: var(--space-1);
+  min-width: min(14rem, 24vw);
+  padding: 0.7rem 0.9rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--room-accent) 42%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--room-accent) 8%, transparent), transparent 60%),
+    color-mix(in srgb, var(--surface-overlay) 88%, var(--surface-void));
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: var(--room-glow);
+  backdrop-filter: blur(14px);
+}
+
+.roomLink::after {
+  content: "";
+  width: 2.75rem;
+  height: 1px;
+  margin-top: var(--space-2);
+  background: color-mix(in srgb, var(--room-accent) 66%, transparent);
+}
+
+.room[data-active="true"] .roomLink {
+  transform: scale(1.02);
+}
+
+.roomLabel {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: clamp(0.92rem, 1.3vw, 1.16rem);
+}
+
+.roomMeta {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.mobileDeck {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.mobileCard {
+  overflow: hidden;
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--border-default);
+  background: color-mix(in srgb, var(--surface-mid) 95%, black);
+  color: inherit;
+  text-decoration: none;
+}
+
+.mobileCard[data-department="command"] {
+  --room-accent: var(--dept-command);
+}
+
+.mobileCard[data-department="engineering"] {
+  --room-accent: var(--dept-engineering);
+}
+
+.mobileCard[data-department="design"] {
+  --room-accent: var(--dept-design);
+}
+
+.mobileCard[data-department="quality"] {
+  --room-accent: var(--dept-quality);
+}
+
+.mobileCard[data-department="security"] {
+  --room-accent: var(--dept-security);
+}
+
+.mobileCard[data-department="knowledge"] {
+  --room-accent: var(--dept-knowledge);
+}
+
+.mobileCard[data-active="true"] {
+  border-color: var(--room-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--room-accent) 42%, transparent);
+}
+
+.mobileImageWrap {
+  position: relative;
+  min-height: 11rem;
+}
+
+.mobileImage {
+  object-fit: cover;
+}
+
+.mobileCopy {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--room-accent) 8%, transparent), transparent 48%),
+    transparent;
+}
+
+.mobileCopy strong {
+  font-size: 1rem;
+}
+
+.mobileCopy span:last-child {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 960px) {
+  .mapWrap {
+    display: none;
+  }
+
+  .mobileDeck {
+    display: grid;
+  }
+}

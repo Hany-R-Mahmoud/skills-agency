@@ -2,7 +2,7 @@ import type { ThemeConfig } from 'antd'
 
 /**
  * Ant Design v6 theme token overrides
- * Design system: "The Kinetic Terminal" — Neon Game Studio
+ * Design system: "The Agency v2" — cinematic editorial command floor
  *
  * Rules:
  * - Never override tokens inline in components
@@ -13,43 +13,43 @@ import type { ThemeConfig } from 'antd'
 const agencyTheme: ThemeConfig = {
   token: {
     // ─── Color: Brand ───────────────────────────────────────────
-    colorPrimary:          '#8ff5ff',   // Cyan — primary accent
-    colorPrimaryHover:     '#b8faff',
-    colorPrimaryActive:    '#5ee8f5',
-    colorPrimaryBg:        '#0a2020',   // Subtle bg tint for primary areas
-    colorLink:             '#8ff5ff',
-    colorLinkHover:        '#b8faff',
+    colorPrimary:          'var(--dept-command)',
+    colorPrimaryHover:     'var(--accent-cyan-dim)',
+    colorPrimaryActive:    'var(--accent-cyan-dim)',
+    colorPrimaryBg:        'var(--accent-cyan-bg)',
+    colorLink:             'var(--dept-command)',
+    colorLinkHover:        'var(--accent-cyan-dim)',
 
     // ─── Color: Semantic ────────────────────────────────────────
-    colorSuccess:          '#39ff14',   // Mint green — live/online status
-    colorWarning:          '#f5a623',   // Amber — caution states
-    colorError:            '#ff4d6d',   // Hot coral — threat/error
-    colorInfo:             '#8ff5ff',
+    colorSuccess:          'var(--dept-quality)',
+    colorWarning:          'var(--dept-engineering)',
+    colorError:            'var(--dept-design)',
+    colorInfo:             'var(--dept-command)',
 
     // ─── Color: Surface ─────────────────────────────────────────
-    colorBgBase:           '#0e0e0e',   // The Void — root background
-    colorBgContainer:      '#191919',   // Surface container
-    colorBgElevated:       '#1f1f1f',   // Surface container high
-    colorBgLayout:         '#0e0e0e',
-    colorBgSpotlight:      '#262626',   // Surface container highest
-    colorBgMask:           'rgba(0,0,0,0.7)',
+    colorBgBase:           'var(--surface-void)',
+    colorBgContainer:      'var(--surface-mid)',
+    colorBgElevated:       'var(--surface-lift)',
+    colorBgLayout:         'var(--surface-void)',
+    colorBgSpotlight:      'var(--surface-high)',
+    colorBgMask:           'color-mix(in srgb, var(--surface-void) 72%, transparent)',
 
     // ─── Color: Border ──────────────────────────────────────────
-    colorBorder:           '#2a2a2a',
-    colorBorderSecondary:  '#1e1e1e',
-    colorSplit:            '#1e1e1e',
+    colorBorder:           'var(--border-default)',
+    colorBorderSecondary:  'var(--border-subtle)',
+    colorSplit:            'var(--border-subtle)',
 
     // ─── Color: Text ────────────────────────────────────────────
-    colorText:             '#e8eaf0',   // on-surface — never pure white
-    colorTextSecondary:    '#888a94',
-    colorTextTertiary:     '#555760',
-    colorTextDisabled:     '#3a3c44',
-    colorTextHeading:      '#f0f2f8',
+    colorText:             'var(--text-primary)',
+    colorTextSecondary:    'var(--text-secondary)',
+    colorTextTertiary:     'var(--text-tertiary)',
+    colorTextDisabled:     'var(--text-disabled)',
+    colorTextHeading:      'var(--text-heading)',
 
     // ─── Typography ─────────────────────────────────────────────
-    fontFamily:            '"Space Grotesk", system-ui, sans-serif',
-    fontFamilyCode:        '"JetBrains Mono", "Fira Code", monospace',
-    fontSize:              14,
+    fontFamily:            'var(--font-body)',
+    fontFamilyCode:        'var(--font-mono)',
+    fontSize:              16,
     fontSizeLG:            16,
     fontSizeSM:            12,
     fontSizeXL:            20,
@@ -93,21 +93,21 @@ const agencyTheme: ThemeConfig = {
   components: {
     // ─── Layout ─────────────────────────────────────────────────
     Layout: {
-      siderBg:             '#0e0e0e',
-      bodyBg:              '#0e0e0e',
-      headerBg:            '#131313',
+      siderBg:             'var(--surface-void)',
+      bodyBg:              'var(--surface-void)',
+      headerBg:            'var(--surface-inset)',
       headerHeight:        48,
       headerPadding:       '0 24px',
     },
 
     // ─── Menu (sidebar nav) ─────────────────────────────────────
     Menu: {
-      darkItemBg:          '#0e0e0e',
-      darkSubMenuItemBg:   '#131313',
-      darkItemColor:       '#888a94',
-      darkItemHoverColor:  '#8ff5ff',
-      darkItemSelectedColor: '#8ff5ff',
-      darkItemSelectedBg:  '#0a2020',
+      darkItemBg:          'var(--surface-void)',
+      darkSubMenuItemBg:   'var(--surface-inset)',
+      darkItemColor:       'var(--text-secondary)',
+      darkItemHoverColor:  'var(--dept-command)',
+      darkItemSelectedColor: 'var(--dept-command)',
+      darkItemSelectedBg:  'var(--accent-cyan-bg)',
       itemHeight:          40,
       collapsedWidth:      48,
       fontSize:            12,
@@ -115,18 +115,18 @@ const agencyTheme: ThemeConfig = {
 
     // ─── Card ───────────────────────────────────────────────────
     Card: {
-      colorBgContainer:    '#131313',
-      colorBorderSecondary:'#2a2a2a',
+      colorBgContainer:    'var(--surface-inset)',
+      colorBorderSecondary:'var(--border-default)',
       paddingLG:           16,
       borderRadiusLG:      2,
     },
 
     // ─── Button ─────────────────────────────────────────────────
     Button: {
-      primaryColor:        '#0e0e0e',   // text on primary bg
+      primaryColor:        'var(--text-on-accent)',
       defaultBg:           'transparent',
-      defaultColor:        '#8ff5ff',
-      defaultBorderColor:  '#8ff5ff',
+      defaultColor:        'var(--dept-command)',
+      defaultBorderColor:  'var(--dept-command)',
       borderRadius:        2,
       controlHeight:       36,
       fontWeight:          500,
@@ -134,62 +134,62 @@ const agencyTheme: ThemeConfig = {
 
     // ─── Input ──────────────────────────────────────────────────
     Input: {
-      colorBgContainer:    '#131313',
+      colorBgContainer:    'var(--surface-inset)',
       colorBorder:         'transparent',
-      activeBorderColor:   '#8ff5ff',
-      hoverBorderColor:    '#555760',
+      activeBorderColor:   'var(--dept-command)',
+      hoverBorderColor:    'var(--text-tertiary)',
       borderRadius:        2,
       paddingInline:       12,
     },
 
     // ─── Select ─────────────────────────────────────────────────
     Select: {
-      colorBgContainer:    '#131313',
-      colorBorder:         '#2a2a2a',
-      optionSelectedBg:    '#0a2020',
-      optionActiveBg:      '#1a1a1a',
+      colorBgContainer:    'var(--surface-inset)',
+      colorBorder:         'var(--border-default)',
+      optionSelectedBg:    'var(--accent-cyan-bg)',
+      optionActiveBg:      'var(--surface-mid)',
       borderRadius:        2,
     },
 
     // ─── Tag ────────────────────────────────────────────────────
     Tag: {
       borderRadiusSM:      2,
-      defaultBg:           '#1f1f1f',
-      defaultColor:        '#888a94',
+      defaultBg:           'var(--surface-lift)',
+      defaultColor:        'var(--text-secondary)',
       fontSizeSM:          11,
     },
 
     // ─── Drawer (agent detail slide-in panel) ───────────────────
     Drawer: {
-      colorBgElevated:     '#131313',
-      colorBorder:         '#2a2a2a',
+      colorBgElevated:     'var(--surface-inset)',
+      colorBorder:         'var(--border-default)',
       paddingLG:           24,
       footerPaddingBlock:  16,
     },
 
     // ─── Tooltip ────────────────────────────────────────────────
     Tooltip: {
-      colorBgSpotlight:    '#262626',
-      colorTextLightSolid: '#e8eaf0',
+      colorBgSpotlight:    'var(--surface-high)',
+      colorTextLightSolid: 'var(--text-primary)',
       borderRadius:        2,
     },
 
     // ─── Badge / status indicators ──────────────────────────────
     Badge: {
-      colorBgContainer:    '#0e0e0e',
+      colorBgContainer:    'var(--surface-void)',
       fontSize:            11,
     },
 
     // ─── Typography ─────────────────────────────────────────────
     Typography: {
-      colorTextHeading:    '#f0f2f8',
+      colorTextHeading:    'var(--text-heading)',
       titleMarginTop:      0,
       titleMarginBottom:   '0.5em',
     },
 
     // ─── Divider ────────────────────────────────────────────────
     Divider: {
-      colorSplit:          '#1e1e1e',
+      colorSplit:          'var(--border-subtle)',
       lineWidth:           1,
     },
   },

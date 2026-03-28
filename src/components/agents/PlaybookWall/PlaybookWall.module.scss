@@ -1,0 +1,104 @@
+.wall {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.wall[data-department="command"] {
+  --wall-accent: var(--dept-command);
+}
+
+.wall[data-department="engineering"] {
+  --wall-accent: var(--dept-engineering);
+}
+
+.wall[data-department="design"] {
+  --wall-accent: var(--dept-design);
+}
+
+.wall[data-department="quality"] {
+  --wall-accent: var(--dept-quality);
+}
+
+.wall[data-department="security"] {
+  --wall-accent: var(--dept-security);
+}
+
+.wall[data-department="knowledge"] {
+  --wall-accent: var(--dept-knowledge);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.header h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--wall-accent) 32%, var(--border-default));
+  background: color-mix(in srgb, var(--wall-accent) 10%, var(--surface-high));
+  color: var(--wall-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-3);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--wall-accent) 36%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wall-accent) 10%, transparent), transparent 50%),
+    var(--surface-inset);
+  box-shadow: var(--shadow-lift);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  height: 2.5rem;
+  padding: 0 0.45rem;
+  border: 1px solid color-mix(in srgb, var(--wall-accent) 40%, var(--border-default));
+  color: var(--wall-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  background: color-mix(in srgb, var(--wall-accent) 12%, var(--surface-high));
+}
+
+.label {
+  margin: 0 0 var(--space-1);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+.card h4 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  word-break: break-word;
+}

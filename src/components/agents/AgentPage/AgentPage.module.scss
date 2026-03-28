@@ -1,0 +1,325 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.page[data-department="command"] {
+  --page-accent: var(--dept-command);
+  --page-tint: var(--tint-command);
+}
+
+.page[data-department="engineering"] {
+  --page-accent: var(--dept-engineering);
+  --page-tint: var(--tint-engineering);
+}
+
+.page[data-department="design"] {
+  --page-accent: var(--dept-design);
+  --page-tint: var(--tint-design);
+}
+
+.page[data-department="quality"] {
+  --page-accent: var(--dept-quality);
+  --page-tint: var(--tint-quality);
+}
+
+.page[data-department="security"] {
+  --page-accent: var(--dept-security);
+  --page-tint: var(--tint-security);
+}
+
+.page[data-department="knowledge"] {
+  --page-accent: var(--dept-knowledge);
+  --page-tint: var(--tint-knowledge);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+  gap: clamp(var(--space-4), 4vw, var(--space-8));
+  padding: clamp(var(--space-4), 4vw, var(--space-6));
+  border: 1px solid color-mix(in srgb, var(--page-accent) 36%, var(--border-default));
+  background:
+    linear-gradient(180deg, var(--page-tint), transparent 44%),
+    var(--surface-mid);
+  box-shadow:
+    var(--shadow-void),
+    0 0 42px color-mix(in srgb, var(--page-accent) 12%, transparent);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 14%, transparent);
+  pointer-events: none;
+}
+
+.heroMedia {
+  min-width: 0;
+}
+
+.heroCopy {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.heroNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
+.heroCopy h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.codename,
+.role,
+.voiceLine,
+.description {
+  margin: 0;
+}
+
+.codename {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.role {
+  color: var(--page-accent);
+  font-family: var(--font-mono);
+}
+
+.statusRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+}
+
+.departmentBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.15rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 36%, var(--border-default));
+  background: color-mix(in srgb, var(--page-accent) 12%, var(--surface-inset));
+  color: var(--page-accent);
+}
+
+.voiceLine {
+  max-width: 34rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  color: var(--text-heading);
+}
+
+.aboutSection {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid color-mix(in srgb, var(--page-accent) 12%, var(--border-default));
+}
+
+.description {
+  max-width: 44rem;
+  color: var(--text-secondary);
+}
+
+.commandPanel {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--page-accent) 24%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-accent) 8%, transparent), transparent 50%),
+    var(--surface-inset);
+}
+
+.commandLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.commandLabel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 30%, var(--border-default));
+  background: color-mix(in srgb, var(--page-accent) 10%, var(--surface-high));
+  color: var(--page-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+}
+
+.commandLine code {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.7vw, 1.16rem);
+  color: var(--text-heading);
+  word-break: break-all;
+}
+
+.actions {
+  display: grid;
+  justify-content: start;
+  margin-top: var(--space-2);
+}
+
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 var(--space-6);
+  font-family: var(--font-mono);
+  text-decoration: none;
+}
+
+.primaryAction {
+  border: 1px solid var(--page-accent);
+  background: color-mix(in srgb, var(--page-accent) 18%, var(--surface-high));
+  color: var(--text-heading);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--page-accent) 40%, transparent);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.skillsSection,
+.teamSection {
+  display: grid;
+  gap: var(--space-4);
+  padding: clamp(var(--space-4), 3.4vw, var(--space-5));
+  border: 1px solid color-mix(in srgb, var(--page-accent) 12%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-accent) 5%, transparent), transparent 44%),
+    var(--surface-mid);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skillChip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 28%, var(--border-default));
+  background: var(--surface-inset);
+  color: var(--text-primary);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.teamCard {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--page-accent) 18%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-accent) 8%, transparent), transparent 34%),
+    var(--surface-lift);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform var(--duration-mid) var(--ease-smooth),
+    border-color var(--duration-mid) var(--ease-smooth),
+    box-shadow var(--duration-mid) var(--ease-smooth);
+}
+
+.teamCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--page-accent) 40%, var(--border-default));
+  box-shadow: 0 0 28px color-mix(in srgb, var(--page-accent) 12%, transparent);
+}
+
+.teamPortrait {
+  min-height: 220px;
+}
+
+.teamCopy {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.teamCopy strong,
+.teamCopy span {
+  margin: 0;
+}
+
+.teamCopy span:last-child {
+  color: var(--text-secondary);
+}
+
+.backLink {
+  color: var(--text-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--page-accent);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroMeta {
+    align-items: start;
+  }
+
+  .heroNav {
+    justify-content: start;
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}
