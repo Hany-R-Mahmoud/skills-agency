@@ -49,7 +49,7 @@
             "team-lead"
           ],
           "path": "skills/team-lead/SKILL.md",
-          "portrait": "/images/agents/team-lead.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead.png?updatedAt=1774688156557",
           "voiceLine": "Mission parameters received. Coordinating the team.",
           "playbooks": [
             "coordination-playbook",
@@ -99,7 +99,7 @@
             "team-lead-lite"
           ],
           "path": "skills/team-lead-lite/SKILL.md",
-          "portrait": "/images/agents/team-lead-lite.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead-lite.png?updatedAt=1774688168500",
           "voiceLine": "Small task, clean execution. On it.",
           "playbooks": [
             "coordination-playbook",
@@ -149,7 +149,7 @@
             "team-lead-full"
           ],
           "path": "skills/team-lead-full/SKILL.md",
-          "portrait": "/images/agents/team-lead-full.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead-full.png?updatedAt=1774688054674",
           "voiceLine": "High-stakes task detected. Activating full protocol.",
           "playbooks": [
             "coordination-playbook",
@@ -202,7 +202,7 @@
             "agent-orchestrator"
           ],
           "path": "skills/agent-orchestrator/SKILL.md",
-          "portrait": "/images/agents/agent-orchestrator.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-orchestrator.png?updatedAt=1774688164865",
           "voiceLine": "Analyzing task complexity. Routing to optimal specialists.",
           "playbooks": [
             "coordination-playbook",
@@ -271,7 +271,7 @@
             "agent-implementer"
           ],
           "path": "skills/agent-implementer/SKILL.md",
-          "portrait": "/images/agents/agent-implementer.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-implementer.png?updatedAt=1774688063188",
           "voiceLine": "Plan approved. Building now.",
           "playbooks": [
             "frontend-react-and-next",
@@ -345,7 +345,7 @@
             "audit"
           ],
           "path": "skills/agent-impeccable/SKILL.md",
-          "portrait": "/images/agents/agent-impeccable.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-impeccable.png?updatedAt=1774688067670",
           "voiceLine": "I see six things wrong with this. Let's fix all of them.",
           "playbooks": [
             "frontend-design",
@@ -415,7 +415,7 @@
             "pr-review-first-pass"
           ],
           "path": "skills/agent-reviewer/SKILL.md",
-          "portrait": "/images/agents/agent-reviewer.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-reviewer.png?updatedAt=1774688169192",
           "voiceLine": "Running correctness check. This will take a moment.",
           "playbooks": [
             "review-and-pr-operations",
@@ -465,7 +465,7 @@
             "agent-tester"
           ],
           "path": "skills/agent-tester/SKILL.md",
-          "portrait": "/images/agents/agent-tester.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-tester.png?updatedAt=1774688057530",
           "voiceLine": "Designing verification protocol. Evidence will be conclusive.",
           "playbooks": [
             "testing-and-verification",
@@ -516,7 +516,7 @@
             "agent-debugging"
           ],
           "path": "skills/agent-debugging/SKILL.md",
-          "portrait": "/images/agents/agent-debugging.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-debugging.png?updatedAt=1774688068298",
           "voiceLine": "Reproduce first. Then diagnose. Never guess.",
           "playbooks": [
             "debugging-and-diagnostics",
@@ -583,7 +583,7 @@
             "agent-security"
           ],
           "path": "skills/agent-security/SKILL.md",
-          "portrait": "/images/agents/agent-security.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-security.png?updatedAt=1774688059972",
           "voiceLine": "Scanning trust boundaries. Threat model initializing.",
           "playbooks": [
             "security-engineering",
@@ -653,7 +653,7 @@
             "sprint-retro"
           ],
           "path": "skills/agent-docs/SKILL.md",
-          "portrait": "/images/agents/agent-docs.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-docs.png?updatedAt=1774688053355",
           "voiceLine": "Capturing the knowledge. This won't be lost.",
           "playbooks": [
             "documentation-and-doc-ops",
@@ -703,7 +703,7 @@
             "agent-history"
           ],
           "path": "skills/agent-history/SKILL.md",
-          "portrait": "/images/agents/agent-history.png",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-history.png?updatedAt=1774688070915",
           "voiceLine": "Exporting continuity briefing. Context preserved.",
           "playbooks": [
             "others/context-manager",

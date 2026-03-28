@@ -20,6 +20,9 @@ const roomPositions: Record<string, { left: string; top: string }> = {
   knowledge: { left: "50%", top: "10%" },
 };
 
+const officeFloorMapUrl =
+  "https://ik.imagekit.io/hrim/images/office/office-floor-map-alt.png?updatedAt=1774688101832";
+
 export default function OfficeFloor({ tiles, activeSlug }: OfficeFloorProps) {
   async function handleHover(): Promise<void> {
     void initAudio();
@@ -31,7 +34,7 @@ export default function OfficeFloor({ tiles, activeSlug }: OfficeFloorProps) {
       <div className={styles.mapWrap}>
         <div className={styles.mapFrame}>
           <Image
-            src="/images/office/office-floor-map-alt.png"
+            src={officeFloorMapUrl}
             alt="Agency office floor map"
             fill
             priority

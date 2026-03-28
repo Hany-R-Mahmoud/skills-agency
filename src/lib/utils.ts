@@ -17,12 +17,15 @@ import type {
 const agencyData = rawSkills as SkillsData;
 
 const departmentImageMap = {
-  command: "/images/office/command-department.png",
-  engineering: "/images/office/engineering-department.png",
-  design: "/images/office/design-department.png",
-  quality: "/images/office/ops-quality-department.png",
-  security: "/images/office/security-department.png",
-  knowledge: "/images/office/knowledge-department.png",
+  command: "https://ik.imagekit.io/hrim/images/office/command-department.png?updatedAt=1774688158259",
+  engineering:
+    "https://ik.imagekit.io/hrim/images/office/engineering-department.png?updatedAt=1774688056724",
+  design: "https://ik.imagekit.io/hrim/images/office/design-department.png?updatedAt=1774688086942",
+  quality:
+    "https://ik.imagekit.io/hrim/images/office/ops-quality-department.png?updatedAt=1774688094632",
+  security:
+    "https://ik.imagekit.io/hrim/images/office/security-department.png?updatedAt=1774688080266",
+  knowledge: "https://ik.imagekit.io/hrim/images/office/knowledge-department.png",
 } as const;
 
 const departments = agencyData.departments;
