@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import "@/app/globals.css";
+import agencyTheme from "@/styles/antd.config";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
-import agencyTheme from "@/styles/antd.config";
-import "@/app/globals.css";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: {
