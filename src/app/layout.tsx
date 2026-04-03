@@ -4,6 +4,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <AntdRegistry>
-          <ConfigProvider theme={agencyTheme}>{children}</ConfigProvider>
+          <ConfigProvider theme={agencyTheme}>
+            {children}
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+          </ConfigProvider>
         </AntdRegistry>
       </body>
     </html>

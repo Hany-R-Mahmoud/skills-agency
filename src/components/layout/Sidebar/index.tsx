@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
-import { BulbOutlined, MoonOutlined, MutedOutlined, SoundOutlined } from "@ant-design/icons";
+import { BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import type { SidebarDepartmentSummary, SiteStats } from "@/lib/types";
 import { getAgencyData } from "@/lib/utils";
-import { initAudio, isMuted, setMuted, subscribeToMute } from "@/lib/audio";
 import {
   getDocumentTheme,
   resolveTheme,
@@ -28,37 +27,11 @@ export default function Sidebar({
   activeDepartmentSlug,
 }: SidebarProps) {
   const pathname = usePathname();
-  const muted = useSyncExternalStore(
-    subscribeToMute,
-    () => isMuted(),
-    () => false,
-  );
   const theme = useSyncExternalStore(
     subscribeToTheme,
     () => getDocumentTheme() ?? resolveTheme(),
     () => "dark",
   );
-
-  useEffect(() => {
-    function unlockAudio(): void {
-      void initAudio();
-      window.removeEventListener("pointerdown", unlockAudio);
-      window.removeEventListener("keydown", unlockAudio);
-    }
-
-    window.addEventListener("pointerdown", unlockAudio, { once: true });
-    window.addEventListener("keydown", unlockAudio, { once: true });
-
-    return () => {
-      window.removeEventListener("pointerdown", unlockAudio);
-      window.removeEventListener("keydown", unlockAudio);
-    };
-  }, []);
-
-  function toggleMuted(): void {
-    void initAudio();
-    setMuted(!muted);
-  }
 
   function toggleTheme(): void {
     const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
@@ -88,24 +61,6 @@ export default function Sidebar({
     <>
       <aside className={styles.sidebar}>
         <div className={styles.controlStack}>
-          <button
-            type="button"
-            className={styles.controlToggle}
-            onClick={toggleMuted}
-            aria-pressed={muted}
-            aria-label={muted ? "Unmute audio system" : "Mute audio system"}
-            title={muted ? "Audio muted" : "Audio live"}
-          >
-            <span className={styles.controlIcon}>
-              {muted ? <MutedOutlined aria-hidden /> : <SoundOutlined aria-hidden />}
-            </span>
-            <span className={styles.controlMeta}>
-              <span className={styles.controlLabel}>Audio</span>
-              <span className={styles.controlValue}>{muted ? "Muted" : "Live"}</span>
-            </span>
-            <span className={styles.controlIndicator} data-state={muted ? "muted" : "live"} aria-hidden />
-          </button>
-
           <button
             type="button"
             className={styles.controlToggle}
@@ -231,14 +186,6 @@ export default function Sidebar({
           aria-pressed={theme === "light"}
         >
           {theme === "light" ? <MoonOutlined aria-hidden /> : <BulbOutlined aria-hidden />}
-        </button>
-        <button
-          type="button"
-          className={styles.mobileMute}
-          onClick={toggleMuted}
-          aria-label={muted ? "Unmute site audio" : "Mute site audio"}
-        >
-          {muted ? <MutedOutlined aria-hidden /> : <SoundOutlined aria-hidden />}
         </button>
       </nav>
     </>

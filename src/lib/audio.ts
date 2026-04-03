@@ -1,5 +1,6 @@
 const MUTE_STORAGE_KEY = "agency-muted";
 const INTERACTION_STORAGE_KEY = "agency-interacted";
+const AUDIO_ENABLED = false;
 const bufferCache = new Map<string, AudioBuffer>();
 const muteListeners = new Set<() => void>();
 
@@ -25,6 +26,10 @@ function getContext(): AudioContext | null {
 }
 
 export function initAudio(): void {
+  if (!AUDIO_ENABLED) {
+    return;
+  }
+
   const context = getContext();
 
   if (typeof window !== "undefined") {
@@ -47,6 +52,10 @@ export function hasUserInteractedWithAudio(): boolean {
 export async function playUI(
   sound: "click" | "transition" | "activate" | "keystroke",
 ): Promise<void> {
+  if (!AUDIO_ENABLED) {
+    return;
+  }
+
   await playBuffer(
     [`/audio/ui/${sound}.wav`, `/audio/ui/${sound}.m4a`, `/audio/ui/${sound}.mp3`],
     sound === "keystroke" ? 0.3 : 1,
@@ -54,6 +63,10 @@ export async function playUI(
 }
 
 export async function playAgentVoice(agentId: string): Promise<void> {
+  if (!AUDIO_ENABLED) {
+    return;
+  }
+
   await playBuffer(
     [
       `/audio/agents/${agentId}.wav`,
@@ -69,6 +82,10 @@ export function startAmbient(): void {
 }
 
 export function stopAmbient(fadeDuration = 1000): void {
+  if (!AUDIO_ENABLED) {
+    return;
+  }
+
   const context = audioContext;
 
   if (ambientElement) {
@@ -132,6 +149,12 @@ export function setMuted(muted: boolean): void {
     return;
   }
 
+  if (!AUDIO_ENABLED) {
+    window.localStorage.setItem(MUTE_STORAGE_KEY, "true");
+    emitMuteChange();
+    return;
+  }
+
   window.localStorage.setItem(MUTE_STORAGE_KEY, String(muted));
   emitMuteChange();
 
@@ -150,7 +173,11 @@ export function setMuted(muted: boolean): void {
 
 export function isMuted(): boolean {
   if (typeof window === "undefined") {
-    return false;
+    return true;
+  }
+
+  if (!AUDIO_ENABLED) {
+    return true;
   }
 
   return window.localStorage.getItem(MUTE_STORAGE_KEY) === "true";
