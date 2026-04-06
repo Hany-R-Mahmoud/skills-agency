@@ -10,6 +10,10 @@ export default function AchievementWall({
   achievements,
   departmentId,
 }: AchievementWallProps) {
+  if (achievements.length === 0) {
+    return null;
+  }
+
   return (
     <section className={styles.wall} data-department={departmentId}>
       <div className={styles.header}>

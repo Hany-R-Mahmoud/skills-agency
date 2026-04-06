@@ -208,13 +208,6 @@
     var(--surface-inset);
 }
 
-.commandLine {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-
 .commandLabel {
   display: inline-flex;
   align-items: center;
@@ -229,9 +222,23 @@
   letter-spacing: var(--tracking-wide);
 }
 
-.commandLine code {
+.commandGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-3);
+}
+
+.commandCard {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--page-accent) 18%, var(--border-default));
+  background: color-mix(in srgb, var(--page-accent) 6%, var(--surface-high));
+}
+
+.commandCard code {
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 1.45vw, 1.08rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.12rem);
   line-height: 1.6;
   color: var(--text-heading);
   word-break: break-all;
@@ -277,6 +284,7 @@
 }
 
 .skillsSection,
+.guidanceSection,
 .teamSection {
   display: grid;
   gap: var(--space-4);
@@ -290,6 +298,10 @@
 
 .skillsSection {
   animation-delay: 220ms;
+}
+
+.guidanceSection {
+  animation-delay: 270ms;
 }
 
 .teamSection {
@@ -337,6 +349,43 @@
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--page-accent) 40%, var(--border-default));
   background: color-mix(in srgb, var(--page-accent) 8%, var(--surface-inset));
+}
+
+.guidanceList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.guidanceCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--page-accent) 18%, var(--border-default));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-accent) 8%, transparent), transparent 50%),
+    var(--surface-inset);
+  box-shadow: var(--shadow-lift);
+}
+
+.guidanceIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 32%, var(--border-default));
+  color: var(--page-accent);
+  font-family: var(--font-mono);
+  background: color-mix(in srgb, var(--page-accent) 10%, var(--surface-high));
+}
+
+.guidanceCard p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .teamGrid {
@@ -429,6 +478,7 @@
   .heroMedia,
   .heroCopy > *,
   .skillsSection,
+  .guidanceSection,
   .teamSection {
     animation: none;
   }
@@ -476,6 +526,8 @@
     padding: var(--space-3);
   }
 
+  .commandGrid,
+  .guidanceList,
   .teamGrid {
     grid-template-columns: 1fr;
   }
@@ -488,6 +540,7 @@
 @media (max-width: 540px) {
   .hero,
   .skillsSection,
+  .guidanceSection,
   .teamSection {
     padding: var(--space-3);
   }

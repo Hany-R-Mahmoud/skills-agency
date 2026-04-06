@@ -9,6 +9,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import {
   getAgentDetailViewsByDepartment,
   getDepartmentBySlug,
+  getDepartmentDownloadPath,
   getDepartmentImagePath,
   getDepartmentRouteParams,
   getDepartmentSummaryBySlug,
@@ -346,9 +347,14 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
               </Link>
             ))}
           </div>
-          <Link href="/" className={styles.initAction}>
-            Return to floor
-          </Link>
+          <div className={styles.deckActions}>
+            <a href={getDepartmentDownloadPath(slug)} className={styles.downloadAction} download>
+              Download department
+            </a>
+            <Link href="/" className={styles.initAction}>
+              Return to floor
+            </Link>
+          </div>
         </section>
 
         <section className={styles.hero} data-department={department.id}>
@@ -456,6 +462,9 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
               <p className="label-sm">Personnel</p>
               <h2>{department.name} operators on active rotation.</h2>
             </div>
+            <a href={getDepartmentDownloadPath(slug)} className={styles.sectionDownload} download>
+              Download department pack
+            </a>
           </div>
 
           <div className={styles.agentGrid}>
@@ -466,6 +475,7 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
                   alt={`${agent.name} portrait`}
                   status={agent.status}
                   departmentId={agent.departmentId}
+                  fit={agent.portraitFit}
                   priority={index < 2}
                   className={styles.portrait}
                 />

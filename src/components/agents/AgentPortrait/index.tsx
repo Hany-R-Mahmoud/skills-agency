@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import type { AgentStatus } from "@/lib/types";
+import type { AgentStatus, PortraitFit } from "@/lib/types";
 import StatusPip from "@/components/shared/StatusPip";
 import styles from "./AgentPortrait.module.scss";
 
@@ -9,6 +9,7 @@ interface AgentPortraitProps {
   alt: string;
   status: AgentStatus;
   departmentId: string;
+  fit?: PortraitFit;
   priority?: boolean;
   className?: string;
 }
@@ -18,6 +19,7 @@ export default function AgentPortrait({
   alt,
   status,
   departmentId,
+  fit = "cover",
   priority = false,
   className,
 }: AgentPortraitProps) {
@@ -35,6 +37,7 @@ export default function AgentPortrait({
           priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={styles.image}
+          data-fit={fit}
         />
       </div>
       <div className={styles.statusBadge}>

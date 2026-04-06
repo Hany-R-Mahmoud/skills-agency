@@ -60,7 +60,7 @@ export default async function AgentRoutePage({ params }: AgentPageProps) {
       <MainArea
         eyebrow={agent.departmentName}
         title={agent.name}
-        description="Portrait-first field file with active playbooks, achievements, invocation guidance, and downloadable skill pack."
+        description="Portrait-first field file with cross-platform invocation guidance, best-fit usage notes, and the internal playbooks behind each public agent."
         hideHeader
       >
         <AgentProfilePage agent={agent} relatedAgents={relatedAgents} />

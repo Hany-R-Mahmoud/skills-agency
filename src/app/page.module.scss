@@ -172,6 +172,9 @@
 }
 
 .heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   margin-top: var(--space-4);
 }
 
@@ -203,8 +206,29 @@
     background-color 180ms var(--ease-smooth);
 }
 
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--dept-knowledge) 28%, var(--border-default));
+  background: color-mix(in srgb, var(--surface-high) 94%, var(--surface-void));
+  color: var(--text-heading);
+  font-family: var(--font-mono);
+  text-decoration: none;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dept-knowledge) 18%, transparent);
+  transition:
+    transform 180ms var(--ease-smooth),
+    border-color 180ms var(--ease-smooth),
+    box-shadow 180ms var(--ease-smooth),
+    background-color 180ms var(--ease-smooth);
+}
+
 .primaryAction:hover,
-.primaryAction:focus-visible {
+.primaryAction:focus-visible,
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
   transform: translateY(-2px);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--dept-command) 46%, transparent),

@@ -14,6 +14,7 @@ export type DepartmentId =
 export type AgentStatus = "online" | "busy" | "idle";
 
 export type CharacterStyle = "pixel" | "geometric";
+export type PortraitFit = "cover" | "contain";
 export type AccentToken =
   | "--dept-command"
   | "--dept-engineering"
@@ -24,7 +25,14 @@ export type AccentToken =
 
 export interface AgentInvocation {
   codex: string;
-  opencode: string;
+  slash: string;
+  legacy?: string;
+}
+
+export interface AgentPlaybook {
+  id: string;
+  name: string;
+  description: string;
 }
 
 export interface AgentSprite {
@@ -53,14 +61,16 @@ export interface Agent {
   role: string;
   description: string;
   skills: string[];
+  whenToUse: string[];
   invocation: AgentInvocation;
   status: AgentStatus;
   sprite: AgentSprite;
   portrait: string;
+  portraitFit?: PortraitFit;
   voiceLine: string;
-  playbooks: string[];
+  playbooks: AgentPlaybook[];
   achievements: AgentAchievement[];
-  downloadUrl: string;
+  downloadUrl?: string;
   replaces?: string[];
   path: string;
 }
@@ -162,6 +172,7 @@ export interface AgentDetailView {
   role: string;
   description: string;
   skills: string[];
+  whenToUse: string[];
   invocation: AgentInvocation;
   status: AgentStatus;
   departmentId: DepartmentId;
@@ -172,10 +183,11 @@ export interface AgentDetailView {
   accentHex: string;
   sprite: AgentSprite;
   portrait: string;
+  portraitFit: PortraitFit;
   voiceLine: string;
-  playbooks: string[];
+  playbooks: AgentPlaybook[];
   achievements: AgentAchievement[];
-  downloadUrl: string;
+  downloadUrl?: string;
   voiceClipPath: string;
   path: string;
   replaces: string[];

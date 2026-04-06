@@ -86,6 +86,7 @@ const agentDetailViews = agents.map<AgentDetailView>((agent) => {
     role: agent.role,
     description: agent.description,
     skills: Array.isArray(agent.skills) ? agent.skills : [],
+    whenToUse: Array.isArray(agent.whenToUse) ? agent.whenToUse : [],
     invocation: agent.invocation,
     status: agent.status,
     departmentId: department.id,
@@ -96,10 +97,11 @@ const agentDetailViews = agents.map<AgentDetailView>((agent) => {
     accentHex: department.accentHex,
     sprite: agent.sprite,
     portrait: agent.portrait,
+    portraitFit: agent.portraitFit ?? "cover",
     voiceLine: agent.voiceLine,
-    playbooks: agent.playbooks,
+    playbooks: Array.isArray(agent.playbooks) ? agent.playbooks : [],
     achievements: agent.achievements,
-    downloadUrl: agent.downloadUrl,
+    downloadUrl: agent.downloadUrl ?? getAgentDownloadPath(agent.id),
     voiceClipPath: getAgentVoiceClipPath(agent.id),
     path: agent.path,
     replaces: agent.replaces ?? [],
@@ -312,6 +314,18 @@ export function getAgentRouteParams(): Array<{ id: string }> {
 
 export function getAgentVoiceClipPath(id: string): string {
   return `/audio/agents/${id}.mp3`;
+}
+
+export function getAgentDownloadPath(id: string): string {
+  return `/downloads/agents/${id}.zip`;
+}
+
+export function getDepartmentDownloadPath(slug: string): string {
+  return `/downloads/departments/${slug}.zip`;
+}
+
+export function getAgencyDownloadPath(): string {
+  return "/downloads/the-agency-public-agents.zip";
 }
 
 export function getAccentTokenByDepartmentId(

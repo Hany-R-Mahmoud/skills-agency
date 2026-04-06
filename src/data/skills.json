@@ -1,19 +1,20 @@
 {
   "meta": {
-    "version": "2.0.0",
-    "lastUpdated": "2026-03-27",
-    "totalAgents": 12,
+    "version": "3.0.0",
+    "lastUpdated": "2026-04-06",
+    "totalAgents": 19,
     "totalDepartments": 6,
     "mode": "agent-first",
-    "notes": "Only public picker agents are listed here. Supporting capabilities now live as internal PLAYBOOK.md files loaded by these agents."
+    "notes": "Roster synced to the current public agent surface. Slash commands are now the preferred cross-platform invocation format, while Codex mentions and legacy aliases remain listed for compatibility."
   },
   "departments": [
     {
       "id": "command",
       "name": "Command Center",
       "slug": "command",
-      "tagline": "Mission orchestration and strategic coordination",
+      "tagline": "Task framing, coordination, sequencing, and lead-agent routing",
       "accentColor": "--dept-command",
+      "accentCss": "--dept-command",
       "accentHex": "#8ff5ff",
       "roomPosition": {
         "x": 2,
@@ -23,21 +24,27 @@
       },
       "agents": [
         {
-          "id": "team-lead",
-          "name": "Team Lead",
-          "codename": "team-lead_",
+          "id": "agent-co-pilot",
+          "name": "Co-Pilot",
+          "codename": "agent-co-pilot_",
           "department": "command",
-          "role": "Standard mission coordinator for feature-level work",
-          "description": "The default public entry point for most meaningful engineering tasks. Coordinates implementation, review, verification, and the loading of internal playbooks without exposing that complexity in the picker.",
+          "role": "Lean coordinator for small, obvious, low-risk tasks",
+          "description": "The lightest team lead on the floor. Keeps orchestration overhead low, delegates only when it clearly helps, and is built for quick wins that still deserve a little structure.",
           "skills": [
-            "task routing",
-            "team coordination",
-            "specialist delegation",
-            "verification flow"
+            "lightweight routing",
+            "small-task coordination",
+            "fast handoff discipline",
+            "minimal verification"
+          ],
+          "whenToUse": [
+            "The task is small, isolated, and already easy to understand.",
+            "You want one focused implementer and maybe a quick validation pass.",
+            "A full gated workflow would create more ceremony than value."
           ],
           "invocation": {
-            "codex": "@team-lead",
-            "opencode": "$team-lead"
+            "codex": "@agent-co-pilot",
+            "slash": "/agent-co-pilot",
+            "legacy": "$agent-co-pilot"
           },
           "status": "online",
           "sprite": {
@@ -46,48 +53,57 @@
             "variant": 1
           },
           "replaces": [
-            "team-lead"
+            "team-lead-lite"
           ],
-          "path": "skills/team-lead/SKILL.md",
-          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead.png?updatedAt=1774688156557",
-          "voiceLine": "Mission parameters received. Coordinating the team.",
+          "path": "skills/agent-co-pilot/SKILL.md",
+          "portrait": "/portraits/normalized/agent-co-pilot.png",
+          "voiceLine": "Lean path selected. Keeping the loop fast and focused.",
           "playbooks": [
-            "coordination-playbook",
-            "frontend-react-and-next",
-            "review-and-pr-operations",
-            "testing-and-verification"
-          ],
-          "achievements": [
             {
-              "label": "Missions coordinated",
-              "value": "340+"
+              "id": "coordination-playbook",
+              "name": "Coordination Playbook",
+              "description": "Keeps small-task routing tight so delegation stays helpful instead of heavy."
             },
             {
-              "label": "On-time delivery rate",
-              "value": "96%"
+              "id": "context-efficiency",
+              "name": "Context Efficiency",
+              "description": "Strips the working set down to only the code and decisions needed for a fast move."
             },
             {
-              "label": "Cross-team handoffs",
-              "value": "1.2k+"
+              "id": "frontend-react-and-next",
+              "name": "Frontend React and Next",
+              "description": "Handles common UI and app-level changes without spinning up a larger coordination stack."
+            },
+            {
+              "id": "testing-and-verification",
+              "name": "Testing and Verification",
+              "description": "Adds only the lightest useful validation before the task closes."
             }
           ],
-          "downloadUrl": "/downloads/agents/team-lead.zip"
+          "achievements": []
         },
         {
-          "id": "team-lead-lite",
-          "name": "Lead Lite",
-          "codename": "team-lead-lite_",
+          "id": "agent-pilot",
+          "name": "Pilot",
+          "codename": "agent-pilot_",
           "department": "command",
-          "role": "Lightweight coordinator for small, low-risk tasks",
-          "description": "The fast-path public entry point for quick fixes, small edits, and narrow tasks that still benefit from minimal routing and verification discipline.",
+          "role": "Primary lead for coordinated feature work and gated execution",
+          "description": "The default lead workflow for most meaningful delivery. Expands from a lean implementation pass to a gated multi-specialist sequence when the risk, ambiguity, or blast radius calls for it.",
           "skills": [
-            "quick edits",
-            "light routing",
-            "small-task coordination"
+            "multi-agent coordination",
+            "workflow intensity selection",
+            "quality gate management",
+            "delivery routing"
+          ],
+          "whenToUse": [
+            "The work spans multiple files or disciplines and needs active coordination.",
+            "Implementation, review, and testing all matter before you call the task done.",
+            "You want one lead agent that can scale up without changing the public entry point."
           ],
           "invocation": {
-            "codex": "@team-lead-lite",
-            "opencode": "$team-lead-lite"
+            "codex": "@agent-pilot",
+            "slash": "/agent-pilot",
+            "legacy": "$agent-pilot"
           },
           "status": "online",
           "sprite": {
@@ -96,84 +112,40 @@
             "variant": 2
           },
           "replaces": [
-            "team-lead-lite"
-          ],
-          "path": "skills/team-lead-lite/SKILL.md",
-          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead-lite.png?updatedAt=1774688168500",
-          "voiceLine": "Small task, clean execution. On it.",
-          "playbooks": [
-            "coordination-playbook",
-            "frontend-react-and-next",
-            "testing-and-verification"
-          ],
-          "achievements": [
-            {
-              "label": "Quick fixes shipped",
-              "value": "520+"
-            },
-            {
-              "label": "Median turnaround",
-              "value": "18 min"
-            },
-            {
-              "label": "Clean-pass rate",
-              "value": "93%"
-            }
-          ],
-          "downloadUrl": "/downloads/agents/team-lead-lite.zip"
-        },
-        {
-          "id": "team-lead-full",
-          "name": "Lead Full",
-          "codename": "team-lead-full_",
-          "department": "command",
-          "role": "Full coordinator for risky, ambiguous, or cross-cutting work",
-          "description": "The heavyweight public entry point for architecture-sensitive changes, migrations, security-sensitive work, and tasks that need explicit gates and artifacts.",
-          "skills": [
-            "risk management",
-            "artifact discipline",
-            "quality gates",
-            "cross-cutting orchestration"
-          ],
-          "invocation": {
-            "codex": "@team-lead-full",
-            "opencode": "$team-lead-full"
-          },
-          "status": "online",
-          "sprite": {
-            "style": "geometric",
-            "color": "#8ff5ff",
-            "variant": 3
-          },
-          "replaces": [
+            "team-lead",
             "team-lead-full"
           ],
-          "path": "skills/team-lead-full/SKILL.md",
-          "portrait": "https://ik.imagekit.io/hrim/images/agents/team-lead-full.png?updatedAt=1774688054674",
-          "voiceLine": "High-stakes task detected. Activating full protocol.",
+          "path": "skills/agent-pilot/SKILL.md",
+          "portrait": "/portraits/normalized/agent-pilot.png",
+          "voiceLine": "Lead workflow engaged. We can stay lean or escalate with gates as needed.",
           "playbooks": [
-            "coordination-playbook",
-            "systems-architecture",
-            "research-and-reasoning",
-            "security-engineering",
-            "testing-and-verification",
-            "documentation-and-doc-ops"
-          ],
-          "achievements": [
             {
-              "label": "High-risk launches",
-              "value": "94"
+              "id": "shared-team-contract",
+              "name": "Shared Team Contract",
+              "description": "Defines ownership, artifact shape, and synthesis rules for coordinated delivery."
             },
             {
-              "label": "Escalations prevented",
-              "value": "88%"
+              "id": "coordination-playbook",
+              "name": "Coordination Playbook",
+              "description": "Routes the right specialist sequence without exposing that complexity to the user."
             },
             {
-              "label": "Quality gates passed",
-              "value": "410+"
+              "id": "quality-gates",
+              "name": "Quality Gate Patterns",
+              "description": "Makes review, verification, security, and docs checks explicit instead of implied."
+            },
+            {
+              "id": "fullstack-engineering",
+              "name": "Fullstack Engineering",
+              "description": "Keeps cross-layer implementation grounded when the feature reaches beyond one surface."
+            },
+            {
+              "id": "platform-engineering",
+              "name": "Platform Engineering",
+              "description": "Handles infrastructure or deployment-sensitive turns without leaving the lead workflow."
             }
           ],
-          "downloadUrl": "/downloads/agents/team-lead-full.zip"
+          "achievements": []
         },
         {
           "id": "agent-orchestrator",
@@ -183,59 +155,69 @@
           "role": "Planning, decomposition, sequencing, and specialist routing",
           "description": "The routing brain of the system. Turns new or ambiguous tasks into execution-ready plans and decides which public agents and internal playbooks should be involved.",
           "skills": [
-            "workflow management",
+            "workflow planning",
             "task decomposition",
             "routing strategy",
             "context handoff"
           ],
+          "whenToUse": [
+            "The task is new, ambiguous, or likely to affect architecture.",
+            "You want a concrete plan before anyone starts editing code.",
+            "Multiple specialist agents may be needed and their order matters."
+          ],
           "invocation": {
             "codex": "@agent-orchestrator",
-            "opencode": "$agent-orchestrator"
+            "slash": "/agent-orchestrator",
+            "legacy": "$agent-orchestrator"
           },
-          "status": "online",
+          "status": "busy",
           "sprite": {
             "style": "geometric",
             "color": "#8ff5ff",
-            "variant": 4
+            "variant": 3
           },
-          "replaces": [
-            "agent-orchestrator"
-          ],
           "path": "skills/agent-orchestrator/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-orchestrator.png?updatedAt=1774688164865",
           "voiceLine": "Analyzing task complexity. Routing to optimal specialists.",
           "playbooks": [
-            "coordination-playbook",
-            "systems-architecture",
-            "research-and-reasoning",
-            "fullstack-engineering",
-            "documentation-lookup"
-          ],
-          "achievements": [
             {
-              "label": "Plans generated",
-              "value": "610+"
+              "id": "coordination-playbook",
+              "name": "Coordination Playbook",
+              "description": "Provides the framing discipline for turning a request into an execution-ready plan."
             },
             {
-              "label": "Specialists routed",
-              "value": "2.4k+"
+              "id": "systems-architecture",
+              "name": "Systems Architecture",
+              "description": "Helps identify boundary-sensitive decisions before implementation begins."
             },
             {
-              "label": "Ambiguous briefs resolved",
-              "value": "91%"
+              "id": "research-and-reasoning",
+              "name": "Research and Reasoning",
+              "description": "Improves discovery quality when the first answer is not yet trustworthy."
+            },
+            {
+              "id": "plan-execution",
+              "name": "Plan Execution Mode",
+              "description": "Converts approved plans into staged, dependency-aware workstreams."
+            },
+            {
+              "id": "quality-gate-patterns",
+              "name": "Quality Gate Patterns",
+              "description": "Names the risky checkpoints so they are handled intentionally."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-orchestrator.zip"
         }
-      ],
-      "accentCss": "--dept-command"
+      ]
     },
     {
       "id": "engineering",
-      "name": "Engineering",
+      "name": "Engineering & Systems",
       "slug": "engineering",
-      "tagline": "Implementation and delivery",
+      "tagline": "Implementation, architecture, AI systems, and performance engineering",
       "accentColor": "--dept-engineering",
+      "accentCss": "--dept-engineering",
       "accentHex": "#f5a623",
       "roomPosition": {
         "x": 0,
@@ -257,57 +239,245 @@
             "frontend-first delivery",
             "full-stack changes"
           ],
+          "whenToUse": [
+            "The implementation path is already clear enough to start editing.",
+            "A plan exists and now someone needs to ship the actual code.",
+            "The task is UI-heavy, interaction-heavy, or spans frontend and backend together."
+          ],
           "invocation": {
             "codex": "@agent-implementer",
-            "opencode": "$agent-implementer"
+            "slash": "/agent-implementer",
+            "legacy": "$agent-implementer"
           },
-          "status": "online",
+          "status": "busy",
           "sprite": {
-            "style": "pixel",
+            "style": "geometric",
             "color": "#f5a623",
             "variant": 1
           },
-          "replaces": [
-            "agent-implementer"
-          ],
           "path": "skills/agent-implementer/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-implementer.png?updatedAt=1774688063188",
-          "voiceLine": "Plan approved. Building now.",
+          "voiceLine": "Plan approved. Ready to build.",
           "playbooks": [
-            "frontend-react-and-next",
-            "backend-and-language-engineering",
-            "fullstack-engineering",
-            "interface-and-design",
-            "testing-and-verification"
-          ],
-          "achievements": [
             {
-              "label": "Tasks completed",
-              "value": "340+"
+              "id": "frontend-react-and-next",
+              "name": "Frontend React and Next",
+              "description": "Keeps React, Next.js, and Ant Design work aligned with local implementation patterns."
             },
             {
-              "label": "Zero-regression streak",
-              "value": "12 weeks"
+              "id": "backend-and-language-engineering",
+              "name": "Backend and Language Engineering",
+              "description": "Supports TS, JS, Python, and CLI changes when the work crosses application layers."
             },
             {
-              "label": "Avg response quality",
-              "value": "94%"
+              "id": "fullstack-engineering",
+              "name": "Fullstack Engineering",
+              "description": "Coordinates data flow, persistence, and UI behavior as one coherent delivery surface."
+            },
+            {
+              "id": "interface-and-design",
+              "name": "Interface and Design",
+              "description": "Helps implementation preserve polish, readability, and product feel while coding."
+            },
+            {
+              "id": "testing-and-verification",
+              "name": "Testing and Verification",
+              "description": "Builds the change in a way that review and validation can assess cleanly."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-implementer.zip"
+        },
+        {
+          "id": "agent-architect",
+          "name": "Architect",
+          "codename": "agent-architect_",
+          "department": "engineering",
+          "role": "System design lead for boundaries, contracts, and structural decisions",
+          "description": "The architecture specialist for service boundaries, APIs, monorepos, and distributed workflows. Keeps design choices explicit before implementation locks them in.",
+          "skills": [
+            "system design",
+            "API boundaries",
+            "monorepo strategy",
+            "distributed workflow design"
+          ],
+          "whenToUse": [
+            "You need to shape service boundaries, API contracts, or ownership lines.",
+            "A refactor, scaling decision, or distributed workflow needs architectural judgment first.",
+            "You want an architecture review before implementation hardens the wrong shape."
+          ],
+          "invocation": {
+            "codex": "@agent-architect",
+            "slash": "/agent-architect",
+            "legacy": "$agent-architect"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 2
+          },
+          "path": "skills/agent-architect/SKILL.md",
+          "portrait": "/portraits/normalized/agent-architect.png",
+          "voiceLine": "Boundary review online. Let’s make the structure carry its own weight.",
+          "playbooks": [
+            {
+              "id": "architecture-foundation",
+              "name": "Architecture Foundation",
+              "description": "Frames constraints, decision points, and the right depth for the design conversation."
+            },
+            {
+              "id": "backend-architecture",
+              "name": "Backend Architecture",
+              "description": "Covers service shape, ownership, and backend system structure."
+            },
+            {
+              "id": "api-architecture",
+              "name": "API Architecture",
+              "description": "Clarifies contracts, interface boundaries, and schema responsibility."
+            },
+            {
+              "id": "distributed-architecture",
+              "name": "Distributed Architecture",
+              "description": "Helps with events, coordination patterns, and multi-service behavior."
+            }
+          ],
+          "achievements": []
+        },
+        {
+          "id": "agent-data-ai",
+          "name": "Data AI",
+          "codename": "agent-data-ai_",
+          "department": "engineering",
+          "role": "Data, AI, analytics, retrieval, and ML systems specialist",
+          "description": "The public entry point for analytics, LLM systems, retrieval, ML workflows, and data pipelines. It keeps AI work grounded in architecture, data quality, and evaluation.",
+          "skills": [
+            "LLM systems",
+            "RAG and retrieval",
+            "analytics",
+            "data pipelines"
+          ],
+          "whenToUse": [
+            "You are designing an LLM feature, RAG flow, or prompt pipeline.",
+            "The task is about analytics, ETL, ML infrastructure, or vector retrieval.",
+            "You need model-backed evaluation support instead of ad hoc intuition."
+          ],
+          "invocation": {
+            "codex": "@agent-data-ai",
+            "slash": "/agent-data-ai",
+            "legacy": "$agent-data-ai"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 3
+          },
+          "path": "skills/agent-data-ai/SKILL.md",
+          "portrait": "/portraits/normalized/agent-data-ai.png",
+          "voiceLine": "Data path live. Let’s keep the system measurable, grounded, and evaluable.",
+          "playbooks": [
+            {
+              "id": "data-ai-foundation",
+              "name": "Data AI Foundation",
+              "description": "Sets the operating model for AI, analytics, and data-system work before deeper lanes are selected."
+            },
+            {
+              "id": "llm-systems",
+              "name": "LLM Systems",
+              "description": "Handles prompt flow, context assembly, guardrails, and agent-style AI features."
+            },
+            {
+              "id": "retrieval-systems",
+              "name": "Retrieval Systems",
+              "description": "Designs retrieval, vector search, and grounding workflows that stay explainable."
+            },
+            {
+              "id": "data-pipelines",
+              "name": "Data Pipelines",
+              "description": "Shapes ingestion, transformation, and quality-aware data movement."
+            },
+            {
+              "id": "model-evaluation-support",
+              "name": "Model Evaluation Support",
+              "description": "Adds evaluation loops when AI output quality needs more than spot checks."
+            }
+          ],
+          "achievements": []
+        },
+        {
+          "id": "agent-performance",
+          "name": "Performance",
+          "codename": "agent-performance_",
+          "department": "engineering",
+          "role": "Profiling and optimization specialist for apps, systems, and DX",
+          "description": "The optimization specialist for runtime bottlenecks, rendering cost, backend latency, and developer-experience speed. Focuses on real bottlenecks instead of premature tuning.",
+          "skills": [
+            "profiling",
+            "frontend performance",
+            "backend latency",
+            "DX optimization"
+          ],
+          "whenToUse": [
+            "Something feels slow and you need profiling before changing code blindly.",
+            "A frontend, backend, or full app bottleneck needs targeted optimization.",
+            "Developer workflow speed or feedback loops are getting in the team’s way."
+          ],
+          "invocation": {
+            "codex": "@agent-performance",
+            "slash": "/agent-performance",
+            "legacy": "$agent-performance"
+          },
+          "status": "idle",
+          "sprite": {
+            "style": "geometric",
+            "color": "#f5a623",
+            "variant": 4
+          },
+          "path": "skills/agent-performance/SKILL.md",
+          "portrait": "/portraits/normalized/agent-performance.png",
+          "voiceLine": "Profiling lane ready. Let’s fix the real bottleneck, not the nearest one.",
+          "playbooks": [
+            {
+              "id": "performance-foundation",
+              "name": "Performance Foundation",
+              "description": "Establishes the measurement-first approach before any optimization changes are made."
+            },
+            {
+              "id": "profiling",
+              "name": "Profiling",
+              "description": "Finds the actual hotspots across render, compute, latency, and throughput."
+            },
+            {
+              "id": "frontend-performance",
+              "name": "Frontend Performance",
+              "description": "Targets re-render cost, bundle weight, and interaction responsiveness."
+            },
+            {
+              "id": "backend-performance",
+              "name": "Backend Performance",
+              "description": "Works through throughput, latency, and expensive server-side paths."
+            },
+            {
+              "id": "dx-optimization",
+              "name": "DX Optimization",
+              "description": "Improves local feedback loops, build time, and developer throughput."
+            }
+          ],
+          "achievements": []
         }
-      ],
-      "accentCss": "--dept-engineering"
+      ]
     },
     {
       "id": "design",
       "name": "Product & Design",
       "slug": "design",
-      "tagline": "UI, UX, and frontend feel",
+      "tagline": "Frontend feel, Stitch workflows, diagrams, and agent composition design",
       "accentColor": "--dept-design",
-      "accentHex": "#ff6b6b",
+      "accentCss": "--dept-design",
+      "accentHex": "#ff6f91",
       "roomPosition": {
-        "x": 2,
+        "x": 4,
         "y": 1,
         "width": 2,
         "height": 1
@@ -318,70 +488,258 @@
           "name": "Impeccable",
           "codename": "agent-impeccable_",
           "department": "design",
-          "role": "Public UI and design facade with internal mode routing",
-          "description": "The single public entry point for design, polish, UX critique, responsiveness, hardening, and frontend feel. Internally routes across private design modes instead of exposing them in the picker.",
+          "role": "Frontend UI and design specialist for polish, redesign, and UX quality",
+          "description": "The unified frontend design facade. Routes design, layout, typography, accessibility, polish, critique, and production hardening through one public entry point.",
           "skills": [
-            "ui redesign",
-            "design critique",
+            "UI redesign",
+            "design-system fit",
             "frontend polish",
-            "internal mode routing"
+            "accessibility-aware refinement"
+          ],
+          "whenToUse": [
+            "You are redesigning or refining a page, flow, or product surface.",
+            "The UI needs stronger taste, clarity, responsiveness, or production polish.",
+            "You want one public design agent instead of choosing among many internal modes."
           ],
           "invocation": {
             "codex": "@agent-impeccable",
-            "opencode": "$agent-impeccable"
+            "slash": "/agent-impeccable",
+            "legacy": "$agent-impeccable"
           },
           "status": "online",
           "sprite": {
             "style": "geometric",
-            "color": "#ff6b6b",
+            "color": "#ff6f91",
             "variant": 1
           },
-          "replaces": [
-            "agent-impeccable",
-            "frontend-design",
-            "arrange",
-            "typeset",
-            "colorize",
-            "audit"
-          ],
           "path": "skills/agent-impeccable/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-impeccable.png?updatedAt=1774688067670",
-          "voiceLine": "I see six things wrong with this. Let's fix all of them.",
+          "voiceLine": "Smoothing rough edges and lifting the finish.",
           "playbooks": [
-            "frontend-design",
-            "arrange",
-            "typeset",
-            "colorize",
-            "polish"
-          ],
-          "achievements": [
             {
-              "label": "Interfaces refined",
-              "value": "210+"
+              "id": "frontend-design",
+              "name": "Frontend Design",
+              "description": "Provides the shared design foundation before narrower UI modes are chosen."
             },
             {
-              "label": "A11y issues eliminated",
-              "value": "480+"
+              "id": "arrange",
+              "name": "Arrange",
+              "description": "Improves layout structure, spacing, and screen composition."
             },
             {
-              "label": "Polish approval score",
-              "value": "97%"
+              "id": "typeset",
+              "name": "Typeset",
+              "description": "Strengthens typography hierarchy, rhythm, and readability."
+            },
+            {
+              "id": "colorize",
+              "name": "Colorize",
+              "description": "Tunes palette decisions and visual contrast while preserving system fit."
+            },
+            {
+              "id": "polish",
+              "name": "Polish",
+              "description": "Adds production-level refinement once the core structure is already sound."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-impeccable.zip"
+        },
+        {
+          "id": "agent-stitch",
+          "name": "Stitch",
+          "codename": "agent-stitch_",
+          "department": "design",
+          "role": "Stitch generation and design-to-code workflow specialist",
+          "description": "The public entry point for Stitch-based design generation, prompt refinement, design-system capture, React handoff, and iterative Stitch delivery loops.",
+          "skills": [
+            "Stitch generation",
+            "design-to-code handoff",
+            "prompt enhancement",
+            "design-system capture"
+          ],
+          "whenToUse": [
+            "You are generating or editing screens in Stitch and want the workflow guided end to end.",
+            "A weak prompt, stale DESIGN.md, or generic output is blocking design quality.",
+            "You need a clean handoff from Stitch output into React or shadcn-based code."
+          ],
+          "invocation": {
+            "codex": "@agent-stitch",
+            "slash": "/agent-stitch",
+            "legacy": "$agent-stitch"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 2
+          },
+          "path": "skills/agent-stitch/SKILL.md",
+          "portrait": "/portraits/normalized/agent-stitch.png",
+          "voiceLine": "Design loop armed. We can generate, refine, and hand off cleanly.",
+          "playbooks": [
+            {
+              "id": "stitch-foundation",
+              "name": "Stitch Foundation",
+              "description": "Sets asset hygiene, context gathering, and workflow discipline for every Stitch task."
+            },
+            {
+              "id": "prompt-enhancement",
+              "name": "Prompt Enhancement",
+              "description": "Transforms vague UI ideas into stronger Stitch-ready prompts."
+            },
+            {
+              "id": "design-system",
+              "name": "Design System",
+              "description": "Refreshes or synthesizes the shared design language used across Stitch screens."
+            },
+            {
+              "id": "react-handoff",
+              "name": "React Handoff",
+              "description": "Converts generated work into implementation-ready React structure and asset notes."
+            },
+            {
+              "id": "taste-calibration",
+              "name": "Taste Calibration",
+              "description": "Pushes Stitch output away from generic layouts and toward a stronger bar."
+            }
+          ],
+          "achievements": []
+        },
+        {
+          "id": "agent-diagrams",
+          "name": "Diagrams",
+          "codename": "agent-diagrams_",
+          "department": "design",
+          "role": "Technical diagram specialist for Mermaid, C4, and system visuals",
+          "description": "The diagram specialist for Mermaid, C4, and architecture communication artifacts. Turns complex systems into clearer visual reasoning and handoff material.",
+          "skills": [
+            "Mermaid diagrams",
+            "C4 views",
+            "architecture visuals",
+            "technical communication"
+          ],
+          "whenToUse": [
+            "You need a clear system diagram instead of more descriptive prose.",
+            "An architecture review or handoff would benefit from a visual model.",
+            "The task calls for Mermaid, C4, or lightweight generated support artifacts."
+          ],
+          "invocation": {
+            "codex": "@agent-diagrams",
+            "slash": "/agent-diagrams",
+            "legacy": "$agent-diagrams"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 3
+          },
+          "path": "skills/agent-diagrams/SKILL.md",
+          "portrait": "/portraits/normalized/agent-diagrams.png",
+          "voiceLine": "Visual channel open. Let’s make the structure legible at a glance.",
+          "playbooks": [
+            {
+              "id": "diagram-foundation",
+              "name": "Diagram Foundation",
+              "description": "Frames the diagram goal so the visual stays useful instead of decorative."
+            },
+            {
+              "id": "mermaid-diagrams",
+              "name": "Mermaid Diagrams",
+              "description": "Builds fast, code-native diagrams for docs, reviews, and workflows."
+            },
+            {
+              "id": "c4-context",
+              "name": "C4 Context",
+              "description": "Shows systems, actors, and external relationships at the right zoom level."
+            },
+            {
+              "id": "c4-container",
+              "name": "C4 Container",
+              "description": "Explains the main application containers and how responsibilities are split."
+            },
+            {
+              "id": "artifact-support",
+              "name": "Artifact Support",
+              "description": "Adds lightweight supporting material when the diagram needs brief annotations or follow-up assets."
+            }
+          ],
+          "achievements": []
+        },
+        {
+          "id": "agent-composer",
+          "name": "Composer",
+          "codename": "agent-composer_",
+          "department": "design",
+          "role": "Skill and browser-agent composition specialist",
+          "description": "The builder for new skills, browser-capable agents, Playwright-aware workflows, and local packaging patterns. Keeps public surfaces thin while the internal system grows deeper.",
+          "skills": [
+            "skill composition",
+            "browser-agent design",
+            "Playwright workflows",
+            "packaging strategy"
+          ],
+          "whenToUse": [
+            "You are creating or refining a skill, agent, or automation workflow.",
+            "A browser-capable or Playwright-style execution model needs to be designed cleanly.",
+            "You want to package imported ideas without bloating the public picker surface."
+          ],
+          "invocation": {
+            "codex": "@agent-composer",
+            "slash": "/agent-composer",
+            "legacy": "$agent-composer"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 4
+          },
+          "path": "skills/agent-composer/SKILL.md",
+          "portrait": "/portraits/normalized/agent-composer.png",
+          "voiceLine": "Composition lane active. We can package this cleanly without menu sprawl.",
+          "playbooks": [
+            {
+              "id": "composition-standards",
+              "name": "Composition Standards",
+              "description": "Applies the local house style so new agents feel native instead of imported."
+            },
+            {
+              "id": "skill-architecture",
+              "name": "Skill Architecture",
+              "description": "Shapes one coherent public entry point with the right internal lanes behind it."
+            },
+            {
+              "id": "browser-automation",
+              "name": "Browser Automation",
+              "description": "Designs stateful browser workflows with explicit navigation, waits, and capture."
+            },
+            {
+              "id": "playwright-execution",
+              "name": "Playwright Execution",
+              "description": "Adds Playwright-capable interaction patterns when browser precision matters."
+            },
+            {
+              "id": "packaging",
+              "name": "Packaging",
+              "description": "Prepares metadata, manifests, references, and the reusable shape of the finished agent."
+            }
+          ],
+          "achievements": []
         }
-      ],
-      "accentCss": "--dept-design"
+      ]
     },
     {
       "id": "quality",
       "name": "Ops & Quality",
       "slug": "quality",
-      "tagline": "Review, testing, and failure analysis",
+      "tagline": "Review, verification, debugging, and evidence-driven release confidence",
       "accentColor": "--dept-quality",
-      "accentHex": "#39ff14",
+      "accentCss": "--dept-quality",
+      "accentHex": "#72f1b8",
       "roomPosition": {
-        "x": 0,
+        "x": 2,
         "y": 2,
         "width": 2,
         "height": 1
@@ -392,50 +750,56 @@
           "name": "Reviewer",
           "codename": "agent-reviewer_",
           "department": "quality",
-          "role": "Correctness, regression, and maintainability review owner",
+          "role": "Correctness and regression review specialist",
           "description": "Runs the high-signal quality gate after implementation. Focuses on correctness, regressions, maintainability, and PR judgment while pulling internal review playbooks as needed.",
           "skills": [
-            "code review",
+            "correctness review",
             "regression detection",
-            "maintainability analysis",
-            "pr judgment"
+            "maintainability review",
+            "risk framing"
+          ],
+          "whenToUse": [
+            "Code has changed and you want a serious quality pass before closing the task.",
+            "You need bugs, regressions, or hidden coupling surfaced with evidence.",
+            "A plan-driven change needs a proper gate after implementation, not just optimism."
           ],
           "invocation": {
             "codex": "@agent-reviewer",
-            "opencode": "$agent-reviewer"
+            "slash": "/agent-reviewer",
+            "legacy": "$agent-reviewer"
           },
           "status": "online",
           "sprite": {
-            "style": "pixel",
-            "color": "#39ff14",
-            "variant": 2
+            "style": "geometric",
+            "color": "#72f1b8",
+            "variant": 1
           },
-          "replaces": [
-            "agent-reviewer",
-            "pr-review-first-pass"
-          ],
           "path": "skills/agent-reviewer/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-reviewer.png?updatedAt=1774688169192",
-          "voiceLine": "Running correctness check. This will take a moment.",
+          "voiceLine": "Checking for regressions, risk, and weak assumptions.",
           "playbooks": [
-            "review-and-pr-operations",
-            "security-engineering",
-            "testing-and-verification"
-          ],
-          "achievements": [
             {
-              "label": "PRs reviewed",
-              "value": "890+"
+              "id": "review-and-pr-operations",
+              "name": "Review and PR Operations",
+              "description": "Provides the main review lens for correctness, regressions, and delivery discipline."
             },
             {
-              "label": "Critical catches",
-              "value": "146"
+              "id": "security-engineering",
+              "name": "Security Engineering",
+              "description": "Brings in trust-boundary judgment when a review crosses into security territory."
             },
             {
-              "label": "Regression escape rate",
-              "value": "0.8%"
+              "id": "testing-and-verification",
+              "name": "Testing and Verification",
+              "description": "Helps decide when missing evidence should block closure or be escalated."
+            },
+            {
+              "id": "spec-compliance",
+              "name": "Spec Compliance",
+              "description": "Checks whether the implementation actually delivered the intended behavior."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-reviewer.zip"
         },
         {
@@ -443,50 +807,56 @@
           "name": "Tester",
           "codename": "agent-tester_",
           "department": "quality",
-          "role": "Verification owner and evidence judge",
-          "description": "Designs and runs the right checks, then decides whether the evidence is strong enough to claim completion.",
+          "role": "Verification strategist for tests, browser validation, and confidence reporting",
+          "description": "Owns test strategy, execution, and the judgment of whether the evidence is strong enough to call the work complete.",
           "skills": [
             "test strategy",
             "browser validation",
-            "regression guards",
-            "coverage gaps"
+            "regression protection",
+            "confidence reporting"
+          ],
+          "whenToUse": [
+            "Code changed and you need proof, not assumptions, before shipping.",
+            "A bug fix needs a regression guard or a UI path needs browser-level validation.",
+            "You want to understand what still has not been verified and why."
           ],
           "invocation": {
             "codex": "@agent-tester",
-            "opencode": "$agent-tester"
+            "slash": "/agent-tester",
+            "legacy": "$agent-tester"
           },
-          "status": "online",
+          "status": "busy",
           "sprite": {
-            "style": "pixel",
-            "color": "#39ff14",
-            "variant": 3
+            "style": "geometric",
+            "color": "#72f1b8",
+            "variant": 2
           },
-          "replaces": [
-            "agent-tester"
-          ],
           "path": "skills/agent-tester/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-tester.png?updatedAt=1774688057530",
-          "voiceLine": "Designing verification protocol. Evidence will be conclusive.",
+          "voiceLine": "Critical paths are loaded and validation is ready.",
           "playbooks": [
-            "testing-and-verification",
-            "debugging-and-diagnostics",
-            "e2e-testing",
-            "verification-loop"
-          ],
-          "achievements": [
             {
-              "label": "Verification runs",
-              "value": "1.1k+"
+              "id": "testing-and-verification",
+              "name": "Testing and Verification",
+              "description": "Chooses the right test layer and keeps evidence tied to behavior."
             },
             {
-              "label": "Flows automated",
-              "value": "260+"
+              "id": "debugging-and-diagnostics",
+              "name": "Debugging and Diagnostics",
+              "description": "Supports escalation when a failing check still lacks a clear root cause."
             },
             {
-              "label": "Release confidence",
-              "value": "95%"
+              "id": "frontend-react-and-next",
+              "name": "Frontend React and Next",
+              "description": "Improves verification of rendered UI and Next.js-specific behavior."
+            },
+            {
+              "id": "e2e-execution-patterns",
+              "name": "E2E Execution Patterns",
+              "description": "Helps structure browser and end-to-end checks that remain reproducible."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-tester.zip"
         },
         {
@@ -494,65 +864,72 @@
           "name": "Debugger",
           "codename": "agent-debugging_",
           "department": "quality",
-          "role": "Root-cause owner for broken or unclear behavior",
-          "description": "Runs reproduce-first debugging, gathers evidence, and isolates root causes before fixes are attempted.",
+          "role": "Reproduce-first debugging and root-cause analysis specialist",
+          "description": "Investigates regressions, runtime errors, flaky behavior, and telemetry gaps with a reproduce-first workflow that separates symptom from actual cause.",
           "skills": [
-            "bug reproduction",
             "root-cause analysis",
-            "runtime diagnostics",
-            "evidence gathering"
+            "reproduction",
+            "observability review",
+            "failure triage"
+          ],
+          "whenToUse": [
+            "Something is broken and the real cause is not yet understood.",
+            "Logs, traces, reproduction steps, or missing telemetry matter to the diagnosis.",
+            "You need evidence before implementing a fix safely."
           ],
           "invocation": {
             "codex": "@agent-debugging",
-            "opencode": "$agent-debugging"
+            "slash": "/agent-debugging",
+            "legacy": "$agent-debugging"
           },
           "status": "online",
           "sprite": {
-            "style": "pixel",
-            "color": "#39ff14",
-            "variant": 4
+            "style": "geometric",
+            "color": "#72f1b8",
+            "variant": 3
           },
-          "replaces": [
-            "agent-debugging"
-          ],
           "path": "skills/agent-debugging/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-debugging.png?updatedAt=1774688068298",
-          "voiceLine": "Reproduce first. Then diagnose. Never guess.",
+          "voiceLine": "Tracing the fault back to the real cause.",
           "playbooks": [
-            "debugging-and-diagnostics",
-            "testing-and-verification",
-            "research-and-reasoning"
-          ],
-          "achievements": [
             {
-              "label": "Root causes isolated",
-              "value": "430+"
+              "id": "debugging-and-diagnostics",
+              "name": "Debugging and Diagnostics",
+              "description": "Provides the reproduce-first method and hypothesis-testing discipline."
             },
             {
-              "label": "Mean time to clarity",
-              "value": "41 min"
+              "id": "testing-and-verification",
+              "name": "Testing and Verification",
+              "description": "Turns discoveries into regression guards and reproducible checks."
             },
             {
-              "label": "Repro success rate",
-              "value": "92%"
+              "id": "research-and-reasoning",
+              "name": "Research and Reasoning",
+              "description": "Improves evidence gathering when the relevant path is still unclear."
+            },
+            {
+              "id": "observability-debugging",
+              "name": "Observability Debugging",
+              "description": "Covers the telemetry gaps that slow diagnosis and how to close them."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-debugging.zip"
         }
-      ],
-      "accentCss": "--dept-quality"
+      ]
     },
     {
       "id": "security",
-      "name": "Security",
+      "name": "Security & Platform",
       "slug": "security",
-      "tagline": "Trust boundaries and risk reduction",
+      "tagline": "Trust boundaries, infrastructure operations, and production risk control",
       "accentColor": "--dept-security",
-      "accentHex": "#c084fc",
+      "accentCss": "--dept-security",
+      "accentHex": "#ff5f5f",
       "roomPosition": {
-        "x": 2,
-        "y": 2,
-        "width": 1,
+        "x": 0,
+        "y": 3,
+        "width": 2,
         "height": 1
       },
       "agents": [
@@ -561,65 +938,133 @@
           "name": "Security",
           "codename": "agent-security_",
           "department": "security",
-          "role": "Security-specific review and remediation guidance",
-          "description": "Focused AppSec review for auth, authorization, validation, secrets, trust boundaries, and risky defaults.",
+          "role": "Security-specific review and remediation specialist",
+          "description": "Reviews work through a security lens when trust boundaries, secrets, permissions, auth, or sensitive data are involved.",
           "skills": [
-            "appsec review",
-            "trust boundaries",
+            "AppSec review",
             "auth and authorization",
-            "remediation guidance"
+            "input validation",
+            "trust-boundary analysis"
+          ],
+          "whenToUse": [
+            "The task touches auth, permissions, secrets, public exposure, or sensitive data.",
+            "You want a focused security review instead of a general code-quality pass.",
+            "An agent, automation, or prompt configuration needs attack-surface judgment."
           ],
           "invocation": {
             "codex": "@agent-security",
-            "opencode": "$agent-security"
+            "slash": "/agent-security",
+            "legacy": "$agent-security"
           },
           "status": "online",
           "sprite": {
-            "style": "pixel",
-            "color": "#c084fc",
+            "style": "geometric",
+            "color": "#ff5f5f",
             "variant": 1
           },
-          "replaces": [
-            "agent-security"
-          ],
           "path": "skills/agent-security/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-security.png?updatedAt=1774688059972",
-          "voiceLine": "Scanning trust boundaries. Threat model initializing.",
+          "voiceLine": "Trust boundaries are mapped and the risk is under watch.",
           "playbooks": [
-            "security-engineering",
-            "systems-architecture",
-            "review-and-pr-operations"
-          ],
-          "achievements": [
             {
-              "label": "Threat models completed",
-              "value": "170+"
+              "id": "security-engineering",
+              "name": "Security Engineering",
+              "description": "Drives the threat model, remediation path, and least-privilege posture."
             },
             {
-              "label": "Risky defaults removed",
-              "value": "320+"
+              "id": "systems-architecture",
+              "name": "Systems Architecture",
+              "description": "Helps evaluate security-sensitive boundaries and exposure paths."
             },
             {
-              "label": "Trust gaps closed",
-              "value": "98%"
+              "id": "review-and-pr-operations",
+              "name": "Review and PR Operations",
+              "description": "Turns security issues into actionable findings with release-aware framing."
+            },
+            {
+              "id": "agent-config-security-scan",
+              "name": "Agent Config Security Scan",
+              "description": "Examines prompts, tool permissions, and automation config as real attack surface."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-security.zip"
+        },
+        {
+          "id": "agent-ops",
+          "name": "Ops",
+          "codename": "agent-ops_",
+          "department": "security",
+          "role": "Infrastructure, deployment, CI/CD, and incident operations specialist",
+          "description": "The public entry point for deployment systems, cloud infrastructure, Kubernetes, Terraform, incident handling, and production troubleshooting.",
+          "skills": [
+            "CI/CD",
+            "cloud infrastructure",
+            "incident response",
+            "Terraform and Kubernetes"
+          ],
+          "whenToUse": [
+            "A deployment, build pipeline, or production operation needs direct attention.",
+            "You are working on cloud infra, Terraform, Kubernetes, or operational troubleshooting.",
+            "Rollback, operator control, and incident risk need to stay explicit throughout the work."
+          ],
+          "invocation": {
+            "codex": "@agent-ops",
+            "slash": "/agent-ops",
+            "legacy": "$agent-ops"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff5f5f",
+            "variant": 2
+          },
+          "path": "skills/agent-ops/SKILL.md",
+          "portrait": "/portraits/normalized/agent-ops.png",
+          "voiceLine": "Platform lane hot. We can move carefully without losing rollback control.",
+          "playbooks": [
+            {
+              "id": "ops-foundation",
+              "name": "Ops Foundation",
+              "description": "Classifies the operational problem before deeper infra lanes are selected."
+            },
+            {
+              "id": "deployment-operations",
+              "name": "Deployment Operations",
+              "description": "Handles CI/CD, release pipelines, and production rollout discipline."
+            },
+            {
+              "id": "cloud-infrastructure",
+              "name": "Cloud Infrastructure",
+              "description": "Shapes cloud resource decisions and deployment topology."
+            },
+            {
+              "id": "terraform-operations",
+              "name": "Terraform Operations",
+              "description": "Guides infra-as-code changes with operator control and safer review."
+            },
+            {
+              "id": "incident-operations",
+              "name": "Incident Operations",
+              "description": "Supports production triage, rollback reasoning, and response clarity."
+            }
+          ],
+          "achievements": []
         }
-      ],
-      "accentCss": "--dept-security"
+      ]
     },
     {
       "id": "knowledge",
-      "name": "Knowledge & Continuity",
+      "name": "Research & Continuity",
       "slug": "knowledge",
-      "tagline": "Documentation, summaries, and handoff memory",
+      "tagline": "Documentation, research, and structured continuity across tools and sessions",
       "accentColor": "--dept-knowledge",
-      "accentHex": "#ffd60a",
+      "accentCss": "--dept-knowledge",
+      "accentHex": "#c4a1ff",
       "roomPosition": {
-        "x": 3,
-        "y": 2,
-        "width": 1,
+        "x": 4,
+        "y": 3,
+        "width": 2,
         "height": 1
       },
       "agents": [
@@ -628,52 +1073,56 @@
           "name": "Docs",
           "codename": "agent-docs_",
           "department": "knowledge",
-          "role": "Documentation and explanation owner",
-          "description": "Handles docs updates, technical summaries, release-facing explanations, and developer-facing writing without splitting these into separate public entries.",
+          "role": "Documentation and explanation specialist for code changes and system behavior",
+          "description": "Writes and updates developer-facing documentation, JSDoc, README sections, PR summaries, and usage guidance grounded in the actual implementation.",
           "skills": [
-            "documentation",
-            "technical summaries",
-            "release notes",
+            "technical documentation",
+            "change summaries",
+            "README and JSDoc updates",
             "knowledge transfer"
+          ],
+          "whenToUse": [
+            "A code change needs clearer docs, explanation, or onboarding support.",
+            "A PR or implementation needs a concise technical summary other humans can trust.",
+            "You want repo language and docs to stay aligned with the implementation."
           ],
           "invocation": {
             "codex": "@agent-docs",
-            "opencode": "$agent-docs"
+            "slash": "/agent-docs",
+            "legacy": "$agent-docs"
           },
-          "status": "online",
+          "status": "idle",
           "sprite": {
             "style": "geometric",
-            "color": "#ffd60a",
+            "color": "#c4a1ff",
             "variant": 1
           },
-          "replaces": [
-            "agent-docs",
-            "commit-summarizer",
-            "release-notes",
-            "sprint-retro"
-          ],
           "path": "skills/agent-docs/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-docs.png?updatedAt=1774688053355",
-          "voiceLine": "Capturing the knowledge. This won't be lost.",
+          "voiceLine": "Turning complex behavior into clear guidance.",
           "playbooks": [
-            "documentation-and-doc-ops",
-            "doc",
-            "research-and-reasoning"
-          ],
-          "achievements": [
             {
-              "label": "Docs published",
-              "value": "560+"
+              "id": "documentation-and-doc-ops",
+              "name": "Documentation and Doc Ops",
+              "description": "Provides the core writing discipline for docs that stay maintainable over time."
             },
             {
-              "label": "Outdated pages refreshed",
-              "value": "190+"
+              "id": "doc",
+              "name": "Doc",
+              "description": "Supports exactness, formatting, and fidelity when editing technical documents."
             },
             {
-              "label": "Reader clarity score",
-              "value": "96%"
+              "id": "research-and-reasoning",
+              "name": "Research and Reasoning",
+              "description": "Helps validate facts before they become part of durable documentation."
+            },
+            {
+              "id": "document-files",
+              "name": "Document Files",
+              "description": "Covers structured doc workflows when files and artifacts need stronger handling."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-docs.zip"
         },
         {
@@ -681,52 +1130,110 @@
           "name": "Historian",
           "codename": "agent-history_",
           "department": "knowledge",
-          "role": "Conversation continuity and structured handoff owner",
-          "description": "Exports continuity briefings for a new chat or AI tool and preserves institutional memory across session boundaries.",
+          "role": "Continuity and handoff specialist across chats, sessions, and tools",
+          "description": "Exports a conversation, workstream, or project state into a structured briefing for a new chat, session, or AI tool without losing the decisions that matter.",
           "skills": [
             "context export",
-            "handoff briefs",
-            "session continuity",
-            "project memory"
+            "handoff briefings",
+            "decision continuity",
+            "resume prompts"
+          ],
+          "whenToUse": [
+            "You need to continue work in another chat, tool, or future session.",
+            "A long conversation needs to be compressed into a clean continuity pack.",
+            "You want decisions, commands, paths, and blockers preserved without the chatter."
           ],
           "invocation": {
             "codex": "@agent-history",
-            "opencode": "$agent-history"
+            "slash": "/agent-history",
+            "legacy": "$agent-history"
           },
           "status": "online",
           "sprite": {
             "style": "geometric",
-            "color": "#ffd60a",
+            "color": "#c4a1ff",
             "variant": 2
           },
-          "replaces": [
-            "agent-history"
-          ],
           "path": "skills/agent-history/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-history.png?updatedAt=1774688070915",
-          "voiceLine": "Exporting continuity briefing. Context preserved.",
+          "voiceLine": "Prior context is ready, and nothing important was lost.",
           "playbooks": [
-            "others/context-manager",
-            "doc"
-          ],
-          "achievements": [
             {
-              "label": "Briefings exported",
-              "value": "275+"
+              "id": "briefing-template",
+              "name": "Briefing Template",
+              "description": "Structures the continuity pack so another AI can resume without guessing."
             },
             {
-              "label": "Context recovered",
-              "value": "99%"
+              "id": "context-manager",
+              "name": "Context Manager",
+              "description": "Preserves critical state, user preferences, and durable identifiers."
             },
             {
-              "label": "Decision logs preserved",
-              "value": "840+"
+              "id": "learned-patterns",
+              "name": "Learned Patterns",
+              "description": "Captures durable lessons worth reusing across future runs."
             }
           ],
+          "achievements": [],
           "downloadUrl": "/downloads/agents/agent-history.zip"
+        },
+        {
+          "id": "agent-researcher",
+          "name": "Researcher",
+          "codename": "agent-researcher_",
+          "department": "knowledge",
+          "role": "Evidence gathering and synthesis specialist for grounded decisions",
+          "description": "The research specialist for evidence gathering, comparison, validation, and source-backed synthesis when the user needs more than a quick opinion.",
+          "skills": [
+            "source-grounded research",
+            "comparison and tradeoffs",
+            "challenge review",
+            "briefing synthesis"
+          ],
+          "whenToUse": [
+            "A decision needs comparison, validation, or a grounded brief before acting.",
+            "You have links, notes, docs, or papers that need synthesis into something usable.",
+            "Claims or recommendations need adversarial pressure-testing instead of a fast take."
+          ],
+          "invocation": {
+            "codex": "@agent-researcher",
+            "slash": "/agent-researcher",
+            "legacy": "$agent-researcher"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#c4a1ff",
+            "variant": 3
+          },
+          "path": "skills/agent-researcher/SKILL.md",
+          "portrait": "/portraits/normalized/agent-researcher.png",
+          "voiceLine": "Research lane engaged. We’ll separate what is known, inferred, and still uncertain.",
+          "playbooks": [
+            {
+              "id": "research-and-reasoning",
+              "name": "Research and Reasoning",
+              "description": "Provides the evidence-first operating model for synthesis and challenge review."
+            },
+            {
+              "id": "source-grounded-research",
+              "name": "Source Grounded Research",
+              "description": "Keeps the answer anchored to stronger sources instead of loose summaries."
+            },
+            {
+              "id": "landscape-scan",
+              "name": "Landscape Scan",
+              "description": "Builds comparative views when the user needs options, categories, or market context."
+            },
+            {
+              "id": "briefing-synthesis",
+              "name": "Briefing Synthesis",
+              "description": "Turns scattered findings into a memo, brief, or decision-ready summary."
+            }
+          ],
+          "achievements": []
         }
-      ],
-      "accentCss": "--dept-knowledge"
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
+import type { AgentPlaybook } from "@/lib/types";
 import styles from "./PlaybookWall.module.scss";
 
 interface PlaybookWallProps {
-  playbooks: string[];
+  playbooks: AgentPlaybook[];
   departmentId: string;
 }
 
@@ -20,13 +21,14 @@ export default function PlaybookWall({
       </div>
       <div className={styles.grid}>
         {playbooks.map((playbook, index) => (
-          <article key={playbook} className={styles.card}>
+          <article key={playbook.id} className={styles.card}>
             <span className={styles.icon} aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>
               <p className={styles.label}>PLAYBOOK</p>
-              <h4>{playbook}</h4>
+              <h4>{playbook.name}</h4>
+              <p className={styles.description}>{playbook.description}</p>
             </div>
           </article>
         ))}

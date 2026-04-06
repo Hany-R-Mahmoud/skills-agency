@@ -13,9 +13,10 @@ interface AgentPageProps {
 }
 
 export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
-  const commandSyntax = agent.invocation.opencode.startsWith("$")
-    ? agent.invocation.opencode
-    : agent.invocation.codex;
+  const invocationOptions = [
+    agent.invocation.legacy ?? `$${agent.id}`,
+    agent.invocation.slash,
+  ];
 
   return (
     <article className={styles.page} data-department={agent.departmentId}>
@@ -28,6 +29,7 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
             alt={`${agent.name} portrait`}
             status={agent.status}
             departmentId={agent.departmentId}
+            fit={agent.portraitFit}
             priority
           />
         </div>
@@ -64,30 +66,34 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
           <section className={styles.commandPanel}>
             <div className={styles.sectionHeader}>
               <p className="label-sm">How to call this agent</p>
-              <h2>Use the command below to load this specialist directly.</h2>
             </div>
-            <div className={styles.commandLine}>
-              <span className={styles.commandLabel}>Command</span>
-              <code>{commandSyntax}</code>
+            <div className={styles.commandGrid}>
+              {invocationOptions.map((command) => (
+                <article key={command} className={styles.commandCard}>
+                  <code>{command}</code>
+                </article>
+              ))}
             </div>
           </section>
 
-          <div className={styles.actions}>
-            <a
-              href={agent.downloadUrl}
-              className={styles.primaryAction}
-              download
-            >
-              Download skill pack
-            </a>
-          </div>
+          {agent.downloadUrl ? (
+            <div className={styles.actions}>
+              <a
+                href={agent.downloadUrl}
+                className={styles.primaryAction}
+                download
+              >
+                Download full pack
+              </a>
+            </div>
+          ) : null}
         </div>
       </section>
 
       <section className={styles.skillsSection}>
         <div className={styles.sectionHeader}>
-          <p className="label-sm">Field profile</p>
-          <h2>Core capabilities on active rotation.</h2>
+          <p className="label-sm">Areas of expertise</p>
+          <h2>Core strengths this specialist brings onto the floor.</h2>
         </div>
         <div className={styles.skillList}>
           {agent.skills.map((skill) => (
@@ -98,11 +104,25 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
         </div>
       </section>
 
+      <section className={styles.guidanceSection}>
+        <div className={styles.sectionHeader}>
+          <p className="label-sm">Best used when</p>
+          <h2>Fast guidance for choosing the right agent.</h2>
+        </div>
+        <div className={styles.guidanceList}>
+          {agent.whenToUse.map((entry) => (
+            <article key={entry} className={styles.guidanceCard}>
+              <span className={styles.guidanceIndex} aria-hidden="true">
+                +
+              </span>
+              <p>{entry}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <PlaybookWall playbooks={agent.playbooks} departmentId={agent.departmentId} />
-      <AchievementWall
-        achievements={agent.achievements}
-        departmentId={agent.departmentId}
-      />
+      <AchievementWall achievements={agent.achievements} departmentId={agent.departmentId} />
 
       <section className={styles.teamSection}>
         <div className={styles.sectionHeader}>
@@ -121,6 +141,7 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
                 alt={`${relatedAgent.name} portrait`}
                 status={relatedAgent.status}
                 departmentId={relatedAgent.departmentId}
+                fit={relatedAgent.portraitFit}
                 className={styles.teamPortrait}
               />
               <div className={styles.teamCopy}>

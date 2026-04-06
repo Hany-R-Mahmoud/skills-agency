@@ -57,6 +57,13 @@
   object-position: center;
 }
 
+.image[data-fit="contain"] {
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(0.65rem, 1.6vw, 1rem);
+  transform: scale(0.96);
+}
+
 .statusBadge {
   position: absolute;
   right: var(--space-3);

@@ -133,31 +133,31 @@ export default function AgentPanel({ agent, open, onClose }: AgentPanelProps) {
             <div className={styles.invokeGrid}>
               <div className={styles.codeCard}>
                 <div className={styles.codeHeader}>
-                  <span className="label-sm">Codex</span>
-                  <Tooltip title={copiedKey === "codex" ? "Copied!" : "Copy"}>
+                  <span className="label-sm">$ Alias</span>
+                  <Tooltip title={copiedKey === "legacy" ? "Copied!" : "Copy"}>
                     <Button
                       type="text"
                       size="small"
                       icon={<CopyOutlined />}
-                      onClick={() => void copyValue("codex", agent.invocation.codex)}
+                      onClick={() => void copyValue("legacy", agent.invocation.legacy ?? `$${agent.id}`)}
                     />
                   </Tooltip>
                 </div>
-                <pre>{agent.invocation.codex}</pre>
+                <pre>{agent.invocation.legacy ?? `$${agent.id}`}</pre>
               </div>
               <div className={styles.codeCard}>
                 <div className={styles.codeHeader}>
-                  <span className="label-sm">OpenCode</span>
-                  <Tooltip title={copiedKey === "opencode" ? "Copied!" : "Copy"}>
+                  <span className="label-sm">/ Alias</span>
+                  <Tooltip title={copiedKey === "slash" ? "Copied!" : "Copy"}>
                     <Button
                       type="text"
                       size="small"
                       icon={<CopyOutlined />}
-                      onClick={() => void copyValue("opencode", agent.invocation.opencode)}
+                      onClick={() => void copyValue("slash", agent.invocation.slash)}
                     />
                   </Tooltip>
                 </div>
-                <pre>{agent.invocation.opencode}</pre>
+                <pre>{agent.invocation.slash}</pre>
               </div>
             </div>
           </section>

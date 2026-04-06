@@ -7,6 +7,7 @@ import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
 import { initAudio, playUI } from "@/lib/audio";
 import {
+  getAgencyDownloadPath,
   getDepartmentSummaries,
   getRoomTiles,
   getSiteStats,
@@ -29,7 +30,7 @@ export default function HomePage() {
       <MainArea
         eyebrow="Command Floor"
         title="The Agency"
-        description="Version 2 command floor with a portrait-first roster, glass-wall office navigation, and direct access to the 12 public agents."
+        description={`Version 3 command floor with a portrait-first roster, glass-wall office navigation, and direct access to the ${stats.totalAgents} public agents.`}
         hideHeader
       >
         <section className={styles.hero}>
@@ -37,7 +38,7 @@ export default function HomePage() {
             <p className={styles.kicker}>Command Floor</p>
             <h1 className={styles.title}>THE AGENCY</h1>
             <p className={styles.subtitle}>
-              12 public agents. 6 departments. One command floor.
+              {stats.totalAgents} public agents. {stats.totalDepartments} departments. One command floor.
             </p>
             <p>
               Review the agency&apos;s leadership, delivery, design, quality,
@@ -49,6 +50,9 @@ export default function HomePage() {
               <Link href="#hq-map" className={styles.primaryAction} onClick={handleEnterHQ}>
                 Enter floor
               </Link>
+              <a href={getAgencyDownloadPath()} className={styles.secondaryAction} download>
+                Download all agents
+              </a>
             </div>
           </div>
           <aside className={styles.heroRail}>
