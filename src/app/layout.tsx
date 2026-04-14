@@ -5,6 +5,7 @@ import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ConfigProvider theme={agencyTheme}>
             {children}
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+            <Analytics />
           </ConfigProvider>
         </AntdRegistry>
       </body>
