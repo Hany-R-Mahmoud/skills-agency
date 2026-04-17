@@ -1,10 +1,10 @@
 import "@/app/globals.css";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import agencyTheme from "@/styles/antd.config";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -21,13 +21,15 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <AntdRegistry>
           <ConfigProvider theme={agencyTheme}>
             {children}
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+            <GoogleAnalytics gaId={gaId} />
             <Analytics />
           </ConfigProvider>
         </AntdRegistry>
