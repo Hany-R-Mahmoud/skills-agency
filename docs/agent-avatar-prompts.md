@@ -75,6 +75,27 @@ Accent: rose neon (`#ff6f91`)
 Prompt:
 `Cinematic futuristic agency portrait, premium sci-fi corporate command center aesthetic, half-body operator portrait, confident expression, sharp editorial lighting, polished dark environment with rose neon glow accents, subtle holographic UI overlays, premium wardrobe with geometric tailoring, highly detailed face and fabric, clean silhouette, no weaponry, no cartoon look, no low-detail anime, no distorted hands, no text, no watermark, portrait orientation, cover-art composition, same visual universe as the original The Agency portraits. A skill and browser-agent composer, surrounded by layered workflow modules, packaging grids, and browser-state motifs, inventive systems-builder energy, polished and strategic rather than chaotic.`
 
+### `agent-design`
+
+Accent: rose neon (`#ff6f91`)
+
+Prompt:
+`Cinematic futuristic agency portrait, premium sci-fi corporate command center aesthetic, half-body operator portrait, confident expression, sharp editorial lighting, polished dark environment with rose neon glow accents, subtle holographic UI overlays, premium wardrobe with geometric tailoring, highly detailed face and fabric, clean silhouette, no weaponry, no cartoon look, no low-detail anime, no distorted hands, no text, no watermark, portrait orientation, cover-art composition, same visual universe as the original The Agency portraits. A unified design strategy lead shaping brand systems, UX structure, visual direction, storytelling, and image prompting, surrounded by elegant moodboards, layout frames, and narrative design surfaces, visionary but disciplined creative-director presence.`
+
+### `agent-product`
+
+Accent: rose neon (`#ff6f91`)
+
+Prompt:
+`Cinematic futuristic agency portrait, premium sci-fi corporate command center aesthetic, half-body operator portrait, confident expression, sharp editorial lighting, polished dark environment with rose neon glow accents, subtle holographic UI overlays, premium wardrobe with geometric tailoring, highly detailed face and fabric, clean silhouette, no weaponry, no cartoon look, no low-detail anime, no distorted hands, no text, no watermark, portrait orientation, cover-art composition, same visual universe as the original The Agency portraits. A product strategy and delivery specialist, surrounded by roadmap layers, prioritization matrices, feedback clusters, and launch planning overlays, calm decision-maker energy with sharp product judgment and clear operational focus.`
+
+### `agent-fintech`
+
+Accent: rose neon (`#ff6f91`) while it lives in the Product & Design department
+
+Prompt:
+`Cinematic futuristic agency portrait, premium sci-fi corporate command center aesthetic, half-body operator portrait, confident expression, sharp editorial lighting, polished dark environment with rose neon glow accents, subtle holographic UI overlays, premium wardrobe with geometric tailoring, highly detailed face and fabric, clean silhouette, no weaponry, no cartoon look, no low-detail anime, no distorted hands, no text, no watermark, portrait orientation, cover-art composition, same visual universe as the original The Agency portraits. A revenue, growth, and finance strategy specialist, surrounded by refined dashboards for funnel performance, forecasting curves, paid-media signals, and commercial planning surfaces, premium analytical presence with high-trust business clarity.`
+
 ### `agent-ops`
 
 Accent: signal red (`#ff5f5f`)

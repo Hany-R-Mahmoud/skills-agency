@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "3.0.0",
-    "lastUpdated": "2026-04-17",
-    "totalAgents": 19,
+    "lastUpdated": "2026-04-18",
+    "totalAgents": 22,
     "totalDepartments": 6,
     "mode": "agent-first",
     "notes": "Roster synced to the current public agent surface. Slash commands are now the preferred cross-platform invocation format, while Codex mentions and legacy aliases remain listed for compatibility."
@@ -472,7 +472,7 @@
       "id": "design",
       "name": "Product & Design",
       "slug": "design",
-      "tagline": "Frontend feel, Stitch workflows, diagrams, and agent composition design",
+      "tagline": "Design strategy, product decisions, growth planning, and premium interface direction",
       "accentColor": "--dept-design",
       "accentCss": "--dept-design",
       "accentHex": "#ff6f91",
@@ -483,6 +483,203 @@
         "height": 1
       },
       "agents": [
+        {
+          "id": "agent-design",
+          "name": "Design",
+          "codename": "agent-design_",
+          "department": "design",
+          "role": "Design strategy and artifact specialist",
+          "description": "Turns design goals into clear, usable outputs without making you choose the internal playbook yourself.",
+          "skills": [
+            "brand systems",
+            "UX research",
+            "UX architecture",
+            "UI systems and handoff",
+            "visual storytelling",
+            "inclusive visuals",
+            "image direction",
+            "delight and personality"
+          ],
+          "whenToUse": [
+            "You need design thinking, not implementation.",
+            "You want a developer-friendly design artifact.",
+            "You need structure, clarity, and stronger direction."
+          ],
+          "invocation": {
+            "codex": "@agent-design",
+            "slash": "/agent-design",
+            "legacy": "$agent-design"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 1
+          },
+          "path": "skills/agent-design/SKILL.md",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-design.png",
+          "portraitFit": "contain",
+          "voiceLine": "Design direction locked. I’ll choose the right lane and keep the artifact cohesive.",
+          "playbooks": [
+            {
+              "id": "design-foundation",
+              "name": "Design Foundation",
+              "description": "Sets shared principles and context before any narrower design lane is selected."
+            },
+            {
+              "id": "brand-system",
+              "name": "Brand System",
+              "description": "Defines identity, tone, and visual-language guardrails for durable design work."
+            },
+            {
+              "id": "ux-research",
+              "name": "UX Research",
+              "description": "Plans or synthesizes user signal so design choices stay grounded."
+            },
+            {
+              "id": "ux-architecture",
+              "name": "UX Architecture",
+              "description": "Turns ideas into flows, structure, and decision-ready experience maps."
+            },
+            {
+              "id": "ui-systems",
+              "name": "UI Systems",
+              "description": "Shapes reusable components, tokens, and implementation-ready handoff material."
+            }
+          ],
+          "achievements": [],
+          "downloadUrl": "/downloads/agents/agent-design.zip"
+        },
+        {
+          "id": "agent-product",
+          "name": "Product",
+          "codename": "agent-product_",
+          "department": "design",
+          "role": "Product strategy and delivery decision-making specialist",
+          "description": "Shapes product strategy, roadmap choices, feedback synthesis, sprint priorities, delivery plans, workflow operations, experiment tracking, trend analysis, and behavioral intervention design through one public entry point.",
+          "skills": [
+            "product strategy",
+            "prioritization and planning",
+            "feedback synthesis",
+            "delivery and workflow operations",
+            "experiments and trend research",
+            "behavioral product design"
+          ],
+          "whenToUse": [
+            "The request is about strategy, roadmap direction, or initiative framing.",
+            "You need prioritization, sprint planning, or delivery planning with explicit tradeoffs.",
+            "The work depends on feedback synthesis, experiments, workflow governance, or retention design."
+          ],
+          "invocation": {
+            "codex": "@agent-product",
+            "slash": "/agent-product",
+            "legacy": "$agent-product"
+          },
+          "status": "online",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 2
+          },
+          "path": "skills/agent-product/SKILL.md",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-product.png",
+          "portraitFit": "contain",
+          "voiceLine": "Decision lane selected. I’ll turn the problem into one cohesive product artifact.",
+          "playbooks": [
+            {
+              "id": "product-foundation",
+              "name": "Product Foundation",
+              "description": "Frames the product decision, evidence quality, and tradeoff logic before routing deeper."
+            },
+            {
+              "id": "product-core",
+              "name": "Product Core",
+              "description": "Shapes strategy, PRDs, and roadmap decisions around the clearest problem framing."
+            },
+            {
+              "id": "sprint-prioritization",
+              "name": "Sprint Prioritization",
+              "description": "Turns competing work into a sequenced plan with explicit cost and value tradeoffs."
+            },
+            {
+              "id": "feedback-synthesis",
+              "name": "Feedback Synthesis",
+              "description": "Extracts themes and implications from customer, support, or market signal."
+            },
+            {
+              "id": "delivery-management",
+              "name": "Delivery Management",
+              "description": "Converts product intent into execution packets, planning rhythm, and stakeholder alignment."
+            }
+          ],
+          "achievements": [],
+          "downloadUrl": "/downloads/agents/agent-product.zip"
+        },
+        {
+          "id": "agent-fintech",
+          "name": "Fintech",
+          "codename": "agent-fintech_",
+          "department": "design",
+          "role": "Revenue, growth, and finance decision-making specialist",
+          "description": "Shapes sales strategy, marketing and paid media plans, measurement systems, financial analysis, tax-aware planning, and market expansion through one public entry point.",
+          "skills": [
+            "sales and revenue strategy",
+            "marketing and paid growth",
+            "measurement and attribution",
+            "finance planning and modeling",
+            "tax-aware and risk-aware planning",
+            "market expansion"
+          ],
+          "whenToUse": [
+            "Revenue motion, growth, paid media, funnel performance, or attribution need a clearer direction.",
+            "You need forecasts, budgets, unit economics, or finance planning.",
+            "The decision touches tax-aware planning, compliance-sensitive choices, or market expansion."
+          ],
+          "invocation": {
+            "codex": "@agent-fintech",
+            "slash": "/agent-fintech",
+            "legacy": "$agent-fintech"
+          },
+          "status": "busy",
+          "sprite": {
+            "style": "geometric",
+            "color": "#ff6f91",
+            "variant": 3
+          },
+          "path": "skills/agent-fintech/SKILL.md",
+          "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-fintech.png",
+          "portraitFit": "contain",
+          "voiceLine": "Commercial brief received. I’ll route to the smallest lane that gets to a decision fast.",
+          "playbooks": [
+            {
+              "id": "fintech-foundation",
+              "name": "Fintech Foundation",
+              "description": "Sets business framing, evidence discipline, and decision hygiene for commercial work."
+            },
+            {
+              "id": "revenue-architecture",
+              "name": "Revenue Architecture",
+              "description": "Designs sales motion, pipeline strategy, and offer structure around actual business constraints."
+            },
+            {
+              "id": "growth-marketing",
+              "name": "Growth Marketing",
+              "description": "Plans channels, paid media, and acquisition logic with explicit efficiency tradeoffs."
+            },
+            {
+              "id": "performance-measurement",
+              "name": "Performance Measurement",
+              "description": "Audits attribution, tracking, and funnel data so growth decisions rest on signal instead of guesswork."
+            },
+            {
+              "id": "finance-planning",
+              "name": "Finance Planning",
+              "description": "Builds forecasts, budgets, and unit-economic views for risk-aware decision support."
+            }
+          ],
+          "achievements": [],
+          "downloadUrl": "/downloads/agents/agent-fintech.zip"
+        },
         {
           "id": "agent-impeccable",
           "name": "Impeccable",
@@ -510,7 +707,7 @@
           "sprite": {
             "style": "geometric",
             "color": "#ff6f91",
-            "variant": 1
+            "variant": 4
           },
           "path": "skills/agent-impeccable/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-impeccable.png?updatedAt=1774688067670",

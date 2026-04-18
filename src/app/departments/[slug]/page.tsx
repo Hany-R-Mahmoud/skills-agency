@@ -119,39 +119,39 @@ const departmentScene: Record<string, DepartmentSceneContent> = {
     heroLead: "PRODUCT",
     heroAccent: "DESIGN",
     description:
-      "Shaping product feel, interface clarity, and frontend atmosphere into a coherent premium experience users remember.",
+      "Shaping design direction, product judgment, and commercial clarity into a cohesive premium operating room for decisions and artifacts.",
     pulseLabel: "Interface quality signal",
     pulseBars: [35, 44, 58, 50, 66, 71, 60, 75, 69, 78, 72, 80],
     feedTitle: "Design signal feed",
     feedItems: [
       {
-        title: "Visual hierarchy sharpened",
-        body: "Primary surfaces now tuned for stronger focus and calmer cognitive load.",
+        title: "Decision quality elevated",
+        body: "Design, product, and growth lanes are now aligned around clearer outputs and faster routing.",
         age: "3m ago",
       },
       {
-        title: "Interaction polish elevated",
-        body: "Motion and typography calibration aligned to premium editorial targets.",
+        title: "Strategy packets stabilized",
+        body: "Roadmap, UX, and commercial briefs are landing in a tighter, more reusable artifact format.",
         age: "17m ago",
       },
       {
-        title: "Responsive review locked",
-        body: "Desktop and mobile variants staying within the same system feel.",
+        title: "Premium handoff locked",
+        body: "Creative direction and execution guidance are staying consistent across adjacent specialist lanes.",
         age: "36m ago",
       },
     ],
     systems: [
       {
-        title: "Visual language",
-        description: "A curated tone system balancing cinematic energy with enterprise-grade restraint.",
+        title: "Design language",
+        description: "A curated direction layer for brand systems, UX structure, and high-signal design artifacts.",
       },
       {
-        title: "Experience polish",
-        description: "Structured pass for interaction quality, onboarding feel, and production-level refinement.",
+        title: "Product command loop",
+        description: "Decision-making surface for roadmap tradeoffs, prioritization, delivery planning, and experiment framing.",
       },
       {
-        title: "Design system fit",
-        description: "Alignment channel for preserving consistency while still making the product memorable.",
+        title: "Commercial insight",
+        description: "A growth and finance lane for measurement, forecasts, expansion, and risk-aware planning.",
       },
     ],
   },
