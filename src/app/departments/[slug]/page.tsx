@@ -6,6 +6,7 @@ import AgentPortrait from "@/components/agents/AgentPortrait";
 import StatusPip from "@/components/shared/StatusPip";
 import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
+import { createPageMetadata } from "@/lib/metadata";
 import {
   getAgentDetailViewsByDepartment,
   getDepartmentBySlug,
@@ -300,10 +301,12 @@ export async function generateMetadata({
     };
   }
 
-  return {
+  return createPageMetadata({
     title: department.name,
     description: `${department.tagline}. Explore the ${department.name} roster, systems context, and active specialist pages.`,
-  };
+    path: `/departments/${department.slug}`,
+    imagePath: getDepartmentImagePath(department.id),
+  });
 }
 
 export default async function DepartmentPage({ params }: DepartmentPageProps) {

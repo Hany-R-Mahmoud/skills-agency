@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AgentProfilePage from "@/components/agents/AgentPage";
 import MainArea from "@/components/layout/MainArea";
 import Sidebar from "@/components/layout/Sidebar";
+import { createPageMetadata } from "@/lib/metadata";
 import {
   getAgentDetailView,
   getRelatedAgentDetailViews,
@@ -32,10 +33,12 @@ export async function generateMetadata({
     };
   }
 
-  return {
+  return createPageMetadata({
     title: agent.name,
     description: `${agent.role}. ${agent.description}`,
-  };
+    path: `/agents/${agent.id}`,
+    imagePath: agent.portrait,
+  });
 }
 
 export default async function AgentRoutePage({ params }: AgentPageProps) {

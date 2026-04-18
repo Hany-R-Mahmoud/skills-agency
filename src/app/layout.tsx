@@ -6,14 +6,34 @@ import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
+import { siteMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteMetadata.siteUrl),
   title: {
-    default: "The Agency",
-    template: "%s | The Agency",
+    default: siteMetadata.siteName,
+    template: `%s | ${siteMetadata.siteName}`,
   },
-  description:
-    "Cinematic showcase for a public roster of AI specialists, departments, and playbook-driven workflows.",
+  description: siteMetadata.defaultDescription,
+  openGraph: {
+    type: "website",
+    siteName: siteMetadata.siteName,
+    title: siteMetadata.siteName,
+    description: siteMetadata.defaultDescription,
+    url: siteMetadata.siteUrl,
+    images: [
+      {
+        url: siteMetadata.defaultImage,
+        alt: siteMetadata.siteName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.siteName,
+    description: siteMetadata.defaultDescription,
+    images: [siteMetadata.defaultImage],
+  },
 };
 
 interface RootLayoutProps {
