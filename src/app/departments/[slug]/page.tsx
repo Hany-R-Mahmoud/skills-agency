@@ -476,6 +476,7 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
                   status={agent.status}
                   departmentId={agent.departmentId}
                   fit={agent.portraitFit}
+                  label={agent.portraitLabel}
                   priority={index < 2}
                   className={styles.portrait}
                 />

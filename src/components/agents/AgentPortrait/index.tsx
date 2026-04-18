@@ -10,6 +10,7 @@ interface AgentPortraitProps {
   status: AgentStatus;
   departmentId: string;
   fit?: PortraitFit;
+  label?: string;
   priority?: boolean;
   className?: string;
 }
@@ -20,6 +21,7 @@ export default function AgentPortrait({
   status,
   departmentId,
   fit = "cover",
+  label,
   priority = false,
   className,
 }: AgentPortraitProps) {
@@ -39,6 +41,7 @@ export default function AgentPortrait({
           className={styles.image}
           data-fit={fit}
         />
+        {label ? <div className={styles.labelMask}>{label}</div> : null}
       </div>
       <div className={styles.statusBadge}>
         <StatusPip status={status} />

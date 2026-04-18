@@ -584,6 +584,7 @@
           "path": "skills/agent-product/SKILL.md",
           "portrait": "https://ik.imagekit.io/hrim/images/agents/agent-product.png",
           "portraitFit": "contain",
+          "portraitLabel": "AGENT: PRODUCT",
           "voiceLine": "Decision lane selected. I’ll turn the problem into one cohesive product artifact.",
           "playbooks": [
             {

@@ -67,6 +67,7 @@ export interface Agent {
   sprite: AgentSprite;
   portrait: string;
   portraitFit?: PortraitFit;
+  portraitLabel?: string;
   voiceLine: string;
   playbooks: AgentPlaybook[];
   achievements: AgentAchievement[];
@@ -139,6 +140,7 @@ export interface AgentListItem {
   skillsCount: number;
   sprite: AgentSprite;
   portrait: string;
+  portraitLabel?: string;
 }
 
 export interface RoomTilePreview {
@@ -184,6 +186,7 @@ export interface AgentDetailView {
   sprite: AgentSprite;
   portrait: string;
   portraitFit: PortraitFit;
+  portraitLabel?: string;
   voiceLine: string;
   playbooks: AgentPlaybook[];
   achievements: AgentAchievement[];

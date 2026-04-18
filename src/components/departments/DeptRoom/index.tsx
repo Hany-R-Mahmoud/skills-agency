@@ -56,6 +56,7 @@ export default function DeptRoom(props: DeptRoomProps) {
                 status={agent.status}
                 departmentId={agent.departmentId}
                 fit={agent.portraitFit}
+                label={agent.portraitLabel}
                 className={styles.agentPortrait}
               />
               <div className={styles.agentBody}>
