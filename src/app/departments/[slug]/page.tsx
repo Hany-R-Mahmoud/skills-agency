@@ -475,8 +475,8 @@ export default async function DepartmentPage({ params }: DepartmentPageProps) {
                   alt={`${agent.name} portrait`}
                   status={agent.status}
                   departmentId={agent.departmentId}
-                  fit={agent.portraitFit}
-                  label={agent.portraitLabel}
+                  fit="contain"
+                  badgePlacement="top-right"
                   priority={index < 2}
                   className={styles.portrait}
                 />

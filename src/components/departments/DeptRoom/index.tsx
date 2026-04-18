@@ -55,8 +55,8 @@ export default function DeptRoom(props: DeptRoomProps) {
                 alt={`${agent.name} portrait`}
                 status={agent.status}
                 departmentId={agent.departmentId}
-                fit={agent.portraitFit}
-                label={agent.portraitLabel}
+                fit="contain"
+                badgePlacement="top-right"
                 className={styles.agentPortrait}
               />
               <div className={styles.agentBody}>

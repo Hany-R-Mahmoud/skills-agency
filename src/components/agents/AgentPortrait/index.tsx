@@ -10,7 +10,7 @@ interface AgentPortraitProps {
   status: AgentStatus;
   departmentId: string;
   fit?: PortraitFit;
-  label?: string;
+  badgePlacement?: "top-right" | "bottom-right";
   priority?: boolean;
   className?: string;
 }
@@ -21,7 +21,7 @@ export default function AgentPortrait({
   status,
   departmentId,
   fit = "cover",
-  label,
+  badgePlacement = "bottom-right",
   priority = false,
   className,
 }: AgentPortraitProps) {
@@ -30,6 +30,7 @@ export default function AgentPortrait({
       className={cn(styles.frame, className)}
       data-department={departmentId}
       data-status={status}
+      data-badge-placement={badgePlacement}
     >
       <div className={styles.imageWrap}>
         <Image
@@ -41,7 +42,6 @@ export default function AgentPortrait({
           className={styles.image}
           data-fit={fit}
         />
-        {label ? <div className={styles.labelMask}>{label}</div> : null}
       </div>
       <div className={styles.statusBadge}>
         <StatusPip status={status} />

@@ -564,7 +564,9 @@
 
 .agentCard {
   display: grid;
+  grid-template-rows: auto 1fr;
   gap: var(--space-4);
+  height: 100%;
   padding: var(--space-4);
   border: 1px solid color-mix(in srgb, var(--page-accent) 16%, var(--border-default));
   background:
@@ -588,11 +590,12 @@
 }
 
 .portrait {
-  min-height: 360px;
+  height: 360px;
 }
 
 .agentCopy {
   display: grid;
+  align-content: start;
   gap: var(--space-2);
 }
 
@@ -887,7 +890,7 @@
   }
 
   .portrait {
-    min-height: 260px;
+    height: 260px;
   }
 }
 

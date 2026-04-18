@@ -98,7 +98,6 @@ const agentDetailViews = agents.map<AgentDetailView>((agent) => {
     sprite: agent.sprite,
     portrait: agent.portrait,
     portraitFit: agent.portraitFit ?? "cover",
-    portraitLabel: agent.portraitLabel,
     voiceLine: agent.voiceLine,
     playbooks: Array.isArray(agent.playbooks) ? agent.playbooks : [],
     achievements: agent.achievements,
@@ -141,7 +140,6 @@ const agentListItems = agents.map<AgentListItem>((agent) => {
     skillsCount: Array.isArray(agent.skills) ? agent.skills.length : 0,
     sprite: agent.sprite,
     portrait: agent.portrait,
-    portraitLabel: agent.portraitLabel,
   };
 });
 

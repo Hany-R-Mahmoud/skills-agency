@@ -30,7 +30,6 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
             status={agent.status}
             departmentId={agent.departmentId}
             fit={agent.portraitFit}
-            label={agent.portraitLabel}
             priority
           />
         </div>
@@ -143,7 +142,6 @@ export default function AgentPage({ agent, relatedAgents }: AgentPageProps) {
                 status={relatedAgent.status}
                 departmentId={relatedAgent.departmentId}
                 fit={relatedAgent.portraitFit}
-                label={relatedAgent.portraitLabel}
                 className={styles.teamPortrait}
               />
               <div className={styles.teamCopy}>

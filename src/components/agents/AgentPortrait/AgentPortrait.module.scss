@@ -38,8 +38,12 @@
 
 .imageWrap {
   position: relative;
+  height: 100%;
   min-height: 100%;
   aspect-ratio: 1 / 1;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--portrait-accent) 8%, transparent), transparent 34%),
+    color-mix(in srgb, var(--surface-lift) 88%, var(--surface-contrast-base));
 }
 
 .imageWrap::after {
@@ -52,35 +56,6 @@
   pointer-events: none;
 }
 
-.labelMask {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(0.85rem, 2vw, 1.4rem);
-  z-index: 1;
-  min-width: min(82%, 20rem);
-  max-width: calc(100% - 2rem);
-  padding: 0.55rem 1rem 0.65rem;
-  border: 1px solid color-mix(in srgb, var(--portrait-accent) 44%, rgba(255, 255, 255, 0.16));
-  border-radius: 1rem;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-overlay) 92%, var(--surface-void)), color-mix(in srgb, var(--surface-void) 94%, black)),
-    radial-gradient(circle at top, color-mix(in srgb, var(--portrait-accent) 24%, transparent), transparent 60%);
-  box-shadow:
-    0 0 24px color-mix(in srgb, var(--portrait-accent) 22%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, var(--portrait-accent) 10%, transparent);
-  color: color-mix(in srgb, white 82%, var(--portrait-accent) 18%);
-  font-family: var(--font-mono);
-  font-size: clamp(0.9rem, 2vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  line-height: 1;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 0 16px color-mix(in srgb, var(--portrait-accent) 45%, transparent);
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
 .image {
   object-fit: cover;
   object-position: center;
@@ -88,9 +63,8 @@
 
 .image[data-fit="contain"] {
   object-fit: contain;
-  object-position: center;
-  padding: clamp(0.65rem, 1.6vw, 1rem);
-  transform: scale(0.96);
+  object-position: center top;
+  padding: clamp(0.45rem, 1.25vw, 0.85rem);
 }
 
 .statusBadge {
@@ -107,4 +81,10 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  z-index: 1;
+}
+
+.frame[data-badge-placement="top-right"] .statusBadge {
+  top: var(--space-3);
+  bottom: auto;
 }
