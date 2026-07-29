@@ -35,3 +35,8 @@ These defaults are optimized for AI coding agents (and humans) working on apps t
 
 ## Recent Changes
 - 001-agency-showcase-site: Added TypeScript (strict), React 19, Next.js 16 App Router + Next.js, Ant Design v6, `@ant-design/cssinjs`,
+
+## Apex Yard documentation
+
+Read README.md and docs/portfolio.json before changing this project.
+Keep portfolio facts source-backed, update the structured document when the repository changes, and write Unknown / verify instead of guessing.

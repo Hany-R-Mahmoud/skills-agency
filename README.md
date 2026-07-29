@@ -33,3 +33,11 @@ npx next build --webpack
 - The app now lives at the repository root, not in a nested `the-agency/` folder.
 - `npx next build --webpack` currently completes successfully in this environment.
 - Turbopack production build may hang locally even though runtime and webpack build verification pass.
+
+## Apex Yard portfolio snapshot
+
+- Status: showcase
+- Category: Web
+- Source of truth: [docs/portfolio.json](docs/portfolio.json)
+
+This section is maintained from repository evidence and should be updated with docs/portfolio.json when the project changes.

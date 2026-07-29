@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "slug": "skills-agency",
+  "title": {
+    "en": "Skills Agency",
+    "ar": "Skills Agency"
+  },
+  "summary": {
+    "en": "Next.js 16 + App Router scaffold for The Agency v2, built with TypeScript, Ant Design, SCSS modules, and spec-kit initialization for both Codex and OpenCode workflows.",
+    "ar": "Next.js 16 + App Router scaffold for The Agency v2, built with TypeScript, Ant Design, SCSS modules, and spec-kit initialization for both Codex and OpenCode workflows."
+  },
+  "status": "showcase",
+  "portfolio": true,
+  "category": "Web",
+  "tech_stack": [
+    "Next.js",
+    "React",
+    "TypeScript"
+  ],
+  "features": [
+    {
+      "en": "spec-kit (`.specify`, `.agents`, `.opencode`)",
+      "ar": "spec-kit (`.specify`, `.agents`, `.opencode`)"
+    },
+    {
+      "en": "`src/app`: app routes and root layout",
+      "ar": "`src/app`: app routes and root layout"
+    },
+    {
+      "en": "`src/components`: layout, department, agent, and shared UI components",
+      "ar": "`src/components`: layout, department, agent, and shared UI components"
+    },
+    {
+      "en": "`src/data/skills.json`: starter agency data",
+      "ar": "`src/data/skills.json`: starter agency data"
+    },
+    {
+      "en": "`src/lib`: types, utilities, and future audio placeholder",
+      "ar": "`src/lib`: types, utilities, and future audio placeholder"
+    },
+    {
+      "en": "`src/styles`: global theme tokens and Ant Design config",
+      "ar": "`src/styles`: global theme tokens and Ant Design config"
+    }
+  ],
+  "progress": {
+    "en": "Classified as showcase-ready by Apex Yard; this snapshot reflects the current repository evidence.",
+    "ar": "Classified as showcase-ready by Apex Yard; this snapshot reflects the current repository evidence."
+  },
+  "issues": [
+    {
+      "en": "No test command is declared in package.json.",
+      "ar": "No test command is declared in package.json."
+    },
+    {
+      "en": "No conventional test directory was detected.",
+      "ar": "No conventional test directory was detected."
+    }
+  ],
+  "suggestions": [
+    {
+      "en": "Add a focused automated test command for the highest-risk behavior.",
+      "ar": "Add a focused automated test command for the highest-risk behavior."
+    },
+    {
+      "en": "Add reviewed screenshots and a fuller case study when visual evidence is available.",
+      "ar": "Add reviewed screenshots and a fuller case study when visual evidence is available."
+    }
+  ],
+  "commands": {
+    "install": "npm install",
+    "dev": "npm run dev",
+    "build": "npm run build",
+    "lint": "npm run lint"
+  },
+  "repository": {
+    "branch": "main",
+    "sync": "github",
+    "github": "https://github.com/Hany-R-Mahmoud/skills-agency"
+  },
+  "source": {
+    "workspace": "workspace/skills-agency",
+    "last_reviewed": "2026-07-29"
+  }
+}
