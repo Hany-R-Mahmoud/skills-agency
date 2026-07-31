@@ -1,0 +1,29 @@
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 3rem;
+  padding: 0 var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--dept-command) 34%, var(--border-default));
+  background: color-mix(in srgb, var(--dept-command) 9%, var(--surface-lift));
+  color: var(--dept-command);
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--duration-mid) var(--ease-smooth), border-color var(--duration-mid) var(--ease-smooth);
+}
+.action:hover,
+.action:focus-visible {
+  border-color: var(--dept-command);
+  background: color-mix(in srgb, var(--dept-command) 17%, var(--surface-lift));
+}
+
+.compact {
+  min-height: 2.65rem;
+  padding: 0 0.65rem;
+  font-size: 0.68rem;
+}

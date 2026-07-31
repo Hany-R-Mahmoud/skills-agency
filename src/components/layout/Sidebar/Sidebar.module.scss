@@ -28,6 +28,11 @@
   gap: var(--space-1);
 }
 
+.installControl {
+  width: 100%;
+  justify-content: flex-start;
+}
+
 .controlToggle {
   position: relative;
   display: grid;
@@ -323,6 +328,10 @@
   display: none;
 }
 
+.mobileNav::-webkit-scrollbar {
+  display: none;
+}
+
 .mobileHome,
 .mobileLink,
 .mobileTheme,
@@ -380,6 +389,10 @@
   cursor: pointer;
 }
 
+.mobileInstall {
+  --mobile-accent: var(--dept-command);
+}
+
 .mobileHome[data-active="true"],
 .mobileLink[data-active="true"] {
   border-color: var(--mobile-accent, var(--dept-command));
@@ -407,10 +420,14 @@
     bottom: 0;
     left: 0;
     z-index: calc(var(--z-overlay) - 1);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    overflow-x: auto;
+    justify-content: flex-start;
     gap: var(--space-2);
     align-items: stretch;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     padding:
       var(--space-3)
       var(--space-3)
@@ -427,11 +444,22 @@
   .mobileLink,
   .mobileTheme,
   .mobileMute {
+    flex: 0 0 clamp(4.6rem, 18vw, 6rem);
+    width: auto;
     min-height: 2.65rem;
     padding: 0.55rem 0.4rem;
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
+    scroll-snap-align: start;
+  }
+
+  .mobileInstall {
+    flex: 0 0 clamp(4.6rem, 18vw, 6rem);
+    width: auto;
+    min-height: 2.65rem;
+    padding: 0.55rem 0.4rem;
+    scroll-snap-align: start;
   }
 
   .mobileTheme,

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { BulbOutlined, MoonOutlined } from "@ant-design/icons";
+import PwaInstallAction from "@/components/pwa/PwaInstallAction";
 import type { SidebarDepartmentSummary, SiteStats } from "@/lib/types";
 import { getAgencyData } from "@/lib/utils";
 import {
@@ -82,6 +83,7 @@ export default function Sidebar({
               aria-hidden
             />
           </button>
+          <PwaInstallAction className={styles.installControl} />
         </div>
 
         <div className={styles.brandBlock}>
@@ -156,7 +158,7 @@ export default function Sidebar({
       </aside>
 
       <nav className={styles.mobileNav} aria-label="Quick department navigation">
-        <Link href="/" className={styles.mobileHome} data-active={pathname === "/"}>
+        <Link href="/" className={styles.mobileHome} data-active={pathname === "/"} aria-current={pathname === "/" ? "page" : undefined}>
           HQ
         </Link>
         {departments.map((department) => {
@@ -170,6 +172,7 @@ export default function Sidebar({
               href={`/departments/${department.slug}`}
               className={styles.mobileLink}
               data-active={isActive}
+              aria-current={isActive ? "page" : undefined}
               data-department={department.id}
               aria-label={`Open ${department.name}`}
               title={department.name}
@@ -187,6 +190,7 @@ export default function Sidebar({
         >
           {theme === "light" ? <MoonOutlined aria-hidden /> : <BulbOutlined aria-hidden />}
         </button>
+        <PwaInstallAction compact className={styles.mobileInstall} />
       </nav>
     </>
   );

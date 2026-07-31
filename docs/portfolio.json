@@ -15,7 +15,8 @@
   "tech_stack": [
     "Next.js",
     "React",
-    "TypeScript"
+    "TypeScript",
+    "PWA"
   ],
   "features": [
     {
@@ -41,6 +42,10 @@
     {
       "en": "`src/styles`: global theme tokens and Ant Design config",
       "ar": "`src/styles`: global theme tokens and Ant Design config"
+    },
+    {
+      "en": "Installable PWA shell with WebView guidance and mobile bottom navigation",
+      "ar": "Installable PWA shell with WebView guidance and mobile bottom navigation"
     }
   ],
   "progress": {
@@ -49,19 +54,11 @@
   },
   "issues": [
     {
-      "en": "No test command is declared in package.json.",
-      "ar": "No test command is declared in package.json."
-    },
-    {
       "en": "No conventional test directory was detected.",
       "ar": "No conventional test directory was detected."
     }
   ],
   "suggestions": [
-    {
-      "en": "Add a focused automated test command for the highest-risk behavior.",
-      "ar": "Add a focused automated test command for the highest-risk behavior."
-    },
     {
       "en": "Add reviewed screenshots and a fuller case study when visual evidence is available.",
       "ar": "Add reviewed screenshots and a fuller case study when visual evidence is available."
@@ -80,6 +77,6 @@
   },
   "source": {
     "workspace": "workspace/skills-agency",
-    "last_reviewed": "2026-07-29"
+    "last_reviewed": "2026-07-31"
   }
 }

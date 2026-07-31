@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import PwaProvider from "@/components/pwa/PwaProvider";
 import agencyTheme from "@/styles/antd.config";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
@@ -15,6 +16,19 @@ export const metadata: Metadata = {
     template: `%s | ${siteMetadata.siteName}`,
   },
   description: siteMetadata.defaultDescription,
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/icons/skills-agency-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/icons/skills-agency-192.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteMetadata.siteName,
+    statusBarStyle: "black-translucent",
+  },
   openGraph: {
     type: "website",
     siteName: siteMetadata.siteName,
@@ -39,6 +53,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#0b0d10",
+  colorScheme: "dark light",
 };
 
 const structuredData = {
@@ -65,9 +81,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <AntdRegistry>
           <ConfigProvider theme={agencyTheme}>
-            {children}
-            <GoogleAnalytics gaId={gaId} />
-            <Analytics />
+            <PwaProvider>
+              {children}
+              <GoogleAnalytics gaId={gaId} />
+              <Analytics />
+            </PwaProvider>
           </ConfigProvider>
         </AntdRegistry>
       </body>
