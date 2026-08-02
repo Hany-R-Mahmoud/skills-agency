@@ -4,15 +4,24 @@ const siteUrl = "https://skills-agency.vercel.app";
 const siteName = "The Agency";
 const defaultDescription =
   "Cinematic showcase for a public roster of AI specialists, departments, and playbook-driven workflows.";
-const defaultImage =
-  "https://ik.imagekit.io/hrim/images/office/command-department.png?updatedAt=1774688158259";
+const defaultImage = toAbsoluteUrl("/social-card.png");
+
+export const defaultSocialImage = {
+  url: defaultImage,
+  type: "image/png",
+  width: 1200,
+  height: 630,
+  alt: siteName,
+};
 
 function toAbsoluteUrl(path: string): string {
   return new URL(path, siteUrl).toString();
 }
 
 function createImageSet(imagePath?: string) {
-  const imageUrl = imagePath ? toAbsoluteUrl(imagePath) : defaultImage;
+  if (!imagePath) return [defaultSocialImage];
+
+  const imageUrl = toAbsoluteUrl(imagePath);
 
   return [
     {
@@ -63,7 +72,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: images.map((image) => image.url),
+      images,
     },
   };
 }

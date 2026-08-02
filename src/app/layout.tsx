@@ -7,7 +7,7 @@ import { ConfigProvider } from "antd";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
-import { siteMetadata } from "@/lib/metadata";
+import { defaultSocialImage, siteMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -37,8 +37,7 @@ export const metadata: Metadata = {
     url: siteMetadata.siteUrl,
     images: [
       {
-        url: siteMetadata.defaultImage,
-        alt: siteMetadata.siteName,
+        ...defaultSocialImage,
       },
     ],
   },
@@ -46,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteMetadata.siteName,
     description: siteMetadata.defaultDescription,
-    images: [siteMetadata.defaultImage],
+    images: [defaultSocialImage],
   },
 };
 
