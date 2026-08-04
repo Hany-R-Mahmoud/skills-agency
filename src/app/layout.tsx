@@ -8,6 +8,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { defaultSocialImage, siteMetadata } from "@/lib/metadata";
+import StandaloneVisitorCounter from "@/components/StandaloneVisitorCounter";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ConfigProvider theme={agencyTheme}>
             <PwaProvider>
               {children}
+              <StandaloneVisitorCounter />
               <GoogleAnalytics gaId={gaId} />
               <Analytics />
             </PwaProvider>
