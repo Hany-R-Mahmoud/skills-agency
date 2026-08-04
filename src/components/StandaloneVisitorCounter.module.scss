@@ -1,0 +1,45 @@
+.counter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border-default);
+  background: var(--surface-mid);
+  color: var(--text-secondary);
+}
+
+.inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--dept-command) 24%, var(--border-default));
+  background: var(--surface-high);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.2;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  color: var(--dept-command);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.value {
+  color: var(--text-heading);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}

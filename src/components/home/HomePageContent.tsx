@@ -13,6 +13,7 @@ import {
   getSiteStats,
 } from "@/lib/utils";
 import styles from "@/app/page.module.scss";
+import StandaloneVisitorCounter from "@/components/StandaloneVisitorCounter";
 
 export default function HomePageContent() {
   const departments = getDepartmentSummaries();
@@ -128,6 +129,7 @@ export default function HomePageContent() {
             ))}
           </div>
         </section>
+        <StandaloneVisitorCounter />
       </MainArea>
     </div>
   );

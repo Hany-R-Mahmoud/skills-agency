@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import styles from './StandaloneVisitorCounter.module.scss';
 
 const API_URL = 'https://dev2stage.vercel.app/api/visitors';
 
@@ -39,14 +40,14 @@ export default function StandaloneVisitorCounter() {
   }, []);
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl justify-center border-t border-white/10 bg-[#0b0d10] px-4 py-3 text-xs text-slate-300">
-      <span className="inline-flex items-center gap-2 whitespace-nowrap" title={`Agency visitors: ${count ?? '…'}`}>
-        <svg className="h-3.5 w-3.5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <div className={styles.counter}>
+      <span className={styles.inner} title={`Agency visitors: ${count ?? '…'}`}>
+        <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
           <circle cx="12" cy="12" r="2.5" />
         </svg>
-        <span className="font-semibold uppercase tracking-[0.14em]">Agency visitors</span>
-        <span className="font-mono font-bold tabular-nums" aria-live="polite">{count ?? '—'}</span>
+        <span className={styles.label}>Agency visitors</span>
+        <span className={styles.value} aria-live="polite">{count ?? '—'}</span>
       </span>
     </div>
   );
